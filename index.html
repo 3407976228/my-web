@@ -200,7 +200,7 @@
         .food-header {
             display: flex;
             align-items: center;
-            margin-top: 10px; /* 留出序号空间 */
+            margin-top: 10px;
             margin-bottom: 8px;
         }
 
@@ -218,6 +218,12 @@
             line-height: 1.6;
             margin-bottom: 10px;
             padding-left: 5px;
+        }
+
+        /* 重点文字高亮 */
+        .highlight-text {
+            color: var(--danger);
+            font-weight: bold;
         }
 
         /* 推荐菜标签 */
@@ -416,52 +422,55 @@
         </div>
     </div>
 
-    <!-- 3. 美食页面 (优化后的榜单) -->
+    <!-- 3. 美食页面 (正餐烧烤 -> 小吃 -> 甜品) -->
     <div id="food" class="content-section">
         <h3 class="food-page-title">🔥 佛山必吃美食榜单</h3>
         
         <div class="food-list-container">
             
-            <!-- 1 -->
-            <div class="food-item cat-dessert">
+            <!-- 1. 正餐/烤肉 -->
+            <div class="food-item cat-meal">
                 <div class="food-index">TOP 1</div>
                 <div class="food-header">
-                    <div class="food-name">Hot.huhu鸡蛋仔</div>
+                    <div class="food-name">大呲花丹东海鲜烤肉(禅城店)</div>
                 </div>
-                <div class="food-desc">葡挞三重奏鸡蛋仔，还有好多款搭配都好吃。</div>
+                <div class="food-desc">人气超高的东北烧烤，分量特别大，人均60就能吃得很满足。离祖庙很近。注意：<span class="highlight-text">下午5点后才开门，别跑空了！</span></div>
                 <div class="food-tags">
-                    <span class="tag">葡挞三重奏</span>
-                    <span class="tag">甜品小吃</span>
+                    <span class="tag">东北烧烤</span>
+                    <span class="tag">分量大</span>
+                    <span class="tag">离祖庙近</span>
                 </div>
             </div>
 
-            <!-- 2 -->
-            <div class="food-item cat-snack">
+            <!-- 2. 正餐/烤肉 -->
+            <div class="food-item cat-meal">
                 <div class="food-index">TOP 2</div>
                 <div class="food-header">
-                    <div class="food-name">大笨象小吃店</div>
+                    <div class="food-name">北山炭火烤肉</div>
                 </div>
-                <div class="food-desc">二十多年老店，价格不贵的烟火气小吃店。</div>
+                <div class="food-desc">老板是东北人，肉会用苏打水和梨汁腌制，口感特别嫩滑。环境不错通风好，吃完身上油烟味不重。</div>
                 <div class="food-tags">
-                    <span class="tag">老字号</span>
-                    <span class="tag">平价小吃</span>
+                    <span class="tag">炭火烤肉</span>
+                    <span class="tag">肉质嫩滑</span>
+                    <span class="tag">岭南天地附近</span>
                 </div>
             </div>
 
-            <!-- 3 -->
+            <!-- 3. 正餐/烤肉 -->
             <div class="food-item cat-meal">
                 <div class="food-index">TOP 3</div>
                 <div class="food-header">
-                    <div class="food-name">豪爽美食</div>
+                    <div class="food-name">刘皇叔地摊烧烤总店</div>
                 </div>
-                <div class="food-desc">牛腩软糯入味，搭配各种粉都好吃。</div>
+                <div class="food-desc">主打东北烧烤，很多本地人推荐。虽然菜品样式不多，但胜在食材新鲜，值得一试。</div>
                 <div class="food-tags">
-                    <span class="tag">牛腩</span>
-                    <span class="tag">汤粉</span>
+                    <span class="tag">地摊烧烤</span>
+                    <span class="tag">本地人推荐</span>
+                    <span class="tag">食材新鲜</span>
                 </div>
             </div>
 
-            <!-- 4 -->
+            <!-- 4. 正餐 -->
             <div class="food-item cat-meal">
                 <div class="food-index">TOP 4</div>
                 <div class="food-header">
@@ -475,7 +484,7 @@
                 </div>
             </div>
 
-            <!-- 5 -->
+            <!-- 5. 正餐 -->
             <div class="food-item cat-meal">
                 <div class="food-index">TOP 5</div>
                 <div class="food-header">
@@ -488,20 +497,20 @@
                 </div>
             </div>
 
-            <!-- 6 -->
+            <!-- 6. 正餐/粉面 -->
             <div class="food-item cat-meal">
                 <div class="food-index">TOP 6</div>
                 <div class="food-header">
-                    <div class="food-name">念恩记猪手面</div>
+                    <div class="food-name">豪爽美食</div>
                 </div>
-                <div class="food-desc">猪手软软糯糯，猪肝和咖喱鱼蛋好吃。</div>
+                <div class="food-desc">牛腩软糯入味，搭配各种粉都好吃。</div>
                 <div class="food-tags">
-                    <span class="tag">猪手面</span>
-                    <span class="tag">咖喱鱼蛋</span>
+                    <span class="tag">牛腩</span>
+                    <span class="tag">汤粉</span>
                 </div>
             </div>
 
-            <!-- 7 -->
+            <!-- 7. 正餐/下饭菜 -->
             <div class="food-item cat-meal">
                 <div class="food-index">TOP 7</div>
                 <div class="food-header">
@@ -514,9 +523,35 @@
                 </div>
             </div>
 
-            <!-- 8 -->
-            <div class="food-item cat-snack">
+            <!-- 8. 正餐/粉面 -->
+            <div class="food-item cat-meal">
                 <div class="food-index">TOP 8</div>
+                <div class="food-header">
+                    <div class="food-name">念恩记猪手面</div>
+                </div>
+                <div class="food-desc">猪手软软糯糯，猪肝和咖喱鱼蛋好吃。</div>
+                <div class="food-tags">
+                    <span class="tag">猪手面</span>
+                    <span class="tag">咖喱鱼蛋</span>
+                </div>
+            </div>
+
+            <!-- 9. 小吃 -->
+            <div class="food-item cat-snack">
+                <div class="food-index">TOP 9</div>
+                <div class="food-header">
+                    <div class="food-name">大笨象小吃店</div>
+                </div>
+                <div class="food-desc">二十多年老店，价格不贵的烟火气小吃店。</div>
+                <div class="food-tags">
+                    <span class="tag">老字号</span>
+                    <span class="tag">平价小吃</span>
+                </div>
+            </div>
+
+            <!-- 10. 小吃 -->
+            <div class="food-item cat-snack">
+                <div class="food-index">TOP 10</div>
                 <div class="food-header">
                     <div class="food-name">南善小食店</div>
                 </div>
@@ -527,23 +562,9 @@
                 </div>
             </div>
 
-            <!-- 9 -->
-            <div class="food-item cat-dessert">
-                <div class="food-index">TOP 9</div>
-                <div class="food-header">
-                    <div class="food-name">圆碌碌甜品屋（南善店）</div>
-                </div>
-                <div class="food-desc">芒果肠粉特别，猪脚姜好吃，各种特色甜品。</div>
-                <div class="food-tags">
-                    <span class="tag">芒果肠粉</span>
-                    <span class="tag">猪脚姜</span>
-                    <span class="tag">甜品</span>
-                </div>
-            </div>
-
-            <!-- 10 -->
+            <!-- 11. 小吃 -->
             <div class="food-item cat-snack">
-                <div class="food-index">TOP 10</div>
+                <div class="food-index">TOP 11</div>
                 <div class="food-header">
                     <div class="food-name">蔡玉皎传统薄皮蒸饺</div>
                 </div>
@@ -552,6 +573,33 @@
                     <span class="tag">薄皮蒸饺</span>
                     <span class="tag">炸云吞</span>
                     <span class="tag">蒸凤爪</span>
+                </div>
+            </div>
+
+            <!-- 12. 甜品 -->
+            <div class="food-item cat-dessert">
+                <div class="food-index">TOP 12</div>
+                <div class="food-header">
+                    <div class="food-name">Hot.huhu鸡蛋仔</div>
+                </div>
+                <div class="food-desc">葡挞三重奏鸡蛋仔，还有好多款搭配都好吃。</div>
+                <div class="food-tags">
+                    <span class="tag">葡挞三重奏</span>
+                    <span class="tag">甜品小吃</span>
+                </div>
+            </div>
+
+            <!-- 13. 甜品 -->
+            <div class="food-item cat-dessert">
+                <div class="food-index">TOP 13</div>
+                <div class="food-header">
+                    <div class="food-name">圆碌碌甜品屋（南善店）</div>
+                </div>
+                <div class="food-desc">芒果肠粉特别，猪脚姜好吃，各种特色甜品。</div>
+                <div class="food-tags">
+                    <span class="tag">芒果肠粉</span>
+                    <span class="tag">猪脚姜</span>
+                    <span class="tag">甜品</span>
                 </div>
             </div>
 
