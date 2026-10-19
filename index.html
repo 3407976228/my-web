@@ -31,6 +31,7 @@
             padding-bottom: 40px;
         }
 
+        /* 顶部导航 */
         .nav-tabs {
             display: flex;
             background: var(--card-bg);
@@ -59,6 +60,7 @@
             font-weight: bold;
         }
 
+        /* 顶部倒计时 */
         header {
             background: var(--bg-color);
             padding: 20px;
@@ -70,6 +72,7 @@
         .countdown-time { font-size: 2rem; font-weight: bold; color: var(--accent); letter-spacing: 1px; }
         .next-event { font-size: 1rem; margin-top: 5px; color: var(--text-main); }
 
+        /* 页面容器 */
         .content-section {
             display: none; 
             padding: 20px;
@@ -138,19 +141,103 @@
 
         .author-sign { text-align: right; font-size: 0.75rem; color: var(--text-sub); letter-spacing: 1px; margin-top: 15px; opacity: 0.85; }
 
-        /* 路线页面样式 */
+        /* --- 路线页面样式 --- */
         .route-step { background: var(--card-bg); border-radius: 12px; padding: 15px; margin-bottom: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.03); border-left: 5px solid var(--route-line); }
         .step-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
         .step-time { font-weight: bold; font-size: 1.1rem; color: var(--route-line); }
         .step-detail { font-size: 0.9rem; color: var(--text-sub); margin-top: 5px; }
 
-        /* 美食页面样式 */
-        .food-grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
-        .food-card { background: var(--card-bg); padding: 15px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.03); border-top: 4px solid var(--food-green); }
-        .food-card h3 { margin: 0 0 10px 0; color: var(--food-green); font-size: 1.1rem; }
-        .food-list { margin: 0; padding-left: 20px; font-size: 0.95rem; color: var(--text-main); }
+        /* --- 美食页面样式 (全新优化版) --- */
+        .food-page-title {
+            font-size: 1.2rem;
+            color: var(--text-main);
+            margin-top: 0;
+            margin-bottom: 15px;
+            padding-left: 10px;
+            border-left: 4px solid var(--accent);
+        }
 
-        /* 清单页面样式 */
+        .food-list-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        /* 店铺卡片 */
+        .food-item {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.04);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #f0f0f0;
+            transition: transform 0.2s ease;
+        }
+        
+        .food-item:active {
+            transform: scale(0.98);
+        }
+
+        /* 左侧的序号标签 */
+        .food-index {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: var(--accent);
+            color: white;
+            font-size: 0.9rem;
+            font-weight: bold;
+            padding: 4px 12px;
+            border-radius: 0 0 12px 0;
+        }
+
+        /* 不同分类的颜色 */
+        .food-item.cat-meal .food-index { background: var(--foshan-red); }
+        .food-item.cat-snack .food-index { background: var(--accent); }
+        .food-item.cat-dessert .food-index { background: var(--food-green); }
+
+        .food-header {
+            display: flex;
+            align-items: center;
+            margin-top: 10px; /* 留出序号空间 */
+            margin-bottom: 8px;
+        }
+
+        .food-name {
+            font-size: 1.15rem;
+            font-weight: bold;
+            color: var(--text-main);
+            margin: 0;
+            padding-left: 5px;
+        }
+
+        .food-desc {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            line-height: 1.6;
+            margin-bottom: 10px;
+            padding-left: 5px;
+        }
+
+        /* 推荐菜标签 */
+        .food-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding-left: 5px;
+        }
+
+        .tag {
+            font-size: 0.8rem;
+            color: #555;
+            background: #f5f5f5;
+            padding: 4px 10px;
+            border-radius: 20px;
+            border: 1px solid #ebebeb;
+        }
+
+        /* --- 公共清单页面样式 --- */
         .checklist-container { background: var(--card-bg); border-radius: 12px; padding: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.03); }
         .checklist-category { margin-bottom: 25px; border-bottom: 1px solid #f0f0f0; padding-bottom: 10px; }
         .checklist-category:last-child { border-bottom: none; }
@@ -282,98 +369,192 @@
 
     <!-- 2. 路线页面 -->
     <div id="route" class="content-section">
-        <!-- 08:30 - 09:30 修改路程为 50m -->
         <div class="route-step">
-            <div class="step-header">
-                <span class="step-time">08:30 - 09:30</span>
-                <span>🚶 距离 50m</span>
-            </div>
+            <div class="step-header"><span class="step-time">08:30 - 09:30</span><span>🚶 距离 50m</span></div>
             <div style="font-weight:bold;">早餐 · 广东财经大学附近</div>
             <div class="step-detail">新潮肠粉店 | 广财校区出发</div>
         </div>
-
-        <!-- 09:30 - 10:35 修改路程为 5km -->
         <div class="route-step">
-            <div class="step-header">
-                <span class="step-time">09:30 - 10:35</span>
-                <span>🚶 距离 5km</span>
-            </div>
+            <div class="step-header"><span class="step-time">09:30 - 10:35</span><span>🚶 距离 5km</span></div>
             <div style="font-weight:bold;">三水森林公园</div>
             <div class="step-detail">游玩约1小时 | 选择：卧佛 / 孔圣园</div>
         </div>
-
-        <!-- 11:03 前 保持 1.7km -->
         <div class="route-step" style="border-left-color: var(--danger);">
-            <div class="step-header">
-                <span class="step-time" style="color:var(--danger)">11:03 前</span>
-                <span>🚌 距离 1.7km</span>
-            </div>
+            <div class="step-header"><span class="step-time" style="color:var(--danger)">11:03 前</span><span>🚌 距离 1.7km</span></div>
             <div style="font-weight:bold;">城际班车 (西青大道公交站)</div>
             <div class="step-detail">⚠️ 早上咽喉时刻，需提前步行到达</div>
         </div>
-
         <div class="route-step">
-            <div class="step-header">
-                <span class="step-time">预计 12:20</span>
-                <span>🚶 350m</span>
-            </div>
+            <div class="step-header"><span class="step-time">预计 12:20</span><span>🚶 350m</span></div>
             <div style="font-weight:bold;">抵达 佛山汽车站B站</div>
             <div class="step-detail">步行至中山公园附近</div>
         </div>
-        
         <div class="route-step">
-            <div class="step-header">
-                <span class="step-time">13:00 - 14:15</span>
-                <span>🚶 约 1.5km</span>
-            </div>
+            <div class="step-header"><span class="step-time">13:00 - 14:15</span><span>🚶 约 1.5km</span></div>
             <div style="font-weight:bold;">中山公园 → 岭南天地</div>
             <div class="step-detail">中山公园闲逛，随后前往岭南天地吃午餐</div>
         </div>
-
         <div class="route-step" style="border-left-color: var(--foshan-red);">
-            <div class="step-header">
-                <span class="step-time" style="color:var(--foshan-red)">14:15 - 17:45</span>
-                <span>🚶 约 500m</span>
-            </div>
+            <div class="step-header"><span class="step-time" style="color:var(--foshan-red)">14:15 - 17:45</span><span>🚶 约 500m</span></div>
             <div style="font-weight:bold;">岭南天地 → 祖庙</div>
             <div class="step-detail">逛祖庙，看醒狮表演，随后在祖庙附近吃晚餐</div>
         </div>
-
-        <!-- 17:45 - 18:50 修改路程为 300m -->
         <div class="route-step">
-            <div class="step-header">
-                <span class="step-time">17:45 - 18:50</span>
-                <span>🚶 距离 300m</span>
-            </div>
+            <div class="step-header"><span class="step-time">17:45 - 18:50</span><span>🚶 距离 300m</span></div>
             <div style="font-weight:bold;">垂虹公园 → 先行书店</div>
             <div class="step-detail">饭后散步消食，逛逛先行书店打卡拍照</div>
         </div>
-
         <div class="route-step" style="border-left-color: var(--danger);">
-            <div class="step-header">
-                <span class="step-time" style="color:var(--danger)">18:50 - 19:20</span>
-                <span>🚕 建议打车</span>
-            </div>
+            <div class="step-header"><span class="step-time" style="color:var(--danger)">18:50 - 19:20</span><span>🚕 建议打车</span></div>
             <div style="font-weight:bold;">前往 佛山汽车站B站</div>
             <div class="step-detail">⚠️ 预留充足时间，打车或公交前往车站</div>
         </div>
-
         <div class="route-step">
-            <div class="step-header">
-                <span class="step-time">19:31 前</span>
-                <span>🚌 乘车</span>
-            </div>
+            <div class="step-header"><span class="step-time">19:31 前</span><span>🚌 乘车</span></div>
             <div style="font-weight:bold;">抵达 佛山汽车站B站</div>
             <div class="step-detail">乘车返回 | 回家</div>
         </div>
     </div>
 
-    <!-- 3. 美食页面 -->
+    <!-- 3. 美食页面 (优化后的榜单) -->
     <div id="food" class="content-section">
-        <div class="food-grid">
-            <div class="food-card"><h3>🍳 早餐</h3><ul class="food-list"><li>广东财经大学附近：新潮肠粉店</li></ul></div>
-            <div class="food-card"><h3>🍗 午餐</h3><ul class="food-list"><li>岭南天地内（各类特色餐饮）</li><li>新疆烧烤 (之前计划)</li><li>后龙街牛杂 (可选加餐)</li></ul></div>
-            <div class="food-card"><h3>🍜 晚餐</h3><ul class="food-list"><li>祖庙附近</li><li>念恩记猪手面</li><li>圆碌碌糖水店 (甜品首选)</li><li>后龙街牛杂</li></ul></div>
+        <h3 class="food-page-title">🔥 佛山必吃美食榜单</h3>
+        
+        <div class="food-list-container">
+            
+            <!-- 1 -->
+            <div class="food-item cat-dessert">
+                <div class="food-index">TOP 1</div>
+                <div class="food-header">
+                    <div class="food-name">Hot.huhu鸡蛋仔</div>
+                </div>
+                <div class="food-desc">葡挞三重奏鸡蛋仔，还有好多款搭配都好吃。</div>
+                <div class="food-tags">
+                    <span class="tag">葡挞三重奏</span>
+                    <span class="tag">甜品小吃</span>
+                </div>
+            </div>
+
+            <!-- 2 -->
+            <div class="food-item cat-snack">
+                <div class="food-index">TOP 2</div>
+                <div class="food-header">
+                    <div class="food-name">大笨象小吃店</div>
+                </div>
+                <div class="food-desc">二十多年老店，价格不贵的烟火气小吃店。</div>
+                <div class="food-tags">
+                    <span class="tag">老字号</span>
+                    <span class="tag">平价小吃</span>
+                </div>
+            </div>
+
+            <!-- 3 -->
+            <div class="food-item cat-meal">
+                <div class="food-index">TOP 3</div>
+                <div class="food-header">
+                    <div class="food-name">豪爽美食</div>
+                </div>
+                <div class="food-desc">牛腩软糯入味，搭配各种粉都好吃。</div>
+                <div class="food-tags">
+                    <span class="tag">牛腩</span>
+                    <span class="tag">汤粉</span>
+                </div>
+            </div>
+
+            <!-- 4 -->
+            <div class="food-item cat-meal">
+                <div class="food-index">TOP 4</div>
+                <div class="food-header">
+                    <div class="food-name">好好食桑拿鸡</div>
+                </div>
+                <div class="food-desc">主打桑拿鸡、松子排骨、烧鹅、白切鸡。</div>
+                <div class="food-tags">
+                    <span class="tag">桑拿鸡</span>
+                    <span class="tag">烧鹅</span>
+                    <span class="tag">粤菜硬菜</span>
+                </div>
+            </div>
+
+            <!-- 5 -->
+            <div class="food-item cat-meal">
+                <div class="food-index">TOP 5</div>
+                <div class="food-header">
+                    <div class="food-name">鸡来了炭火鸡煲·桑拿鸡</div>
+                </div>
+                <div class="food-desc">扇鸡桑拿鸡，白灼八爪鱼，白灼膏鱿，黑虎虾滑。</div>
+                <div class="food-tags">
+                    <span class="tag">炭火鸡煲</span>
+                    <span class="tag">海鲜</span>
+                </div>
+            </div>
+
+            <!-- 6 -->
+            <div class="food-item cat-meal">
+                <div class="food-index">TOP 6</div>
+                <div class="food-header">
+                    <div class="food-name">念恩记猪手面</div>
+                </div>
+                <div class="food-desc">猪手软软糯糯，猪肝和咖喱鱼蛋好吃。</div>
+                <div class="food-tags">
+                    <span class="tag">猪手面</span>
+                    <span class="tag">咖喱鱼蛋</span>
+                </div>
+            </div>
+
+            <!-- 7 -->
+            <div class="food-item cat-meal">
+                <div class="food-index">TOP 7</div>
+                <div class="food-header">
+                    <div class="food-name">登满园干蒸鲜排骨</div>
+                </div>
+                <div class="food-desc">干蒸排骨焦香四溢，其他菜品都好下饭。</div>
+                <div class="food-tags">
+                    <span class="tag">干蒸排骨</span>
+                    <span class="tag">下饭菜</span>
+                </div>
+            </div>
+
+            <!-- 8 -->
+            <div class="food-item cat-snack">
+                <div class="food-index">TOP 8</div>
+                <div class="food-header">
+                    <div class="food-name">南善小食店</div>
+                </div>
+                <div class="food-desc">本地人的早餐店，各种小吃。</div>
+                <div class="food-tags">
+                    <span class="tag">本地早餐</span>
+                    <span class="tag">地道小吃</span>
+                </div>
+            </div>
+
+            <!-- 9 -->
+            <div class="food-item cat-dessert">
+                <div class="food-index">TOP 9</div>
+                <div class="food-header">
+                    <div class="food-name">圆碌碌甜品屋（南善店）</div>
+                </div>
+                <div class="food-desc">芒果肠粉特别，猪脚姜好吃，各种特色甜品。</div>
+                <div class="food-tags">
+                    <span class="tag">芒果肠粉</span>
+                    <span class="tag">猪脚姜</span>
+                    <span class="tag">甜品</span>
+                </div>
+            </div>
+
+            <!-- 10 -->
+            <div class="food-item cat-snack">
+                <div class="food-index">TOP 10</div>
+                <div class="food-header">
+                    <div class="food-name">蔡玉皎传统薄皮蒸饺</div>
+                </div>
+                <div class="food-desc">薄皮蒸饺、炸云吞、蒸凤爪必点。</div>
+                <div class="food-tags">
+                    <span class="tag">薄皮蒸饺</span>
+                    <span class="tag">炸云吞</span>
+                    <span class="tag">蒸凤爪</span>
+                </div>
+            </div>
+
         </div>
     </div>
 
