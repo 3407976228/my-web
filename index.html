@@ -1,26 +1,414 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>小狼 · 个人主页</title>
-  <meta name="description" content="小狼的个人主页" />
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <main class="page">
-    <h1>小狼</h1>
-    <hr class="rule" />
-    <p class="intro">
-      这是一个热爱摄影和编程的极客。
-    </p>
-    <p class="hello">hello，小晴</p>
-    <p class="links">
-      <a href="https://github.com/3407976228" target="_blank" rel="noopener">GitHub</a>
-    </p>
-  </main>
-  <footer class="footer">
-    <p>© 2026 小狼</p>
-  </footer>
-</body>
-</html>
+	<!DOCTYPE html>
+	<html lang="zh-CN">
+	<head>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	    <title>佛山一日游手册 - 2026.11.01</title>
+	    <style>
+	        :root {
+	            --bg-color: #f8f9fa;
+	            --card-bg: #ffffff;
+	            --text-main: #2c3e50;
+	            --text-sub: #7f8c8d;
+	            --accent: #e67e22; /* 祖庙橙 */
+	            --route-line: #3498db; /* 路线蓝 */
+	            --danger: #e74c3c; /* 红色警示 */
+	            --ghost: #bdc3c7; /* 灰色可选 */
+	            --nav-height: 60px;
+	        }
+	        @media (prefers-color-scheme: dark) {
+	            :root {
+	                --bg-color: #1a1a1a;
+	                --card-bg: #2d2d2d;
+	                --text-main: #ecf0f1;
+	                --text-sub: #bdc3c7;
+	                --accent: #d35400;
+	                --route-line: #5dade2;
+	            }
+	        }
+	        body {
+	            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	            background-color: var(--bg-color);
+	            color: var(--text-main);
+	            margin: 0;
+	            padding: 0;
+	            padding-bottom: 80px; /* 留给底部导航 */
+	        }
+	        /* 1. 顶部倒计时卡片 */
+	        header {
+	            background: linear-gradient(135deg, var(--accent), #f39c12);
+	            color: white;
+	            padding: 20px;
+	            text-align: center;
+	            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+	        }
+	        .countdown-label {
+	            font-size: 0.9rem;
+	            opacity: 0.9;
+	            margin-bottom: 5px;
+	        }
+	        .countdown-time {
+	            font-size: 2.5rem;
+	            font-weight: bold;
+	            letter-spacing: 2px;
+	        }
+	        .next-event {
+	            font-size: 1.1rem;
+	            margin-top: 5px;
+	            font-weight: 500;
+	        }
+	        /* 2. 手绘地图容器 */
+	        .map-section {
+	            padding: 20px;
+	            background: var(--card-bg);
+	            margin-bottom: 15px;
+	            border-radius: 12px;
+	            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+	        }
+	        .map-header {
+	            display: flex;
+	            justify-content: space-between;
+	            align-items: center;
+	            margin-bottom: 10px;
+	        }
+	        .map-header h2 { margin: 0; font-size: 1.2rem; }
+	        .route-btn {
+	            background-color: var(--route-line);
+	            color: white;
+	            border: none;
+	            padding: 8px 16px;
+	            border-radius: 20px;
+	            font-size: 0.9rem;
+	            cursor: pointer;
+	            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+	        }
+	        .route-btn:active { transform: scale(0.95); }
+	        svg.hand-drawn-map {
+	            width: 100%;
+	            height: auto;
+	            border: 2px dashed var(--route-line);
+	            border-radius: 8px;
+	            background: rgba(52, 152, 219, 0.05);
+	        }
+	        /* 3. 行程表格 */
+	        .timeline {
+	            padding: 0 20px;
+	            margin-bottom: 20px;
+	        }
+	        .timeline-item {
+	            background: var(--card-bg);
+	            border-radius: 12px;
+	            margin-bottom: 15px;
+	            overflow: hidden;
+	            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+	            position: relative;
+	            border-left: 4px solid var(--route-line);
+	        }
+	        .timeline-time {
+	            background: var(--route-line);
+	            color: white;
+	            padding: 5px 15px;
+	            font-weight: bold;
+	            font-size: 0.9rem;
+	            display: inline-block;
+	        }
+	        .timeline-content {
+	            padding: 12px 15px;
+	        }
+	        .location-name {
+	            font-weight: bold;
+	            font-size: 1.1rem;
+	            display: flex;
+	            justify-content: space-between;
+	            align-items: center;
+	        }
+	        .location-details {
+	            color: var(--text-sub);
+	            font-size: 0.9rem;
+	            margin-top: 5px;
+	        }
+	        .tag {
+	            font-size: 0.75rem;
+	            padding: 2px 8px;
+	            border-radius: 4px;
+	            margin-left: 8px;
+	            vertical-align: middle;
+	        }
+	        .tag.ticket { background: #e8f8f5; color: #27ae60; }
+	        .tag.urgent { background: #fdedec; color: #c0392b; }
+	        .tag.ghost { background: #f0f3f4; color: #95a5a6; text-decoration: line-through; }
+	        /* 4. 待办清单 */
+	        .todo-list {
+	            padding: 0 20px;
+	            margin-bottom: 20px;
+	        }
+	        .todo-item {
+	            background: var(--card-bg);
+	            padding: 12px;
+	            margin-bottom: 8px;
+	            border-radius: 8px;
+	            display: flex;
+	            align-items: center;
+	        }
+	        .todo-icon {
+	            margin-right: 10px;
+	            font-size: 1.2rem;
+	        }
+	        /* 5. 实用贴士 */
+	        .tips-section {
+	            padding: 0 20px;
+	            margin-bottom: 20px;
+	        }
+	        .tips-card {
+	            background: var(--card-bg);
+	            padding: 15px;
+	            border-radius: 8px;
+	            font-size: 0.9rem;
+	            line-height: 1.6;
+	            color: var(--text-sub);
+	        }
+	        /* 底部固定导航 */
+	        .bottom-nav {
+	            position: fixed;
+	            bottom: 0;
+	            left: 0;
+	            width: 100%;
+	            background: var(--card-bg);
+	            display: flex;
+	            justify-content: space-around;
+	            padding: 10px 0;
+	            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+	            z-index: 100;
+	        }
+	        .nav-item {
+	            text-align: center;
+	            color: var(--text-sub);
+	            font-size: 0.8rem;
+	            cursor: pointer;
+	        }
+	        .nav-item.active { color: var(--accent); }
+	        .nav-icon { font-size: 1.2rem; display: block; margin-bottom: 2px; }
+	        /* 点击效果 */
+	        .location-btn {
+	            color: var(--accent);
+	            text-decoration: underline;
+	            font-weight: bold;
+	            cursor: pointer;
+	        }
+	        @media (min-width: 768px) {
+	            body { padding-bottom: 0; display: flex; justify-content: center; }
+	            .content-wrapper {
+	                width: 100%;
+	                max-width: 600px;
+	                padding-bottom: 60px;
+	            }
+	        }
+	    </style>
+	</head>
+	<body>
+	<div class="content-wrapper">
+	    <!-- 1. 倒计时 -->
+	    <header>
+	        <div class="countdown-label">距离出发还有</div>
+	        <div class="countdown-time" id="timer">00天 00小时 00分 00秒</div>
+	        <div class="next-event">08:30 早餐 · 新潮肠粉店</div>
+	    </header>
+	    <!-- 2. 地图概览 -->
+	    <section class="map-section">
+	        <div class="map-header">
+	            <h2>📍 全天路线</h2>
+	            <button class="route-btn" onclick="startNavigation()">🚀 一键导航全天</button>
+	        </div>
+	        <!-- SVG 手绘地图 -->
+	        <svg class="hand-drawn-map" viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg">
+	            <!-- 路线 -->
+	            <path d="M200,50 Q180,150 200,250 T200,450 T100,550" 
+	                  stroke="var(--route-line)" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="10,5" />
+	            <!-- 节点 -->
+	            <!-- 广财 (起点) -->
+	            <circle cx="200" cy="50" r="8" fill="#3498db" />
+	            <text x="200" y="40" font-size="12" text-anchor="middle" fill="var(--text-main)">广财出发</text>
+	            <!-- 森林公园 -->
+	            <circle cx="200" cy="250" r="6" fill="#27ae60" />
+	            <text x="220" y="255" font-size="12" fill="var(--text-main)">森林公园</text>
+	            <!-- 汽车站 -->
+	            <circle cx="200" cy="450" r="6" fill="#f39c12" />
+	            <text x="180" y="475" font-size="12" fill="var(--text-main)">佛山汽车站</text>
+	            <!-- 祖庙 -->
+	            <circle cx="150" cy="550" r="6" fill="#e67e22" />
+	            <text x="130" y="555" font-size="12" fill="var(--text-main)">祖庙醒狮</text>
+	        </svg>
+	    </section>
+	    <!-- 3. 逐日行程 -->
+	    <section class="timeline" id="itinerary">
+	        <!-- 由 JS 动态生成或静态写入 -->
+	        <div class="timeline-item">
+	            <span class="timeline-time">08:30</span>
+	            <div class="timeline-content">
+	                <div class="location-name">早餐 · 新潮肠粉店 <span class="tag">早餐</span></div>
+	                <div class="location-details">广财附近 | 倒计时开始</div>
+	            </div>
+	        </div>
+	        <div class="timeline-item">
+	            <span class="timeline-time">09:30-10:35</span>
+	            <div class="timeline-content">
+	                <div class="location-name">三水森林公园</div>
+	                <div class="location-details">选点：卧佛 / 孔圣园 | 票价：现场为准</div>
+	            </div>
+	        </div>
+	        <div class="timeline-item">
+	            <span class="timeline-time">11:03</span>
+	            <div class="timeline-content">
+	                <div class="location-name">城际班车 → 佛山汽车站</div>
+	                <div class="location-details">全程约1h12m | ⚠️ 全天咽喉</div>
+	            </div>
+	        </div>
+	        <div class="timeline-item">
+	            <span class="timeline-time">13:15</span>
+	            <div class="timeline-content">
+	                <div class="location-name">午餐 · 羊肉烧烤</div>
+	                <div class="location-details">祖庙附近 | 放开吃</div>
+	            </div>
+	        </div>
+	        <div class="timeline-item">
+	            <span class="timeline-time">14:15</span>
+	            <div class="timeline-content">
+	                <div class="location-name">祖庙 <span class="tag ticket">门票10元(学生)</span></div>
+	                <div class="location-details">必须带学生证 | 黄飞鸿醒狮表演</div>
+	            </div>
+	        </div>
+	        <div class="timeline-item">
+	            <span class="timeline-time">16:15</span>
+	            <div class="timeline-content">
+	                <div class="location-name">岭南天地 + 糖水</div>
+	                <div class="location-details">圆碌碌糖水 | 周日活动多</div>
+	            </div>
+	        </div>
+	        <div class="timeline-item">
+	            <span class="timeline-time">17:00</span>
+	            <div class="timeline-content">
+	                <div class="location-name">垂虹公园 · 先行书店</div>
+	                <div class="location-details">休闲打卡点</div>
+	            </div>
+	        </div>
+	        <div class="timeline-item" style="border-left-color: var(--danger);">
+	            <span class="timeline-time" style="background: var(--danger);">17:45</span>
+	            <div class="timeline-content">
+	                <div class="location-name">步行回车站 (1.4km)</div>
+	                <div class="location-details">⚠️ 累且夜路，请留意路况</div>
+	            </div>
+	        </div>
+	        <div class="timeline-item" style="border-left-color: var(--danger);">
+	            <span class="timeline-time" style="background: var(--danger);">18:19</span>
+	            <div class="timeline-content">
+	                <div class="location-name">末班城际班车</div>
+	                <div class="location-details">⚠️ 返程关键节点</div>
+	            </div>
+	        </div>
+	        <div class="timeline-item">
+	            <span class="timeline-time">19:31</span>
+	            <div class="timeline-content">
+	                <div class="location-name">抵达西青大道公交站</div>
+	                <div class="location-details">新友记对面 | 回学校</div>
+	            </div>
+	        </div>
+	    </section>
+	    <!-- 4. 待办清单 -->
+	    <section class="todo-list">
+	        <h3>📝 待办事项</h3>
+	        <div class="todo-item">
+	            <span class="todo-icon">📅</span>
+	            <span>前一天查天气，备好雨具/外套</span>
+	        </div>
+	        <div class="todo-item">
+	            <span class="todo-icon">🎫</span>
+	            <span>公众号预约醒狮场次 (14:15)</span>
+	        </div>
+	        <div class="todo-item">
+	            <span class="todo-icon">🎒</span>
+	            <span>随身携带学生证 (半价票)</span>
+	        </div>
+	        <div class="todo-item">
+	            <span class="todo-icon">🚌</span>
+	            <span>早上出门前查城际班车实时位置</span>
+	        </div>
+	        <div class="todo-item">
+	            <span class="todo-icon">🍜</span>
+	            <span>可选：后龙街牛杂 / 念恩记猪手面</span>
+	        </div>
+	    </section>
+	    <!-- 5. 实用贴士 -->
+	    <section class="tips-section">
+	        <h3>💡 实用贴士</h3>
+	        <div class="tips-card">
+	            <strong>📍 地图导航：</strong><br>
+	            点击行程中的地点，自动唤起 Google Maps / 高德 / 百度导航。<br><br>
+	            <strong>🚌 班车：</strong><br>
+	            佛山汽车站到三水西青大道的城际班车是往返必经之路，请务必在 18:19 前到达候车，错过末班将无法回校。<br><br>
+	            <strong>🎪 祖庙：</strong><br>
+	            醒狮表演每场约20分钟，建议提前15分钟占位。周一闭馆，今天是周日，开放。
+	        </div>
+	    </section>
+	</div>
+	<!-- 底部导航 -->
+	<div class="bottom-nav">
+	    <div class="nav-item active">
+	        <span class="nav-icon">🗺️</span>
+	        路线
+	    </div>
+	    <div class="nav-item">
+	        <span class="nav-icon">🧾</span>
+	        票务
+	    </div>
+	    <div class="nav-item">
+	        <span class="nav-icon">✅</span>
+	        待办
+	    </div>
+	</div>
+	<script>
+	    // 1. 倒计时逻辑
+	    // 锚点：2026-11-01 08:30:00 (北京时间)
+	    // 实际落地时间未知，默认按09:00开始倒计时（或者你可以修改这里）
+	    // 为了演示效果，这里设置为明天早上开始倒计时
+	    const targetDate = new Date("2026-11-01T08:30:00+08:00").getTime();
+	    function updateTimer() {
+	        const now = new Date().getTime();
+	        const distance = targetDate - now;
+	        if (distance < 0) {
+	            document.getElementById("timer").innerHTML = "出发啦！出发啦！";
+	            return;
+	        }
+	        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+	        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+	        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+	        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+	        document.getElementById("timer").innerHTML = 
+	            `${days}天 ${hours}时 ${minutes}分 ${seconds}秒`;
+	    }
+	    setInterval(updateTimer, 1000);
+	    updateTimer();
+	    // 2. 导航逻辑 (通用地图唤起)
+	    const locations = [
+	        { name: "广财", lat: 23.35, lng: 113.12 }, // 模拟坐标
+	        { name: "三水森林公园", lat: 23.16, lng: 113.15 },
+	        { name: "佛山汽车站", lat: 23.02, lng: 113.11 },
+	        { name: "祖庙", lat: 23.02, lng: 113.12 },
+	        { name: "岭南天地", lat: 23.03, lng: 113.12 },
+	        { name: "垂虹公园", lat: 23.03, lng: 113.13 }
+	    ];
+	    function startNavigation() {
+	        // 路线顺序：广财 -> 森林公园 -> 汽车站 -> 祖庙 -> 岭南天地 -> 垂虹公园 -> 回家
+	        // 注意：这里只是简单的串联，真实APP通常需要解析路线规划API
+	        const route = "https://www.google.com/maps/dir/?api=1&origin=" + 
+	                      locations[0].lat + "," + locations[0].lng + 
+	                      "&destination=" + locations[5].lat + "," + locations[5].lng +
+	                      "&waypoints=" + 
+	                      locations[1].lat + "," + locations[1].lng + 
+	                      "|"+ locations[2].lat + "," + locations[2].lng + 
+	                      "|"+ locations[3].lat + "," + locations[3].lng + 
+	                      "|"+ locations[4].lat + "," + locations[4].lng;
+	        window.location.href = route;
+	    }
+	</script>
+	</body>
+	</html>
