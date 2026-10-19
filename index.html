@@ -1,411 +1,615 @@
-	<!DOCTYPE html>
-	<html lang="zh-CN">
-	<head>
-	    <meta charset="UTF-8">
-	    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	    <title>佛山一日游手册 - 2026.11.01</title>
-	    <style>
-	        :root {
-	            /* 核心配色 */
-	            --bg-color: #fdfbf7; /* 米白色背景 */
-	            --card-bg: #ffffff;
-	            --text-main: #4a4a4a; /* 深灰字体，比纯黑更柔和 */
-	            --text-sub: #888888;
-	            --accent: #e67e22; /* 活力橙色 */
-	            --route-line: #3498db; /* 路线蓝 */
-	            --danger: #e74c3c; /* 警示红 */
-	            --food-green: #27ae60;
-	        }
-	        body {
-	            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-	            background-color: var(--bg-color);
-	            color: var(--text-main);
-	            margin: 0;
-	            padding: 0;
-	            padding-bottom: 40px;
-	        }
-	        /* 1. 顶部导航 */
-	        .nav-tabs {
-	            display: flex;
-	            background: var(--card-bg);
-	            padding: 10px;
-	            position: sticky;
-	            top: 0;
-	            z-index: 100;
-	            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-	        }
-	        .nav-item {
-	            flex: 1;
-	            text-align: center;
-	            padding: 10px;
-	            font-size: 1rem;
-	            cursor: pointer;
-	            border-radius: 20px;
-	            color: var(--text-sub);
-	            transition: all 0.3s;
-	        }
-	        .nav-item.active {
-	            background-color: var(--route-line);
-	            color: white;
-	            font-weight: bold;
-	        }
-	        /* 2. 顶部倒计时 */
-	        header {
-	            background: var(--bg-color);
-	            padding: 20px;
-	            text-align: center;
-	            border-bottom: 1px solid #eee;
-	        }
-	        .countdown-label {
-	            font-size: 0.8rem;
-	            color: var(--text-sub);
-	            margin-bottom: 5px;
-	        }
-	        .countdown-time {
-	            font-size: 2rem;
-	            font-weight: bold;
-	            color: var(--accent);
-	            letter-spacing: 1px;
-	        }
-	        .next-event {
-	            font-size: 1rem;
-	            margin-top: 5px;
-	            color: var(--text-main);
-	        }
-	        /* 3. 页面容器 */
-	        .content-section {
-	            display: none; /* 默认隐藏 */
-	            padding: 20px;
-	            animation: fadeIn 0.3s ease;
-	        }
-	        .content-section.active {
-	            display: block; /* 激活显示 */
-	        }
-	        @keyframes fadeIn {
-	            from { opacity: 0; transform: translateY(10px); }
-	            to { opacity: 1; transform: translateY(0); }
-	        }
-	        /* --- 路线部分样式 --- */
-	        .route-step {
-	            background: var(--card-bg);
-	            border-radius: 12px;
-	            padding: 15px;
-	            margin-bottom: 15px;
-	            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
-	            border-left: 5px solid var(--route-line);
-	        }
-	        .step-header {
-	            display: flex;
-	            justify-content: space-between;
-	            align-items: center;
-	            margin-bottom: 5px;
-	        }
-	        .step-time {
-	            font-weight: bold;
-	            font-size: 1.1rem;
-	            color: var(--route-line);
-	        }
-	        .step-detail {
-	            font-size: 0.9rem;
-	            color: var(--text-sub);
-	            margin-top: 5px;
-	        }
-	        /* 手绘地图 SVG */
-	        .cartoon-map {
-	            width: 100%;
-	            height: auto;
-	            border: 3px solid var(--route-line);
-	            border-radius: 20px;
-	            background: rgba(52, 152, 219, 0.05);
-	            overflow: visible;
-	        }
-	        /* --- 美食部分样式 --- */
-	        .food-grid {
-	            display: grid;
-	            grid-template-columns: 1fr;
-	            gap: 15px;
-	        }
-	        .food-card {
-	            background: var(--card-bg);
-	            padding: 15px;
-	            border-radius: 10px;
-	            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
-	            border-top: 4px solid var(--food-green);
-	        }
-	        .food-card h3 {
-	            margin: 0 0 10px 0;
-	            color: var(--food-green);
-	            font-size: 1.1rem;
-	        }
-	        .food-list {
-	            margin: 0;
-	            padding-left: 20px;
-	            font-size: 0.95rem;
-	            color: var(--text-main);
-	        }
-	        /* --- 公共清单样式 --- */
-	        .checklist-container {
-	            background: var(--card-bg);
-	            border-radius: 12px;
-	            padding: 20px;
-	            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
-	        }
-	        .checklist-category {
-	            margin-bottom: 25px;
-	            border-bottom: 1px solid #f0f0f0;
-	            padding-bottom: 10px;
-	        }
-	        .checklist-category:last-child {
-	            border-bottom: none;
-	        }
-	        .checklist-title {
-	            font-size: 1.2rem;
-	            font-weight: bold;
-	            margin-bottom: 12px;
-	            color: var(--text-main);
-	            display: flex;
-	            align-items: center;
-	        }
-	        .checklist-title span {
-	            margin-right: 8px;
-	            font-size: 1.4rem;
-	        }
-	        .checklist-item {
-	            margin-bottom: 6px;
-	            font-size: 0.95rem;
-	            line-height: 1.5;
-	            color: var(--text-sub);
-	        }
-	        .checklist-item::before {
-	            content: "•";
-	            color: var(--accent);
-	            margin-right: 8px;
-	            font-weight: bold;
-	        }
-	    </style>
-	</head>
-	<body>
-	    <!-- 顶部导航 -->
-	    <div class="nav-tabs">
-	        <div class="nav-item active" onclick="showSection('route')">路线</div>
-	        <div class="nav-item" onclick="showSection('food')">美食</div>
-	        <div class="nav-item" onclick="showSection('checklist')">公共清单</div>
-	    </div>
-	    <header>
-	        <div class="countdown-label">距离出发还有</div>
-	        <div class="countdown-time" id="timer">00天 00小时 00分 00秒</div>
-	        <div class="next-event">08:30 广东财经大学出发</div>
-	    </header>
-	    <!-- 1. 路线页面 -->
-	    <div id="route" class="content-section active">
-	        <div class="route-step">
-	            <div class="step-header">
-	                <span class="step-time">08:30 - 09:30</span>
-	                <span>🚶 步行 5km</span>
-	            </div>
-	            <div style="font-weight:bold;">早餐 · 广东财经大学附近</div>
-	            <div class="step-detail">新潮肠粉店 | 广财校区出发</div>
-	        </div>
-	        <div class="route-step">
-	            <div class="step-header">
-	                <span class="step-time">09:30 - 10:35</span>
-	                <span>🚌 11:03 发车</span>
-	            </div>
-	            <div style="font-weight:bold;">三水森林公园</div>
-	            <div class="step-detail">游玩约1小时 | 选择：卧佛 / 孔圣园</div>
-	        </div>
-	        <div class="route-step" style="border-left-color: var(--danger);">
-	            <div class="step-header">
-	                <span class="step-time" style="color:var(--danger)">11:03 前</span>
-	                <span>🚌 距离1.7km</span>
-	            </div>
-	            <div style="font-weight:bold;">城际班车 (西青大道公交站)</div>
-	            <div class="step-detail">⚠️ 早上咽喉时刻，需提前步行到达</div>
-	        </div>
-	        <div class="route-step">
-	            <div class="step-header">
-	                <span class="step-time">预计 12:20</span>
-	                <span>🚶 350m</span>
-	            </div>
-	            <div style="font-weight:bold;">抵达 佛山汽车站B站</div>
-	            <div class="step-detail">步行至中山公园附近</div>
-	        </div>
-	        <div class="route-step">
-	            <div class="step-header">
-	                <span class="step-time">13:00 - 14:15</span>
-	                <span>🚶 1.5km</span>
-	            </div>
-	            <div style="font-weight:bold;">午餐 → 祖庙</div>
-	            <div class="step-detail">中山公园闲逛 -> 岭南天地 -> 午餐 -> 醒狮表演</div>
-	        </div>
-	        <div class="route-step">
-	            <div class="step-header">
-	                <span class="step-time">16:15 - 17:00</span>
-	                <span>🚶 1.3km</span>
-	            </div>
-	            <div style="font-weight:bold;">晚餐 → 垂虹公园</div>
-	            <div class="step-detail">品尝美食 -> 先行书店打卡</div>
-	        </div>
-	        <div class="route-step" style="border-left-color: var(--danger);">
-	            <div class="step-header">
-	                <span class="step-time" style="color:var(--danger)">17:45 - 18:19</span>
-	                <span>🚶 2.7km</span>
-	            </div>
-	            <div style="font-weight:bold;">步行回车站</div>
-	            <div class="step-detail">⚠️ 长距离夜路，务必穿好鞋，注意安全</div>
-	        </div>
-	        <div class="route-step">
-	            <div class="step-header">
-	                <span class="step-time">19:31 前</span>
-	                <span>🚌 1.2h</span>
-	            </div>
-	            <div style="font-weight:bold;">抵达 西青大道公交站</div>
-	            <div class="step-detail">新友记对面 | 回家</div>
-	        </div>
-	        <!-- 手绘卡通风格路线图 -->
-	        <div style="text-align: center; margin-top: 20px;">
-	            <h3 style="color: var(--text-main);">🗺️ 全天卡通路线图</h3>
-	            <svg class="cartoon-map" viewBox="0 0 300 700" xmlns="http://www.w3.org/2000/svg">
-	                <!-- 连线 -->
-	                <path d="M150,50 L150,100 L150,180 L150,250 L150,350 L150,450 L150,550 L150,650" 
-	                      stroke="#3498db" stroke-width="4" fill="none" stroke-dasharray="5,5" />
-	                <!-- 节点1：早餐 -->
-	                <circle cx="150" cy="50" r="15" fill="#e67e22" stroke="white" stroke-width="3"/>
-	                <text x="150" y="20" font-size="12" text-anchor="middle" fill="#e67e22" font-weight="bold">08:30</text>
-	                <text x="150" y="90" font-size="12" text-anchor="middle" fill="#333">早餐(肠粉)</text>
-	                <!-- 节点2：公园 -->
-	                <circle cx="150" cy="150" r="15" fill="#27ae60" stroke="white" stroke-width="3"/>
-	                <text x="150" y="140" font-size="12" text-anchor="middle" fill="#27ae60" font-weight="bold">09:30</text>
-	                <text x="150" y="210" font-size="12" text-anchor="middle" fill="#333">森林公园</text>
-	                <!-- 节点3：班车 -->
-	                <circle cx="150" cy="250" r="15" fill="#f1c40f" stroke="white" stroke-width="3"/>
-	                <text x="150" y="240" font-size="12" text-anchor="middle" fill="#f39c12" font-weight="bold">11:03</text>
-	                <text x="150" y="290" font-size="12" text-anchor="middle" fill="#333">班车(西青)</text>
-	                <!-- 节点4：佛山站 -->
-	                <circle cx="150" cy="350" r="15" fill="#3498db" stroke="white" stroke-width="3"/>
-	                <text x="150" y="340" font-size="12" text-anchor="middle" fill="#3498db" font-weight="bold">12:20</text>
-	                <text x="150" y="390" font-size="12" text-anchor="middle" fill="#333">汽车站B站</text>
-	                <!-- 节点5：午餐 -->
-	                <circle cx="150" cy="450" r="15" fill="#e67e22" stroke="white" stroke-width="3"/>
-	                <text x="150" y="440" font-size="12" text-anchor="middle" fill="#e67e22" font-weight="bold">13:00</text>
-	                <text x="150" y="490" font-size="12" text-anchor="middle" fill="#333">午餐</text>
-	                <!-- 节点6：祖庙 -->
-	                <circle cx="150" cy="550" r="15" fill="#c0392b" stroke="white" stroke-width="3"/>
-	                <text x="150" y="540" font-size="12" text-anchor="middle" fill="#c0392b" font-weight="bold">14:15</text>
-	                <text x="150" y="590" font-size="12" text-anchor="middle" fill="#333">祖庙醒狮</text>
-	                <!-- 节点7：晚餐 -->
-	                <circle cx="150" cy="650" r="15" fill="#e67e22" stroke="white" stroke-width="3"/>
-	                <text x="150" y="680" font-size="12" text-anchor="middle" fill="#e67e22" font-weight="bold">19:31</text>
-	                <text x="150" y="720" font-size="12" text-anchor="middle" fill="#333">返回西青</text>
-	            </svg>
-	        </div>
-	    </div>
-	    <!-- 2. 美食页面 -->
-	    <div id="food" class="content-section">
-	        <div class="food-grid">
-	            <div class="food-card">
-	                <h3>🍳 早餐</h3>
-	                <ul class="food-list">
-	                    <li>广东财经大学附近：新潮肠粉店</li>
-	                </ul>
-	            </div>
-	            <div class="food-card">
-	                <h3>🍗 午餐</h3>
-	                <ul class="food-list">
-	                    <li>新疆烧烤 (之前计划)</li>
-	                    <li>后龙街牛杂 (可选加餐)</li>
-	                </ul>
-	            </div>
-	            <div class="food-card">
-	                <h3>🍜 晚餐</h3>
-	                <ul class="food-list">
-	                    <li>念恩记猪手面</li>
-	                    <li>圆碌碌糖水店 (甜品首选)</li>
-	                    <li>后龙街牛杂</li>
-	                    <li>新疆烧烤 (备选)</li>
-	                </ul>
-	            </div>
-	        </div>
-	    </div>
-	    <!-- 3. 公共清单页面 -->
-	    <div id="checklist" class="content-section">
-	        <div class="checklist-container">
-	            <!-- 证件类 -->
-	            <div class="checklist-category">
-	                <div class="checklist-title"><span>🪪</span>一、证件类</div>
-	                <div class="checklist-item">身份证</div>
-	                <div class="checklist-item">优惠证件（学生证）</div>
-	                <div class="checklist-item">车票（电子档+截图双重备份）</div>
-	            </div>
-	            <!-- 衣物首饰类 -->
-	            <div class="checklist-category">
-	                <div class="checklist-title"><span>👚</span>二、衣物首饰类</div>
-	                <div class="checklist-item">宽松大T恤+长裤（坐车、高铁必备）</div>
-	                <div class="checklist-item">出片穿搭</div>
-	                <div class="checklist-item">防晒衣、外套</div>
-	            </div>
-	            <!-- 化妆品类 -->
-	            <div class="checklist-category">
-	                <div class="checklist-title"><span>💄</span>三、化妆品</div>
-	                <div class="checklist-item">身体防晒霜</div>
-	            </div>
-	            <!-- 电子设备类 -->
-	            <div class="checklist-category">
-	                <div class="checklist-title"><span>📷</span>四、电子设备</div>
-	                <div class="checklist-item">手机、充电头+充电线、耳机</div>
-	                <div class="checklist-item">充电宝</div>
-	            </div>
-	            <!-- 药品类 -->
-	            <div class="checklist-category">
-	                <div class="checklist-title"><span>💊</span>五、药品类</div>
-	                <div class="checklist-item">胃药、止泻药、消食片</div>
-	                <div class="checklist-item">痛经止痛药（布洛芬）</div>
-	                <div class="checklist-item">驱蚊液、止痒膏、蚊虫叮咬消肿药</div>
-	            </div>
-	            <!-- 杂物类 -->
-	            <div class="checklist-category">
-	                <div class="checklist-title"><span>🛠️</span>六、杂物类</div>
-	                <div class="checklist-item">眼镜</div>
-	                <div class="checklist-item">便携水杯</div>
-	                <div class="checklist-item">梳子、镜子</div>
-	                <div class="checklist-item">雨伞</div>
-	                <div class="checklist-item">小包纸巾、湿纸巾</div>
-	                <div class="checklist-item">折叠购物袋</div>
-	                <div class="checklist-item">钥匙</div>
-	            </div>
-	        </div>
-	    </div>
-	    <script>
-	        // 1. 导航切换逻辑
-	        function showSection(sectionId) {
-	            // 隐藏所有部分
-	            document.querySelectorAll('.content-section').forEach(el => el.classList.remove('active'));
-	            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-	            // 显示选中部分
-	            document.getElementById(sectionId).classList.add('active');
-	            // 更新导航状态
-	            // 简单判断：index 0->route, 1->food, 2->checklist
-	            const index = sectionId === 'route' ? 0 : sectionId === 'food' ? 1 : 2;
-	            document.querySelectorAll('.nav-item')[index].classList.add('active');
-	        }
-	        // 2. 倒计时逻辑
-	        const targetDate = new Date("2026-11-01T08:30:00+08:00").getTime();
-	        function updateTimer() {
-	            const now = new Date().getTime();
-	            const distance = targetDate - now;
-	            if (distance < 0) {
-	                document.getElementById("timer").innerHTML = "出发啦！出发啦！";
-	                return;
-	            }
-	            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-	            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-	            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-	            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-	            document.getElementById("timer").innerHTML = 
-	                `${days}天 ${hours}时 ${minutes}分 ${seconds}秒`;
-	        }
-	        setInterval(updateTimer, 1000);
-	        updateTimer();
-	    </script>
-	</body>
-	</html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>佛山一日游手册 - 2026.11.01</title>
+    <style>
+        :root {
+            /* 核心配色 */
+            --bg-color: #fdfbf7; /* 米白色背景 */
+            --card-bg: #ffffff;
+            --text-main: #4a4a4a; 
+            --text-sub: #888888;
+            --accent: #e67e22; /* 活力橙色 */
+            --route-line: #3498db; /* 路线蓝 */
+            --danger: #e74c3c; /* 警示红 */
+            --food-green: #27ae60;
+            --foshan-red: #c0392b; /* 醒狮红 */
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            padding-bottom: 40px;
+        }
+
+        /* 1. 顶部导航 */
+        .nav-tabs {
+            display: flex;
+            background: var(--card-bg);
+            padding: 10px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            overflow-x: auto; /* 允许横向滚动 */
+        }
+
+        .nav-item {
+            flex: 0 0 auto; /* 防止压缩 */
+            padding: 10px 15px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 20px;
+            color: var(--text-sub);
+            white-space: nowrap;
+            transition: all 0.3s;
+        }
+
+        .nav-item.active {
+            background-color: var(--foshan-red);
+            color: white;
+            font-weight: bold;
+        }
+
+        /* 2. 顶部倒计时 */
+        header {
+            background: var(--bg-color);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .countdown-label {
+            font-size: 0.8rem;
+            color: var(--text-sub);
+            margin-bottom: 5px;
+        }
+
+        .countdown-time {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--accent);
+            letter-spacing: 1px;
+        }
+
+        .next-event {
+            font-size: 1rem;
+            margin-top: 5px;
+            color: var(--text-main);
+        }
+
+        /* 3. 页面容器 */
+        .content-section {
+            display: none; /* 默认隐藏 */
+            padding: 20px;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .content-section.active {
+            display: block; /* 激活显示 */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- 佛山板块样式 --- */
+        .foshan-header-svg {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .foshan-intro {
+            background: #fff0f0; /* 淡红色背景 */
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 5px solid var(--foshan-red);
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .foshan-intro p {
+            margin: 5px 0;
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .foshan-intro .highlight {
+            font-weight: bold;
+            color: var(--foshan-red);
+            font-size: 1.1rem;
+        }
+
+        .welcome-section {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .welcome-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .characters {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .character-card {
+            text-align: center;
+        }
+
+        .char-emoji {
+            font-size: 3rem;
+            background: #fff;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 10px;
+            border: 3px solid var(--accent);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .char-name {
+            font-weight: bold;
+            color: var(--text-main);
+        }
+
+        /* --- 路线部分样式 --- */
+        .route-step {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+            border-left: 5px solid var(--route-line);
+        }
+
+        .step-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .step-time {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: var(--route-line);
+        }
+
+        .step-detail {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            margin-top: 5px;
+        }
+
+        /* 手绘地图 SVG */
+        .cartoon-map {
+            width: 100%;
+            height: auto;
+            border: 3px solid var(--route-line);
+            border-radius: 20px;
+            background: rgba(52, 152, 219, 0.05);
+            overflow: visible;
+        }
+
+        /* --- 美食部分样式 --- */
+        .food-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .food-card {
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            border-top: 4px solid var(--food-green);
+        }
+
+        .food-card h3 {
+            margin: 0 0 10px 0;
+            color: var(--food-green);
+            font-size: 1.1rem;
+        }
+
+        .food-list {
+            margin: 0;
+            padding-left: 20px;
+            font-size: 0.95rem;
+            color: var(--text-main);
+        }
+
+        /* --- 公共清单样式 --- */
+        .checklist-container {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+        }
+
+        .checklist-category {
+            margin-bottom: 25px;
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+
+        .checklist-category:last-child {
+            border-bottom: none;
+        }
+
+        .checklist-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 12px;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+        }
+
+        .checklist-title span {
+            margin-right: 8px;
+            font-size: 1.4rem;
+        }
+
+        .checklist-item {
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: var(--text-sub);
+        }
+
+        .checklist-item::before {
+            content: "•";
+            color: var(--accent);
+            margin-right: 8px;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- 顶部导航 -->
+    <div class="nav-tabs">
+        <div class="nav-item active" onclick="showSection('route')">路线</div>
+        <div class="nav-item" onclick="showSection('food')">美食</div>
+        <div class="nav-item" onclick="showSection('checklist')">公共清单</div>
+        <div class="nav-item" onclick="showSection('foshan')">佛山</div>
+    </div>
+
+    <header>
+        <div class="countdown-label">距离出发还有</div>
+        <div class="countdown-time" id="timer">00天 00小时 00分 00秒</div>
+        <div class="next-event">08:30 广东财经大学出发</div>
+    </header>
+
+    <!-- 1. 路线页面 -->
+    <div id="route" class="content-section active">
+        <div class="route-step">
+            <div class="step-header">
+                <span class="step-time">08:30 - 09:30</span>
+                <span>🚶 步行 5km</span>
+            </div>
+            <div style="font-weight:bold;">早餐 · 广东财经大学附近</div>
+            <div class="step-detail">新潮肠粉店 | 广财校区出发</div>
+        </div>
+
+        <div class="route-step">
+            <div class="step-header">
+                <span class="step-time">09:30 - 10:35</span>
+                <span>🚌 11:03 发车</span>
+            </div>
+            <div style="font-weight:bold;">三水森林公园</div>
+            <div class="step-detail">游玩约1小时 | 选择：卧佛 / 孔圣园</div>
+        </div>
+
+        <div class="route-step" style="border-left-color: var(--danger);">
+            <div class="step-header">
+                <span class="step-time" style="color:var(--danger)">11:03 前</span>
+                <span>🚌 距离1.7km</span>
+            </div>
+            <div style="font-weight:bold;">城际班车 (西青大道公交站)</div>
+            <div class="step-detail">⚠️ 早上咽喉时刻，需提前步行到达</div>
+        </div>
+
+        <div class="route-step">
+            <div class="step-header">
+                <span class="step-time">预计 12:20</span>
+                <span>🚶 350m</span>
+            </div>
+            <div style="font-weight:bold;">抵达 佛山汽车站B站</div>
+            <div class="step-detail">步行至中山公园附近</div>
+        </div>
+
+        <div class="route-step">
+            <div class="step-header">
+                <span class="step-time">13:00 - 14:15</span>
+                <span>🚶 1.5km</span>
+            </div>
+            <div style="font-weight:bold;">午餐 → 祖庙</div>
+            <div class="step-detail">中山公园闲逛 -> 岭南天地 -> 午餐 -> 醒狮表演</div>
+        </div>
+
+        <div class="route-step">
+            <div class="step-header">
+                <span class="step-time">16:15 - 17:00</span>
+                <span>🚶 1.3km</span>
+            </div>
+            <div style="font-weight:bold;">晚餐 → 垂虹公园</div>
+            <div class="step-detail">品尝美食 -> 先行书店打卡</div>
+        </div>
+
+        <div class="route-step" style="border-left-color: var(--danger);">
+            <div class="step-header">
+                <span class="step-time" style="color:var(--danger)">17:45 - 18:19</span>
+                <span>🚶 2.7km</span>
+            </div>
+            <div style="font-weight:bold;">步行回车站</div>
+            <div class="step-detail">⚠️ 长距离夜路，务必穿好鞋，注意安全</div>
+        </div>
+
+        <div class="route-step">
+            <div class="step-header">
+                <span class="step-time">19:31 前</span>
+                <span>🚌 1.2h</span>
+            </div>
+            <div style="font-weight:bold;">抵达 西青大道公交站</div>
+            <div class="step-detail">新友记对面 | 回家</div>
+        </div>
+
+        <!-- 手绘卡通风格路线图 -->
+        <div style="text-align: center; margin-top: 20px;">
+            <h3 style="color: var(--text-main);">🗺️ 全天卡通路线图</h3>
+            <svg class="cartoon-map" viewBox="0 0 300 700" xmlns="http://www.w3.org/2000/svg">
+                <!-- 连线 -->
+                <path d="M150,50 L150,100 L150,180 L150,250 L150,350 L150,450 L150,550 L150,650" 
+                      stroke="#3498db" stroke-width="4" fill="none" stroke-dasharray="5,5" />
+                
+                <!-- 节点1：早餐 -->
+                <circle cx="150" cy="50" r="15" fill="#e67e22" stroke="white" stroke-width="3"/>
+                <text x="150" y="20" font-size="12" text-anchor="middle" fill="#e67e22" font-weight="bold">08:30</text>
+                <text x="150" y="90" font-size="12" text-anchor="middle" fill="#333">早餐(肠粉)</text>
+
+                <!-- 节点2：公园 -->
+                <circle cx="150" cy="150" r="15" fill="#27ae60" stroke="white" stroke-width="3"/>
+                <text x="150" y="140" font-size="12" text-anchor="middle" fill="#27ae60" font-weight="bold">09:30</text>
+                <text x="150" y="210" font-size="12" text-anchor="middle" fill="#333">森林公园</text>
+
+                <!-- 节点3：班车 -->
+                <circle cx="150" cy="250" r="15" fill="#f1c40f" stroke="white" stroke-width="3"/>
+                <text x="150" y="240" font-size="12" text-anchor="middle" fill="#f39c12" font-weight="bold">11:03</text>
+                <text x="150" y="290" font-size="12" text-anchor="middle" fill="#333">班车(西青)</text>
+
+                <!-- 节点4：佛山站 -->
+                <circle cx="150" cy="350" r="15" fill="#3498db" stroke="white" stroke-width="3"/>
+                <text x="150" y="340" font-size="12" text-anchor="middle" fill="#3498db" font-weight="bold">12:20</text>
+                <text x="150" y="390" font-size="12" text-anchor="middle" fill="#333">汽车站B站</text>
+
+                <!-- 节点5：午餐 -->
+                <circle cx="150" cy="450" r="15" fill="#e67e22" stroke="white" stroke-width="3"/>
+                <text x="150" y="440" font-size="12" text-anchor="middle" fill="#e67e22" font-weight="bold">13:00</text>
+                <text x="150" y="490" font-size="12" text-anchor="middle" fill="#333">午餐</text>
+
+                <!-- 节点6：祖庙 -->
+                <circle cx="150" cy="550" r="15" fill="#c0392b" stroke="white" stroke-width="3"/>
+                <text x="150" y="540" font-size="12" text-anchor="middle" fill="#c0392b" font-weight="bold">14:15</text>
+                <text x="150" y="590" font-size="12" text-anchor="middle" fill="#333">祖庙醒狮</text>
+
+                <!-- 节点7：晚餐 -->
+                <circle cx="150" cy="650" r="15" fill="#e67e22" stroke="white" stroke-width="3"/>
+                <text x="150" y="680" font-size="12" text-anchor="middle" fill="#e67e22" font-weight="bold">19:31</text>
+                <text x="150" y="720" font-size="12" text-anchor="middle" fill="#333">返回西青</text>
+            </svg>
+        </div>
+    </div>
+
+    <!-- 2. 美食页面 -->
+    <div id="food" class="content-section">
+        <div class="food-grid">
+            <div class="food-card">
+                <h3>🍳 早餐</h3>
+                <ul class="food-list">
+                    <li>广东财经大学附近：新潮肠粉店</li>
+                </ul>
+            </div>
+            <div class="food-card">
+                <h3>🍗 午餐</h3>
+                <ul class="food-list">
+                    <li>新疆烧烤 (之前计划)</li>
+                    <li>后龙街牛杂 (可选加餐)</li>
+                </ul>
+            </div>
+            <div class="food-card">
+                <h3>🍜 晚餐</h3>
+                <ul class="food-list">
+                    <li>念恩记猪手面</li>
+                    <li>圆碌碌糖水店 (甜品首选)</li>
+                    <li>后龙街牛杂</li>
+                    <li>新疆烧烤 (备选)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. 公共清单页面 -->
+    <div id="checklist" class="content-section">
+        <div class="checklist-container">
+            <!-- 证件类 -->
+            <div class="checklist-category">
+                <div class="checklist-title"><span>🪪</span>一、证件类</div>
+                <div class="checklist-item">身份证</div>
+                <div class="checklist-item">优惠证件（学生证）</div>
+                <div class="checklist-item">车票（电子档+截图双重备份）</div>
+            </div>
+
+            <!-- 衣物首饰类 -->
+            <div class="checklist-category">
+                <div class="checklist-title"><span>👚</span>二、衣物首饰类</div>
+                <div class="checklist-item">宽松大T恤+长裤（坐车、高铁必备）</div>
+                <div class="checklist-item">出片穿搭</div>
+                <div class="checklist-item">防晒衣、外套</div>
+            </div>
+
+            <!-- 化妆品类 -->
+            <div class="checklist-category">
+                <div class="checklist-title"><span>💄</span>三、化妆品</div>
+                <div class="checklist-item">身体防晒霜</div>
+            </div>
+
+            <!-- 电子设备类 -->
+            <div class="checklist-category">
+                <div class="checklist-title"><span>📷</span>四、电子设备</div>
+                <div class="checklist-item">手机、充电头+充电线、耳机</div>
+                <div class="checklist-item">充电宝</div>
+            </div>
+
+            <!-- 药品类 -->
+            <div class="checklist-category">
+                <div class="checklist-title"><span>💊</span>五、药品类</div>
+                <div class="checklist-item">胃药、止泻药、消食片</div>
+                <div class="checklist-item">痛经止痛药（布洛芬）</div>
+                <div class="checklist-item">驱蚊液、止痒膏、蚊虫叮咬消肿药</div>
+            </div>
+
+            <!-- 杂物类 -->
+            <div class="checklist-category">
+                <div class="checklist-title"><span>🛠️</span>六、杂物类</div>
+                <div class="checklist-item">眼镜</div>
+                <div class="checklist-item">便携水杯</div>
+                <div class="checklist-item">梳子、镜子</div>
+                <div class="checklist-item">雨伞</div>
+                <div class="checklist-item">小包纸巾、湿纸巾</div>
+                <div class="checklist-item">折叠购物袋</div>
+                <div class="checklist-item">钥匙</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. 佛山页面 (新增) -->
+    <div id="foshan" class="content-section">
+        <!-- 手绘 SVG -->
+        <svg class="foshan-header-svg" viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg">
+            <!-- 醒狮头背景 -->
+            <path d="M50,150 Q40,100 80,80 Q120,60 160,80 Q200,100 200,150 Q200,190 160,210 Q120,230 80,210 Q50,190 50,150 Z" 
+                  fill="#f0f0f0" stroke="#e67e22" stroke-width="3" fill-opacity="0.5"/>
+            
+            <!-- 醒狮头主体 -->
+            <path d="M80,80 L90,120 L110,140 L140,140 L160,120 L170,80 Z" 
+                  fill="#e74c3c" stroke="#c0392b" stroke-width="3"/>
+            
+            <!-- 醒狮额前的毛 -->
+            <path d="M110,140 L120,160 L130,140" stroke="#f1c40f" stroke-width="2" fill="none"/>
+            <path d="M110,140 L100,155 L90,140" stroke="#f1c40f" stroke-width="2" fill="none"/>
+            <path d="M140,140 L150,155 L160,140" stroke="#f1c40f" stroke-width="2" fill="none"/>
+
+            <!-- 眼睛 -->
+            <circle cx="95" cy="100" r="8" fill="#f1c40f"/>
+            <circle cx="165" cy="100" r="8" fill="#f1c40f"/>
+            
+            <!-- 鼻子 -->
+            <ellipse cx="130" cy="120" rx="10" ry="12" fill="#f39c12"/>
+
+            <!-- 嘴巴 -->
+            <path d="M110,135 L130,145 L150,135" stroke="#333" stroke-width="3" fill="none" stroke-linecap="round"/>
+            
+            <!-- 红色飘带 -->
+            <path d="M80,80 Q60,50 70,30 Q90,60 100,90" fill="#e74c3c"/>
+            <path d="M200,80 Q220,50 210,30 Q190,60 180,90" fill="#e74c3c"/>
+
+            <!-- 大字：佛山 -->
+            <text x="150" y="190" font-size="50" font-weight="900" text-anchor="middle" fill="#c0392b" style="font-family: 'KaiTi', serif; -webkit-text-stroke: 2px #333;">佛山</text>
+        </svg>
+
+        <!-- 介绍文案 -->
+        <div class="foshan-intro">
+            <p class="highlight">佛山的魅力，一半在功夫与古韵，</p>
+            <p class="highlight">一半在舌尖的极致享受。</p>
+            <p>这里不仅是“世界美食之都”，更是融合了岭南风情与现代活力的宝藏城市。</p>
+        </div>
+
+        <!-- 欢迎页 -->
+        <div class="welcome-section">
+            <div class="welcome-title">Welcome to Foshan</div>
+            <div class="characters">
+                <div class="character-card">
+                    <div class="char-emoji">☀️🐶</div>
+                    <div class="char-name">Xiao Qing</div>
+                </div>
+                <div class="character-card">
+                    <div class="char-emoji">🐺🐱</div>
+                    <div class="char-name">Xiao Lang</div>
+                </div>
+            </div>
+            <p style="margin-top:15px; color:#666; font-size:0.9rem;">Happy Travel Together!</p>
+        </div>
+    </div>
+
+    <script>
+        // 1. 导航切换逻辑
+        function showSection(sectionId) {
+            // 隐藏所有部分
+            document.querySelectorAll('.content-section').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+
+            // 显示选中部分
+            document.getElementById(sectionId).classList.add('active');
+            
+            // 更新导航状态
+            // index 0:route, 1:food, 2:checklist, 3:foshan
+            const index = sectionId === 'route' ? 0 : sectionId === 'food' ? 1 : sectionId === 'checklist' ? 2 : 3;
+            document.querySelectorAll('.nav-item')[index].classList.add('active');
+        }
+
+        // 2. 倒计时逻辑
+        const targetDate = new Date("2026-11-01T08:30:00+08:00").getTime();
+
+        function updateTimer() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                document.getElementById("timer").innerHTML = "出发啦！出发啦！";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("timer").innerHTML = 
+                `${days}天 ${hours}时 ${minutes}分 ${seconds}秒`;
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer();
+    </script>
+
+</body>
+</html>
