@@ -6,22 +6,20 @@
     <title>佛山一日游手册 - 2026.11.01</title>
     <style>
         :root {
-            /* 核心配色 */
-            --bg-color: #fdfbf7; 
+            --bg-color: #fdfbf7;
             --card-bg: #ffffff;
             --text-main: #4a4a4a; 
             --text-sub: #888888;
-            --accent: #e67e22; 
-            --route-line: #3498db; 
-            --danger: #e74c3c; 
+            --accent: #e67e22;
+            --route-line: #3498db;
+            --danger: #e74c3c;
             --food-green: #27ae60;
             --foshan-red: #c0392b; 
             
-            /* 手绘风配色 */
+            /* 手绘水彩风配色 */
             --foshan-yellow: #fcd12a; 
             --foshan-brown: #4a2c11;  
-            --paper-bg: #fffce8; /* 纸张底色 */
-            --dot-color: #e8d8a0; /* 纸上的波点颜色 */
+            --paper-bg: #fcfbfa;
         }
 
         body {
@@ -87,81 +85,58 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- 佛山板块：纯代码手绘风背景 --- */
+        /* --- 佛山板块：纯代码手绘水彩风背景 --- */
         .foshan-section {
             position: relative;
             width: 100%;
-            height: 400px; /* 高度可根据需要调整 */
+            height: 420px; 
             overflow: hidden;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 12px 30px 15px 25px / 25px 15px 30px 12px; /* 不规则手绘圆角 */
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
             margin-bottom: 20px;
             
-            /* 背景设置：浅黄底色 + 错位波点（模拟手账本） */
+            /* 纸张底色与轻微的水彩晕染 */
             background-color: var(--paper-bg);
             background-image: 
-                radial-gradient(var(--dot-color) 2px, transparent 2px),
-                radial-gradient(var(--dot-color) 1px, transparent 1px);
-            background-size: 30px 30px, 30px 30px;
-            background-position: 0 0, 15px 15px;
-            
-            /* 加上一点粗糙的边框，增加手绘感 */
+                radial-gradient(circle at 20% 30%, rgba(52, 152, 219, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(230, 126, 34, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(192, 57, 43, 0.03) 0%, transparent 50%);
             border: 3px solid var(--foshan-brown);
-            border-radius: 10px 25px 15px 30px / 30px 15px 25px 10px;
         }
 
-        /* 背景里隐约的“佛山”大字（水墨底纹感） */
-        .foshan-watermark {
+        /* 手绘水彩滤镜，让 SVG 边缘有毛糙感 */
+        .hand-drawn-svg {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 12rem;
-            font-weight: 900;
-            font-family: "STKaiti", "KaiTi", serif; /* 楷体，更有传统味 */
-            color: rgba(74, 44, 17, 0.05); /* 极淡的深棕色 */
-            white-space: nowrap;
-            user-select: none;
-            pointer-events: none;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             z-index: 0;
+            filter: url('#watercolor-edge');
         }
 
-        /* 涂鸦装饰元素（用 SVG 画的小星星和波浪线） */
-        .doodle {
-            position: absolute;
-            z-index: 1;
-            opacity: 0.8;
-        }
-        .doodle-1 { top: 20px; left: 20px; transform: rotate(-15deg); }
-        .doodle-2 { top: 30px; right: 20px; transform: rotate(20deg); }
-        .doodle-3 { bottom: 20px; left: 30px; transform: rotate(10deg); }
-        .doodle-4 { bottom: 30px; right: 30px; transform: rotate(-20deg); }
-
-        /* 醒目手绘风标题 */
+        /* 核心大标题 */
         .foshan-title {
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%) rotate(-3deg);
-            font-size: clamp(2.2rem, 8vw, 3.8rem); /* 手机端自适应 */
+            transform: translate(-50%, -50%) rotate(-2deg);
+            font-size: clamp(2rem, 7vw, 3.5rem);
             font-weight: 900;
-            font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'ZCOOL KuaiLe', sans-serif;
             color: var(--foshan-yellow);
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             white-space: nowrap;
-            z-index: 2;
+            z-index: 10;
             
-            /* 深棕色粗描边与手绘投影 */
+            /* 深棕色描边与立体手绘投影 */
             -webkit-text-stroke: 3px var(--foshan-brown); 
-            text-shadow: 5px 5px 0px var(--foshan-brown), 0px 10px 20px rgba(0,0,0,0.2);
+            text-shadow: 4px 4px 0px var(--foshan-brown), 0px 10px 20px rgba(0,0,0,0.2);
             
-            /* 动画：轻轻浮动 */
-            animation: floatTitle 3s ease-in-out infinite;
+            animation: floatTitle 4s ease-in-out infinite;
         }
 
         @keyframes floatTitle {
-            0%, 100% { transform: translate(-50%, -50%) translateY(0) rotate(-3deg); }
-            50% { transform: translate(-50%, -50%) translateY(-8px) rotate(-3deg); }
+            0%, 100% { transform: translate(-50%, -50%) translateY(0) rotate(-2deg); }
+            50% { transform: translate(-50%, -50%) translateY(-6px) rotate(-2deg); }
         }
 
         /* --- 文案部分 --- */
@@ -241,31 +216,79 @@
     <div id="foshan" class="content-section active">
         <div class="foshan-section">
             
-            <!-- 1. 背景里的淡淡水墨大字 -->
-            <div class="foshan-watermark">佛山</div>
-            
-            <!-- 2. 手绘涂鸦装饰 (星星、小太阳等) -->
-            <!-- 左上角涂鸦 -->
-            <svg class="doodle doodle-1" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20 5L23 15H33L25 21L28 31L20 25L12 31L15 21L7 15H17L20 5Z" stroke="#c0392b" stroke-width="2" stroke-linejoin="round"/>
-            </svg>
-            <!-- 右上角涂鸦 -->
-            <svg class="doodle doodle-2" width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10 25 Q 20 10, 30 25 T 50 25" stroke="#3498db" stroke-width="3" stroke-linecap="round" fill="none"/>
-                <circle cx="40" cy="15" r="3" fill="#e67e22" />
-                <circle cx="15" cy="35" r="4" fill="#27ae60" />
-            </svg>
-            <!-- 左下角涂鸦 -->
-            <svg class="doodle doodle-3" width="60" height="30" viewBox="0 0 60 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5 15 Q 15 5, 25 15 T 45 15 T 60 15" stroke="#4a2c11" stroke-width="2" stroke-linecap="round" fill="none" stroke-dasharray="4,4"/>
-            </svg>
-            <!-- 右下角涂鸦 -->
-            <svg class="doodle doodle-4" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="20" cy="20" r="10" stroke="#f39c12" stroke-width="3" stroke-dasharray="5,3"/>
-                <path d="M20 0 L20 10 M20 30 L20 40 M0 20 L10 20 M30 20 L40 20" stroke="#f39c12" stroke-width="2"/>
+            <!-- 手绘水彩风 SVG 插画 -->
+            <svg class="hand-drawn-svg" viewBox="0 0 400 420" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <!-- 模拟水彩毛糙边缘 -->
+                    <filter id="watercolor-edge" x="-10%" y="-10%" width="120%" height="120%">
+                        <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise" />
+                        <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" />
+                    </filter>
+                    
+                    <!-- 水彩晕染渐变 -->
+                    <linearGradient id="roof-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#2e8b57" /> <!-- 青绿 -->
+                        <stop offset="100%" stop-color="#1e5c38" />
+                    </linearGradient>
+                    <linearGradient id="pillar-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#c0392b" /> <!-- 朱红 -->
+                        <stop offset="100%" stop-color="#8e241a" />
+                    </linearGradient>
+                </defs>
+
+                <!-- 背景水彩颜料晕染块 -->
+                <circle cx="100" cy="100" r="80" fill="#e8f4f8" opacity="0.6" filter="url(#watercolor-edge)"/>
+                <circle cx="300" cy="300" r="100" fill="#fcf3cf" opacity="0.6" filter="url(#watercolor-edge)"/>
+                
+                <!-- 左侧：祖庙牌坊飞檐 (简化版) -->
+                <g transform="translate(-20, 40) scale(1.1)">
+                    <!-- 柱子 -->
+                    <rect x="50" y="200" width="25" height="180" fill="#7f8c8d" filter="url(#watercolor-edge)"/>
+                    <rect x="150" y="200" width="25" height="180" fill="#7f8c8d" filter="url(#watercolor-edge)"/>
+                    <!-- 横梁 -->
+                    <rect x="30" y="170" width="180" height="30" fill="url(#pillar-grad)" filter="url(#watercolor-edge)"/>
+                    <!-- 飞檐屋顶 -->
+                    <path d="M10,170 Q 100,80 190,170 Z" fill="url(#roof-grad)" filter="url(#watercolor-edge)"/>
+                    <!-- 屋脊装饰 -->
+                    <path d="M30,150 Q 100,100 170,150" stroke="#f1c40f" stroke-width="4" fill="none" filter="url(#watercolor-edge)"/>
+                    <!-- 门牌 -->
+                    <rect x="80" y="175" width="80" height="20" fill="#2c3e50" filter="url(#watercolor-edge)"/>
+                </g>
+
+                <!-- 右侧：水彩风醒狮头 -->
+                <g transform="translate(230, 50) scale(1.2)">
+                    <!-- 狮头绒毛 (粗糙的多边形) -->
+                    <path d="M10,100 Q 0,50 40,20 Q 80,-10 120,20 Q 160,50 150,100 Q 160,150 120,180 Q 80,210 40,180 Q 0,150 10,100 Z" fill="#f39c12" filter="url(#watercolor-edge)"/>
+                    <!-- 脸盘 -->
+                    <circle cx="80" cy="100" r="45" fill="#f1c40f" filter="url(#watercolor-edge)"/>
+                    <!-- 眼睛 -->
+                    <circle cx="60" cy="85" r="15" fill="white" filter="url(#watercolor-edge)"/>
+                    <circle cx="100" cy="85" r="15" fill="white" filter="url(#watercolor-edge)"/>
+                    <circle cx="65" cy="85" r="6" fill="black" />
+                    <circle cx="105" cy="85" r="6" fill="black" />
+                    <!-- 鼻子 -->
+                    <circle cx="80" cy="110" r="12" fill="#c0392b" filter="url(#watercolor-edge)"/>
+                    <!-- 嘴巴 -->
+                    <path d="M60,130 Q 80,145 100,130" stroke="#c0392b" stroke-width="5" fill="none" stroke-linecap="round" filter="url(#watercolor-edge)"/>
+                    <!-- 额头装饰 -->
+                    <circle cx="80" cy="50" r="10" fill="#c0392b" filter="url(#watercolor-edge)"/>
+                    <path d="M75,50 Q 80,40 85,50" stroke="white" stroke-width="2" fill="none"/>
+                </g>
+
+                <!-- 点缀的散落水彩斑点 -->
+                <g fill="#e74c3c" opacity="0.4">
+                    <circle cx="350" cy="50" r="4" />
+                    <circle cx="370" cy="70" r="2" />
+                    <circle cx="360" cy="30" r="3" />
+                </g>
+                <g fill="#27ae60" opacity="0.4">
+                    <circle cx="50" cy="350" r="5" />
+                    <circle cx="30" cy="380" r="3" />
+                    <circle cx="70" cy="390" r="2" />
+                </g>
             </svg>
 
-            <!-- 3. 核心大标题 -->
+            <!-- 标题 -->
             <div class="foshan-title">Welcome to FoShan</div>
             
         </div>
@@ -284,9 +307,8 @@
         <div class="author-sign">该网页由小狼开发</div>
     </div>
 
-    <!-- 2. 路线页面 -->
+    <!-- 2. 路线页面 (保持原样) -->
     <div id="route" class="content-section">
-        <!-- 路线内容代码（略，与前一版完全一致） -->
         <div class="route-step">
             <div class="step-header"><span class="step-time">08:30 - 09:30</span><span>🚶 步行 5km</span></div>
             <div style="font-weight:bold;">早餐 · 广东财经大学附近</div>
@@ -419,7 +441,6 @@
     </div>
 
     <script>
-        // 1. 导航切换逻辑
         function showSection(sectionId) {
             document.querySelectorAll('.content-section').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
@@ -429,7 +450,6 @@
             document.querySelectorAll('.nav-item')[index].classList.add('active');
         }
 
-        // 2. 倒计时逻辑
         const targetDate = new Date("2026-11-01T08:30:00+08:00").getTime();
 
         function updateTimer() {
