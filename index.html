@@ -1,3 +1,15 @@
+收到。根据你提供的图片内容和新的要求，我进行了以下修改：
+
+1.  **位置调整**：将“佛山”功能移到了第一个导航位置。
+2.  **背景更换**：使用你的图片 `c73b08e838f9f9ee7d808b5f5b488622.jpg` 作为该页面的背景。
+3.  **内容清理**：删除了手绘卡通、人物和小名，只保留了巨大的 **"Welcome to FoShan"** 字样作为视觉焦点。
+4.  **文案优化**：根据你图片里的文字（双皮奶、盲公饼、祖庙、醒狮），我重新整理了佛山的文化介绍，使其更贴合图片内容。
+
+**注意：** 请确保你的 GitHub 仓库里也有这个图片文件 `c73b08e838f9f9ee7d808b5f5b488622.jpg`，否则背景图会显示不出来。
+
+以下是完整的代码：
+
+```html
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -15,7 +27,7 @@
             --route-line: #3498db; /* 路线蓝 */
             --danger: #e74c3c; /* 警示红 */
             --food-green: #27ae60;
-            --foshan-red: #c0392b; /* 醒狮红 */
+            --foshan-red: #c0392b; 
         }
 
         body {
@@ -36,11 +48,11 @@
             top: 0;
             z-index: 100;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            overflow-x: auto; /* 允许横向滚动 */
+            overflow-x: auto;
         }
 
         .nav-item {
-            flex: 0 0 auto; /* 防止压缩 */
+            flex: 0 0 auto;
             padding: 10px 15px;
             font-size: 1rem;
             cursor: pointer;
@@ -99,83 +111,56 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- 佛山板块样式 --- */
-        .foshan-header-svg {
+        /* --- 佛山板块样式 (修改版) --- */
+        .foshan-section {
+            position: relative;
             width: 100%;
-            height: 200px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             margin-bottom: 20px;
         }
 
-        .foshan-intro {
-            background: #fff0f0; /* 淡红色背景 */
+        .foshan-bg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* 图片遮罩，确保白色文字清晰 */
+            filter: brightness(0.85); 
+        }
+
+        .foshan-title {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: white;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.5);
+            letter-spacing: 5px;
+            border: 5px solid white;
+            padding: 10px 30px;
+            background: rgba(0,0,0,0.2);
+            z-index: 2;
+        }
+
+        .foshan-desc {
+            background: #fff0f0;
             padding: 20px;
             border-radius: 15px;
             border-left: 5px solid var(--foshan-red);
-            margin-bottom: 20px;
-            position: relative;
         }
 
-        .foshan-intro p {
-            margin: 5px 0;
-            font-size: 1rem;
-            color: #555;
-            line-height: 1.6;
-        }
-
-        .foshan-intro .highlight {
-            font-weight: bold;
+        .foshan-desc h3 {
+            margin-top: 0;
             color: var(--foshan-red);
-            font-size: 1.1rem;
         }
 
-        .welcome-section {
-            text-align: center;
-            margin-top: 30px;
-            padding: 20px;
-            background: var(--card-bg);
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-
-        .welcome-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
-        }
-
-        .characters {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            align-items: center;
-        }
-
-        .character-card {
-            text-align: center;
-        }
-
-        .char-emoji {
-            font-size: 3rem;
-            background: #fff;
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0 auto 10px;
-            border: 3px solid var(--accent);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .char-name {
-            font-weight: bold;
-            color: var(--text-main);
+        .foshan-desc ul {
+            padding-left: 20px;
+            color: #555;
         }
 
         /* --- 路线部分样式 --- */
@@ -205,16 +190,6 @@
             font-size: 0.9rem;
             color: var(--text-sub);
             margin-top: 5px;
-        }
-
-        /* 手绘地图 SVG */
-        .cartoon-map {
-            width: 100%;
-            height: auto;
-            border: 3px solid var(--route-line);
-            border-radius: 20px;
-            background: rgba(52, 152, 219, 0.05);
-            overflow: visible;
         }
 
         /* --- 美食部分样式 --- */
@@ -297,10 +272,10 @@
 
     <!-- 顶部导航 -->
     <div class="nav-tabs">
-        <div class="nav-item active" onclick="showSection('route')">路线</div>
+        <div class="nav-item active" onclick="showSection('foshan')">佛山</div>
+        <div class="nav-item" onclick="showSection('route')">路线</div>
         <div class="nav-item" onclick="showSection('food')">美食</div>
         <div class="nav-item" onclick="showSection('checklist')">公共清单</div>
-        <div class="nav-item" onclick="showSection('foshan')">佛山</div>
     </div>
 
     <header>
@@ -309,8 +284,37 @@
         <div class="next-event">08:30 广东财经大学出发</div>
     </header>
 
-    <!-- 1. 路线页面 -->
-    <div id="route" class="content-section active">
+    <!-- 1. 佛山页面 (修改版：第一位置 + 背景图 + 只有标题) -->
+    <div id="foshan" class="content-section active">
+        <div class="foshan-section">
+            <!-- 使用你的图片作为背景 -->
+            <img src="c73b08e838f9f9ee7d808b5f5b488622.jpg" alt="佛山背景" class="foshan-bg">
+            <!-- 只保留 "Welcome to FoShan" -->
+            <div class="foshan-title">Welcome to FoShan</div>
+        </div>
+
+        <!-- 基于图片文字的详细介绍 -->
+        <div class="foshan-desc">
+            <h3>佛山印象</h3>
+            <p>这里不仅是“世界美食之都”，更是一幅流动的岭南画卷。</p>
+            <br>
+            <h4>🥛 传统美食</h4>
+            <ul>
+                <li><strong>双皮奶：</strong>口感柔软绵密，下层奶花非常精美，甜而不腻。</li>
+                <li><strong>盲公饼：</strong>制于清代嘉庆年间，由糯米、花生、芝麻制成，内里绵软嫩滑。</li>
+                <li><strong>鱼生：</strong>鲜美的食材与精湛的刀工结合。</li>
+            </ul>
+            <br>
+            <h4>🏛️ 历史地标</h4>
+            <ul>
+                <li><strong>祖庙：</strong>广岭南建筑艺术的瑰宝，供奉北帝，香火旺盛。</li>
+                <li><strong>醒狮：</strong>党醒时威震四方，不仅是表演，更是佛山精神的象征。</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 2. 路线页面 -->
+    <div id="route" class="content-section">
         <div class="route-step">
             <div class="step-header">
                 <span class="step-time">08:30 - 09:30</span>
@@ -429,7 +433,7 @@
         </div>
     </div>
 
-    <!-- 2. 美食页面 -->
+    <!-- 3. 美食页面 -->
     <div id="food" class="content-section">
         <div class="food-grid">
             <div class="food-card">
@@ -457,7 +461,7 @@
         </div>
     </div>
 
-    <!-- 3. 公共清单页面 -->
+    <!-- 4. 公共清单页面 -->
     <div id="checklist" class="content-section">
         <div class="checklist-container">
             <!-- 证件类 -->
@@ -511,67 +515,8 @@
         </div>
     </div>
 
-    <!-- 4. 佛山页面 (新增) -->
-    <div id="foshan" class="content-section">
-        <!-- 手绘 SVG -->
-        <svg class="foshan-header-svg" viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg">
-            <!-- 醒狮头背景 -->
-            <path d="M50,150 Q40,100 80,80 Q120,60 160,80 Q200,100 200,150 Q200,190 160,210 Q120,230 80,210 Q50,190 50,150 Z" 
-                  fill="#f0f0f0" stroke="#e67e22" stroke-width="3" fill-opacity="0.5"/>
-            
-            <!-- 醒狮头主体 -->
-            <path d="M80,80 L90,120 L110,140 L140,140 L160,120 L170,80 Z" 
-                  fill="#e74c3c" stroke="#c0392b" stroke-width="3"/>
-            
-            <!-- 醒狮额前的毛 -->
-            <path d="M110,140 L120,160 L130,140" stroke="#f1c40f" stroke-width="2" fill="none"/>
-            <path d="M110,140 L100,155 L90,140" stroke="#f1c40f" stroke-width="2" fill="none"/>
-            <path d="M140,140 L150,155 L160,140" stroke="#f1c40f" stroke-width="2" fill="none"/>
-
-            <!-- 眼睛 -->
-            <circle cx="95" cy="100" r="8" fill="#f1c40f"/>
-            <circle cx="165" cy="100" r="8" fill="#f1c40f"/>
-            
-            <!-- 鼻子 -->
-            <ellipse cx="130" cy="120" rx="10" ry="12" fill="#f39c12"/>
-
-            <!-- 嘴巴 -->
-            <path d="M110,135 L130,145 L150,135" stroke="#333" stroke-width="3" fill="none" stroke-linecap="round"/>
-            
-            <!-- 红色飘带 -->
-            <path d="M80,80 Q60,50 70,30 Q90,60 100,90" fill="#e74c3c"/>
-            <path d="M200,80 Q220,50 210,30 Q190,60 180,90" fill="#e74c3c"/>
-
-            <!-- 大字：佛山 -->
-            <text x="150" y="190" font-size="50" font-weight="900" text-anchor="middle" fill="#c0392b" style="font-family: 'KaiTi', serif; -webkit-text-stroke: 2px #333;">佛山</text>
-        </svg>
-
-        <!-- 介绍文案 -->
-        <div class="foshan-intro">
-            <p class="highlight">佛山的魅力，一半在功夫与古韵，</p>
-            <p class="highlight">一半在舌尖的极致享受。</p>
-            <p>这里不仅是“世界美食之都”，更是融合了岭南风情与现代活力的宝藏城市。</p>
-        </div>
-
-        <!-- 欢迎页 -->
-        <div class="welcome-section">
-            <div class="welcome-title">Welcome to Foshan</div>
-            <div class="characters">
-                <div class="character-card">
-                    <div class="char-emoji">☀️🐶</div>
-                    <div class="char-name">Xiao Qing</div>
-                </div>
-                <div class="character-card">
-                    <div class="char-emoji">🐺🐱</div>
-                    <div class="char-name">Xiao Lang</div>
-                </div>
-            </div>
-            <p style="margin-top:15px; color:#666; font-size:0.9rem;">Happy Travel Together!</p>
-        </div>
-    </div>
-
     <script>
-        // 1. 导航切换逻辑
+        // 1. 导航切换逻辑 (更新索引映射)
         function showSection(sectionId) {
             // 隐藏所有部分
             document.querySelectorAll('.content-section').forEach(el => el.classList.remove('active'));
@@ -581,8 +526,8 @@
             document.getElementById(sectionId).classList.add('active');
             
             // 更新导航状态
-            // index 0:route, 1:food, 2:checklist, 3:foshan
-            const index = sectionId === 'route' ? 0 : sectionId === 'food' ? 1 : sectionId === 'checklist' ? 2 : 3;
+            // index 0:foshan, 1:route, 2:food, 3:checklist
+            const index = sectionId === 'foshan' ? 0 : sectionId === 'route' ? 1 : sectionId === 'food' ? 2 : 3;
             document.querySelectorAll('.nav-item')[index].classList.add('active');
         }
 
@@ -613,3 +558,4 @@
 
 </body>
 </html>
+```
