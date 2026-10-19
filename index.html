@@ -16,6 +16,7 @@
             --danger: #e74c3c; /* 警示红 */
             --food-green: #27ae60;
             --foshan-red: #c0392b; 
+            --foshan-blue: #1e6fd9; /* 标题蓝 */
         }
 
         body {
@@ -114,23 +115,26 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            /* 图片遮罩，确保白色文字清晰 */
+            /* 图片遮罩，确保文字清晰 */
             filter: brightness(0.85); 
         }
 
+        /* 标题：蓝色大字（手机端自适应字号） */
         .foshan-title {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 3.5rem;
+            font-size: clamp(1.5rem, 7.5vw, 3rem); /* 自适应，防止溢出 */
             font-weight: 900;
-            color: white;
-            text-shadow: 0 4px 8px rgba(0,0,0,0.5);
-            letter-spacing: 5px;
+            color: var(--foshan-blue);
+            text-shadow: 0 2px 8px rgba(255,255,255,0.95);
+            letter-spacing: 2px;
             border: 5px solid white;
-            padding: 10px 30px;
-            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+            padding: 10px 24px;
+            background: rgba(255,255,255,0.75); /* 白色半透明底板，保证蓝字清晰 */
+            white-space: nowrap;
             z-index: 2;
         }
 
@@ -146,9 +150,28 @@
             color: var(--foshan-red);
         }
 
-        .foshan-desc ul {
-            padding-left: 20px;
+        /* 正文段落排版 */
+        .foshan-desc p {
+            margin: 0 0 14px 0;
+            line-height: 1.9;
+            font-size: 0.95rem;
             color: #555;
+            text-indent: 2em; /* 中文首行缩进 */
+            text-align: justify;
+        }
+
+        .foshan-desc p:last-of-type {
+            margin-bottom: 0;
+        }
+
+        /* 右下角署名 */
+        .author-sign {
+            text-align: right;
+            font-size: 0.75rem;
+            color: var(--text-sub);
+            letter-spacing: 1px;
+            margin-top: 15px;
+            opacity: 0.85;
         }
 
         /* --- 路线部分样式 --- */
@@ -272,33 +295,27 @@
         <div class="next-event">08:30 广东财经大学出发</div>
     </header>
 
-    <!-- 1. 佛山页面 (修改版：第一位置 + 背景图 + 只有标题) -->
+    <!-- 1. 佛山页面 -->
     <div id="foshan" class="content-section active">
         <div class="foshan-section">
             <!-- 使用你的图片作为背景 -->
             <img src="c73b08e838f9f9ee7d808b5f5b488622.jpg" alt="佛山背景" class="foshan-bg">
-            <!-- 只保留 "Welcome to FoShan" -->
+            <!-- 蓝色大字标题 -->
             <div class="foshan-title">Welcome to FoShan</div>
         </div>
 
-        <!-- 基于图片文字的详细介绍 -->
+        <!-- 佛山文案 -->
         <div class="foshan-desc">
             <h3>佛山印象</h3>
-            <p>这里不仅是“世界美食之都”，更是一幅流动的岭南画卷。</p>
-            <br>
-            <h4>🥛 传统美食</h4>
-            <ul>
-                <li><strong>双皮奶：</strong>口感柔软绵密，下层奶花非常精美，甜而不腻。</li>
-                <li><strong>盲公饼：</strong>制于清代嘉庆年间，由糯米、花生、芝麻制成，内里绵软嫩滑。</li>
-                <li><strong>鱼生：</strong>鲜美的食材与精湛的刀工结合。</li>
-            </ul>
-            <br>
-            <h4>🏛️ 历史地标</h4>
-            <ul>
-                <li><strong>祖庙：</strong>广岭南建筑艺术的瑰宝，供奉北帝，香火旺盛。</li>
-                <li><strong>醒狮：</strong>党醒时威震四方，不仅是表演，更是佛山精神的象征。</li>
-            </ul>
+            <p>佛山，古称"禅城"，唐贞观年间因塔坡岗掘得铜佛三尊而得名。</p>
+            <p>千年前，这里是岭南文明的起点之一；百年前，黄飞鸿的无影脚和叶问的咏春，让"功夫"两个字写进了世界记忆。</p>
+            <p>今天，佛山把江湖气藏进了日常——祖庙的红墙下醒狮每日准时起舞，南风古灶的龙窑五百年未熄，岭南天地的镬耳屋旁长出了咖啡馆。</p>
+            <p>食在广东，味在佛山。双皮奶、鱼生、煲仔饭、早茶……这座"世界美食之都"，靠一口锅传了三百年。</p>
+            <p>不张扬，不追赶。佛山的底色始终是：功夫、美食、烟火人间。</p>
         </div>
+
+        <!-- 右下角署名 -->
+        <div class="author-sign">该网页由小狼开发</div>
     </div>
 
     <!-- 2. 路线页面 -->
