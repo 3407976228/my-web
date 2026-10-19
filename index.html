@@ -19,7 +19,7 @@
             /* 手绘水彩风配色 */
             --foshan-yellow: #fcd12a; 
             --foshan-brown: #4a2c11;  
-            --paper-bg: #fcfbfa;
+            --paper-bg: #fdfcf8;
         }
 
         body {
@@ -31,7 +31,6 @@
             padding-bottom: 40px;
         }
 
-        /* 1. 顶部导航 */
         .nav-tabs {
             display: flex;
             background: var(--card-bg);
@@ -60,7 +59,6 @@
             font-weight: bold;
         }
 
-        /* 2. 顶部倒计时 */
         header {
             background: var(--bg-color);
             padding: 20px;
@@ -72,7 +70,6 @@
         .countdown-time { font-size: 2rem; font-weight: bold; color: var(--accent); letter-spacing: 1px; }
         .next-event { font-size: 1rem; margin-top: 5px; color: var(--text-main); }
 
-        /* 3. 页面容器 */
         .content-section {
             display: none; 
             padding: 20px;
@@ -85,40 +82,32 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- 佛山板块：纯代码手绘水彩风背景 --- */
+        /* --- 佛山板块：水彩速写风背景 --- */
         .foshan-section {
             position: relative;
             width: 100%;
-            height: 420px; 
+            height: 450px; 
             overflow: hidden;
-            border-radius: 12px 30px 15px 25px / 25px 15px 30px 12px; /* 不规则手绘圆角 */
+            border-radius: 12px 30px 15px 25px / 25px 15px 30px 12px; 
             box-shadow: 0 8px 20px rgba(0,0,0,0.08);
             margin-bottom: 20px;
-            
-            /* 纸张底色与轻微的水彩晕染 */
             background-color: var(--paper-bg);
-            background-image: 
-                radial-gradient(circle at 20% 30%, rgba(52, 152, 219, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(230, 126, 34, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 50% 50%, rgba(192, 57, 43, 0.03) 0%, transparent 50%);
             border: 3px solid var(--foshan-brown);
         }
 
-        /* 手绘水彩滤镜，让 SVG 边缘有毛糙感 */
         .hand-drawn-svg {
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
             z-index: 0;
-            filter: url('#watercolor-edge');
         }
 
-        /* 核心大标题 */
+        /* 标题叠加在画面上方，更醒目 */
         .foshan-title {
             position: absolute;
-            top: 50%;
+            top: 15%;
             left: 50%;
-            transform: translate(-50%, -50%) rotate(-2deg);
+            transform: translateX(-50%) rotate(-2deg);
             font-size: clamp(2rem, 7vw, 3.5rem);
             font-weight: 900;
             font-family: 'Comic Sans MS', 'Chalkboard SE', 'ZCOOL KuaiLe', sans-serif;
@@ -127,19 +116,17 @@
             white-space: nowrap;
             z-index: 10;
             
-            /* 深棕色描边与立体手绘投影 */
             -webkit-text-stroke: 3px var(--foshan-brown); 
-            text-shadow: 4px 4px 0px var(--foshan-brown), 0px 10px 20px rgba(0,0,0,0.2);
+            text-shadow: 4px 4px 0px var(--foshan-brown), 0px 10px 20px rgba(0,0,0,0.15);
             
             animation: floatTitle 4s ease-in-out infinite;
         }
 
         @keyframes floatTitle {
-            0%, 100% { transform: translate(-50%, -50%) translateY(0) rotate(-2deg); }
-            50% { transform: translate(-50%, -50%) translateY(-6px) rotate(-2deg); }
+            0%, 100% { transform: translateX(-50%) translateY(0) rotate(-2deg); }
+            50% { transform: translateX(-50%) translateY(-6px) rotate(-2deg); }
         }
 
-        /* --- 文案部分 --- */
         .foshan-desc {
             background: #fff0f0;
             padding: 20px;
@@ -148,45 +135,21 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.02);
         }
 
-        .foshan-desc h3 {
-            margin-top: 0;
-            color: var(--foshan-red);
-            display: flex;
-            align-items: center;
-        }
-
-        .foshan-desc p {
-            margin: 0 0 14px 0;
-            line-height: 1.9;
-            font-size: 0.95rem;
-            color: #555;
-            text-indent: 2em; 
-            text-align: justify;
-        }
-
+        .foshan-desc h3 { margin-top: 0; color: var(--foshan-red); display: flex; align-items: center; }
+        .foshan-desc p { margin: 0 0 14px 0; line-height: 1.9; font-size: 0.95rem; color: #555; text-indent: 2em; text-align: justify; }
         .foshan-desc p:last-of-type { margin-bottom: 0; }
 
-        /* 右下角署名 */
-        .author-sign {
-            text-align: right;
-            font-size: 0.75rem;
-            color: var(--text-sub);
-            letter-spacing: 1px;
-            margin-top: 15px;
-            opacity: 0.85;
-        }
+        .author-sign { text-align: right; font-size: 0.75rem; color: var(--text-sub); letter-spacing: 1px; margin-top: 15px; opacity: 0.85; }
 
-        /* --- 其他页面样式（路线/美食/清单） --- */
+        /* 其他页面省略（保持原样） */
         .route-step { background: var(--card-bg); border-radius: 12px; padding: 15px; margin-bottom: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.03); border-left: 5px solid var(--route-line); }
         .step-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
         .step-time { font-weight: bold; font-size: 1.1rem; color: var(--route-line); }
         .step-detail { font-size: 0.9rem; color: var(--text-sub); margin-top: 5px; }
-
         .food-grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
         .food-card { background: var(--card-bg); padding: 15px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.03); border-top: 4px solid var(--food-green); }
         .food-card h3 { margin: 0 0 10px 0; color: var(--food-green); font-size: 1.1rem; }
         .food-list { margin: 0; padding-left: 20px; font-size: 0.95rem; color: var(--text-main); }
-
         .checklist-container { background: var(--card-bg); border-radius: 12px; padding: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.03); }
         .checklist-category { margin-bottom: 25px; border-bottom: 1px solid #f0f0f0; padding-bottom: 10px; }
         .checklist-category:last-child { border-bottom: none; }
@@ -198,7 +161,6 @@
 </head>
 <body>
 
-    <!-- 顶部导航 -->
     <div class="nav-tabs">
         <div class="nav-item active" onclick="showSection('foshan')">佛山</div>
         <div class="nav-item" onclick="showSection('route')">路线</div>
@@ -212,88 +174,129 @@
         <div class="next-event">08:30 广东财经大学出发</div>
     </header>
 
-    <!-- 1. 佛山页面 -->
     <div id="foshan" class="content-section active">
         <div class="foshan-section">
             
-            <!-- 手绘水彩风 SVG 插画 -->
-            <svg class="hand-drawn-svg" viewBox="0 0 400 420" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <!-- 水彩速写风 SVG (严格根据你的 Prompt 绘制) -->
+            <svg class="hand-drawn-svg" viewBox="0 0 400 450" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
                 <defs>
-                    <!-- 模拟水彩毛糙边缘 -->
-                    <filter id="watercolor-edge" x="-10%" y="-10%" width="120%" height="120%">
-                        <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise" />
-                        <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" />
+                    <!-- 水彩晕染和毛边滤镜 -->
+                    <filter id="watercolor-ink" x="-20%" y="-20%" width="140%" height="140%">
+                        <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="4" result="noise" />
+                        <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" xChannelSelector="R" yChannelSelector="G" result="displaced" />
+                        <feGaussianBlur in="displaced" stdDeviation="0.5" result="blurred" />
+                        <feMerge>
+                            <feMergeNode in="blurred" />
+                            <feMergeNode in="SourceGraphic" />
+                        </feMerge>
                     </filter>
                     
-                    <!-- 水彩晕染渐变 -->
-                    <linearGradient id="roof-grad" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" stop-color="#2e8b57" /> <!-- 青绿 -->
-                        <stop offset="100%" stop-color="#1e5c38" />
-                    </linearGradient>
-                    <linearGradient id="pillar-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stop-color="#c0392b" /> <!-- 朱红 -->
-                        <stop offset="100%" stop-color="#8e241a" />
-                    </linearGradient>
+                    <!-- 纸张纹理 -->
+                    <filter id="paper-texture">
+                        <feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="5" result="noise" />
+                        <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.05 0" in="noise" result="transparentNoise" />
+                        <feBlend in="SourceGraphic" in2="transparentNoise" mode="multiply" />
+                    </filter>
                 </defs>
 
-                <!-- 背景水彩颜料晕染块 -->
-                <circle cx="100" cy="100" r="80" fill="#e8f4f8" opacity="0.6" filter="url(#watercolor-edge)"/>
-                <circle cx="300" cy="300" r="100" fill="#fcf3cf" opacity="0.6" filter="url(#watercolor-edge)"/>
-                
-                <!-- 左侧：祖庙牌坊飞檐 (简化版) -->
-                <g transform="translate(-20, 40) scale(1.1)">
-                    <!-- 柱子 -->
-                    <rect x="50" y="200" width="25" height="180" fill="#7f8c8d" filter="url(#watercolor-edge)"/>
-                    <rect x="150" y="200" width="25" height="180" fill="#7f8c8d" filter="url(#watercolor-edge)"/>
-                    <!-- 横梁 -->
-                    <rect x="30" y="170" width="180" height="30" fill="url(#pillar-grad)" filter="url(#watercolor-edge)"/>
-                    <!-- 飞檐屋顶 -->
-                    <path d="M10,170 Q 100,80 190,170 Z" fill="url(#roof-grad)" filter="url(#watercolor-edge)"/>
+                <!-- 1. 浅色天空和纸张底色 -->
+                <rect width="100%" height="100%" fill="#fcfaf5" />
+                <rect y="0" width="100%" height="60%" fill="#e6f0f5" opacity="0.6" filter="url(#watercolor-ink)" />
+
+                <!-- 2. 背景绿树 (水彩晕染) -->
+                <g filter="url(#watercolor-ink)" opacity="0.7">
+                    <circle cx="50" cy="150" r="60" fill="#88c0a0" />
+                    <circle cx="100" cy="100" r="50" fill="#a8d0b8" />
+                    <circle cx="350" cy="130" r="70" fill="#88c0a0" />
+                    <circle cx="300" cy="80" r="50" fill="#a8d0b8" />
+                </g>
+
+                <!-- 3. 主体建筑：祖庙牌坊 -->
+                <g filter="url(#watercolor-ink)">
+                    <!-- 左侧副牌坊屋顶 -->
+                    <path d="M 20,240 Q 60,200 100,240 Z" fill="#2e8b57" />
+                    <path d="M 10,240 L 110,240 L 110,250 L 10,250 Z" fill="#1e5c38" />
+                    <!-- 右侧副牌坊屋顶 -->
+                    <path d="M 300,240 Q 340,200 380,240 Z" fill="#2e8b57" />
+                    <path d="M 290,240 L 390,240 L 390,250 L 290,250 Z" fill="#1e5c38" />
+                    
+                    <!-- 主牌坊飞檐屋顶 (绿瓦) -->
+                    <path d="M 120,220 Q 200,100 280,220 Z" fill="#2e8b57" />
                     <!-- 屋脊装饰 -->
-                    <path d="M30,150 Q 100,100 170,150" stroke="#f1c40f" stroke-width="4" fill="none" filter="url(#watercolor-edge)"/>
-                    <!-- 门牌 -->
-                    <rect x="80" y="175" width="80" height="20" fill="#2c3e50" filter="url(#watercolor-edge)"/>
+                    <path d="M 130,220 Q 200,110 270,220" stroke="#f1c40f" stroke-width="3" fill="none" opacity="0.8"/>
+                    <path d="M 100,220 Q 200,80 300,220 L 280,235 L 120,235 Z" fill="#1e5c38" />
+
+                    <!-- 红色柱子 -->
+                    <rect x="130" y="250" width="20" height="150" fill="#c0392b" />
+                    <rect x="250" y="250" width="20" height="150" fill="#c0392b" />
+                    <rect x="90" y="250" width="15" height="150" fill="#a93226" />
+                    <rect x="295" y="250" width="15" height="150" fill="#a93226" />
+                    
+                    <!-- 横梁结构 -->
+                    <rect x="110" y="240" width="180" height="20" fill="#c0392b" />
+                    <path d="M 120,250 L 280,250" stroke="#f1c40f" stroke-width="2" opacity="0.5" stroke-dasharray="5,5" />
+
+                    <!-- 黑色牌匾 -->
+                    <rect x="160" y="260" width="80" height="30" fill="#1a1a1a" rx="3" />
+                    <!-- 牌匾金框 -->
+                    <rect x="160" y="260" width="80" height="30" fill="none" stroke="#f1c40f" stroke-width="2" rx="3" />
+                    <!-- “祖庙”二字 (用路径或文本模拟) -->
+                    <text x="200" y="282" font-family="'STKaiti', 'KaiTi', serif" font-size="22" fill="#f1c40f" font-weight="bold" text-anchor="middle" letter-spacing="4">祖庙</text>
+
+                    <!-- 底部地基 -->
+                    <rect x="70" y="400" width="260" height="30" fill="#d5d8dc" />
+                    <rect x="50" y="430" width="300" height="20" fill="#bdc3c7" />
+
+                    <!-- 红色铁门 -->
+                    <rect x="150" y="320" width="100" height="80" fill="none" stroke="#c0392b" stroke-width="4" />
+                    <line x1="170" y1="320" x2="170" y2="400" stroke="#c0392b" stroke-width="3" />
+                    <line x1="190" y1="320" x2="190" y2="400" stroke="#c0392b" stroke-width="3" />
+                    <line x1="210" y1="320" x2="210" y2="400" stroke="#c0392b" stroke-width="3" />
+                    <line x1="230" y1="320" x2="230" y2="400" stroke="#c0392b" stroke-width="3" />
+
+                    <!-- 石狮子 (简化速写风) -->
+                    <!-- 左侧石狮 -->
+                    <g transform="translate(110, 360)">
+                        <rect x="0" y="20" width="30" height="20" fill="#95a5a6" rx="3" /> <!-- 底座 -->
+                        <circle cx="15" cy="10" r="12" fill="#bdc3c7" /> <!-- 头 -->
+                        <path d="M 5,10 Q 15,20 25,10" stroke="#7f8c8d" stroke-width="2" fill="none" /> <!-- 嘴巴 -->
+                        <circle cx="10" cy="5" r="2" fill="#2c3e50" /> <!-- 眼睛 -->
+                    </g>
+                    <!-- 右侧石狮 -->
+                    <g transform="translate(260, 360)">
+                        <rect x="0" y="20" width="30" height="20" fill="#95a5a6" rx="3" />
+                        <circle cx="15" cy="10" r="12" fill="#bdc3c7" />
+                        <path d="M 5,10 Q 15,20 25,10" stroke="#7f8c8d" stroke-width="2" fill="none" />
+                        <circle cx="20" cy="5" r="2" fill="#2c3e50" />
+                    </g>
                 </g>
 
-                <!-- 右侧：水彩风醒狮头 -->
-                <g transform="translate(230, 50) scale(1.2)">
-                    <!-- 狮头绒毛 (粗糙的多边形) -->
-                    <path d="M10,100 Q 0,50 40,20 Q 80,-10 120,20 Q 160,50 150,100 Q 160,150 120,180 Q 80,210 40,180 Q 0,150 10,100 Z" fill="#f39c12" filter="url(#watercolor-edge)"/>
-                    <!-- 脸盘 -->
-                    <circle cx="80" cy="100" r="45" fill="#f1c40f" filter="url(#watercolor-edge)"/>
-                    <!-- 眼睛 -->
-                    <circle cx="60" cy="85" r="15" fill="white" filter="url(#watercolor-edge)"/>
-                    <circle cx="100" cy="85" r="15" fill="white" filter="url(#watercolor-edge)"/>
-                    <circle cx="65" cy="85" r="6" fill="black" />
-                    <circle cx="105" cy="85" r="6" fill="black" />
-                    <!-- 鼻子 -->
-                    <circle cx="80" cy="110" r="12" fill="#c0392b" filter="url(#watercolor-edge)"/>
-                    <!-- 嘴巴 -->
-                    <path d="M60,130 Q 80,145 100,130" stroke="#c0392b" stroke-width="5" fill="none" stroke-linecap="round" filter="url(#watercolor-edge)"/>
-                    <!-- 额头装饰 -->
-                    <circle cx="80" cy="50" r="10" fill="#c0392b" filter="url(#watercolor-edge)"/>
-                    <path d="M75,50 Q 80,40 85,50" stroke="white" stroke-width="2" fill="none"/>
+                <!-- 4. 速写墨线细节 (Loose ink lines) -->
+                <g stroke="#2c3e50" stroke-width="1.5" fill="none" opacity="0.6" filter="url(#watercolor-ink)">
+                    <!-- 屋顶墨线 -->
+                    <path d="M 120,220 Q 200,100 280,220" />
+                    <path d="M 140,210 Q 200,120 260,210" />
+                    <path d="M 20,240 Q 60,200 100,240" />
+                    <path d="M 300,240 Q 340,200 380,240" />
+                    <!-- 柱子墨线 -->
+                    <line x1="130" y1="250" x2="130" y2="400" />
+                    <line x1="150" y1="250" x2="150" y2="400" />
+                    <line x1="250" y1="250" x2="250" y2="400" />
+                    <line x1="270" y1="250" x2="270" y2="400" />
+                    <!-- 地面阴影线 -->
+                    <line x1="50" y1="440" x2="350" y2="440" stroke-dasharray="10, 5" />
+                    <line x1="60" y1="450" x2="340" y2="450" stroke-dasharray="15, 8" />
                 </g>
 
-                <!-- 点缀的散落水彩斑点 -->
-                <g fill="#e74c3c" opacity="0.4">
-                    <circle cx="350" cy="50" r="4" />
-                    <circle cx="370" cy="70" r="2" />
-                    <circle cx="360" cy="30" r="3" />
-                </g>
-                <g fill="#27ae60" opacity="0.4">
-                    <circle cx="50" cy="350" r="5" />
-                    <circle cx="30" cy="380" r="3" />
-                    <circle cx="70" cy="390" r="2" />
-                </g>
+                <!-- 添加纸张纹理覆盖层 -->
+                <rect width="100%" height="100%" fill="none" filter="url(#paper-texture)" pointer-events="none" />
             </svg>
 
-            <!-- 标题 -->
+            <!-- 醒目大标题 -->
             <div class="foshan-title">Welcome to FoShan</div>
             
         </div>
 
-        <!-- 佛山文案 -->
         <div class="foshan-desc">
             <h3>📍 佛山印象</h3>
             <p>佛山，古称"禅城"，唐贞观年间因塔坡岗掘得铜佛三尊而得名。</p>
@@ -302,141 +305,39 @@
             <p>食在广东，味在佛山。双皮奶、鱼生、煲仔饭、早茶……这座"世界美食之都"，靠一口锅传了三百年。</p>
             <p>不张扬，不追赶。佛山的底色始终是：功夫、美食、烟火人间。</p>
         </div>
-
-        <!-- 右下角署名 -->
         <div class="author-sign">该网页由小狼开发</div>
     </div>
 
-    <!-- 2. 路线页面 (保持原样) -->
+    <!-- 2. 路线页面 -->
     <div id="route" class="content-section">
-        <div class="route-step">
-            <div class="step-header"><span class="step-time">08:30 - 09:30</span><span>🚶 步行 5km</span></div>
-            <div style="font-weight:bold;">早餐 · 广东财经大学附近</div>
-            <div class="step-detail">新潮肠粉店 | 广财校区出发</div>
-        </div>
-        <div class="route-step">
-            <div class="step-header"><span class="step-time">09:30 - 10:35</span><span>🚌 11:03 发车</span></div>
-            <div style="font-weight:bold;">三水森林公园</div>
-            <div class="step-detail">游玩约1小时 | 选择：卧佛 / 孔圣园</div>
-        </div>
-        <div class="route-step" style="border-left-color: var(--danger);">
-            <div class="step-header"><span class="step-time" style="color:var(--danger)">11:03 前</span><span>🚌 距离1.7km</span></div>
-            <div style="font-weight:bold;">城际班车 (西青大道公交站)</div>
-            <div class="step-detail">⚠️ 早上咽喉时刻，需提前步行到达</div>
-        </div>
-        <div class="route-step">
-            <div class="step-header"><span class="step-time">预计 12:20</span><span>🚶 350m</span></div>
-            <div style="font-weight:bold;">抵达 佛山汽车站B站</div>
-            <div class="step-detail">步行至中山公园附近</div>
-        </div>
-        <div class="route-step">
-            <div class="step-header"><span class="step-time">13:00 - 14:15</span><span>🚶 1.5km</span></div>
-            <div style="font-weight:bold;">午餐 → 祖庙</div>
-            <div class="step-detail">中山公园闲逛 -> 岭南天地 -> 午餐 -> 醒狮表演</div>
-        </div>
-        <div class="route-step">
-            <div class="step-header"><span class="step-time">16:15 - 17:00</span><span>🚶 1.3km</span></div>
-            <div style="font-weight:bold;">晚餐 → 垂虹公园</div>
-            <div class="step-detail">品尝美食 -> 先行书店打卡</div>
-        </div>
-        <div class="route-step" style="border-left-color: var(--danger);">
-            <div class="step-header"><span class="step-time" style="color:var(--danger)">17:45 - 18:19</span><span>🚶 2.7km</span></div>
-            <div style="font-weight:bold;">步行回车站</div>
-            <div class="step-detail">⚠️ 长距离夜路，务必穿好鞋，注意安全</div>
-        </div>
-        <div class="route-step">
-            <div class="step-header"><span class="step-time">19:31 前</span><span>🚌 1.2h</span></div>
-            <div style="font-weight:bold;">抵达 西青大道公交站</div>
-            <div class="step-detail">新友记对面 | 回家</div>
-        </div>
-        <!-- 路线图 SVG -->
-        <div style="text-align: center; margin-top: 20px;">
-            <h3 style="color: var(--text-main);">🗺️ 全天卡通路线图</h3>
-            <svg class="cartoon-map" viewBox="0 0 300 700" xmlns="http://www.w3.org/2000/svg">
-                <path d="M150,50 L150,100 L150,180 L150,250 L150,350 L150,450 L150,550 L150,650" stroke="#3498db" stroke-width="4" fill="none" stroke-dasharray="5,5" />
-                <circle cx="150" cy="50" r="15" fill="#e67e22" stroke="white" stroke-width="3"/>
-                <text x="150" y="20" font-size="12" text-anchor="middle" fill="#e67e22" font-weight="bold">08:30</text>
-                <text x="150" y="90" font-size="12" text-anchor="middle" fill="#333">早餐(肠粉)</text>
-                <circle cx="150" cy="150" r="15" fill="#27ae60" stroke="white" stroke-width="3"/>
-                <text x="150" y="140" font-size="12" text-anchor="middle" fill="#27ae60" font-weight="bold">09:30</text>
-                <text x="150" y="210" font-size="12" text-anchor="middle" fill="#333">森林公园</text>
-                <circle cx="150" cy="250" r="15" fill="#f1c40f" stroke="white" stroke-width="3"/>
-                <text x="150" y="240" font-size="12" text-anchor="middle" fill="#f39c12" font-weight="bold">11:03</text>
-                <text x="150" y="290" font-size="12" text-anchor="middle" fill="#333">班车(西青)</text>
-                <circle cx="150" cy="350" r="15" fill="#3498db" stroke="white" stroke-width="3"/>
-                <text x="150" y="340" font-size="12" text-anchor="middle" fill="#3498db" font-weight="bold">12:20</text>
-                <text x="150" y="390" font-size="12" text-anchor="middle" fill="#333">汽车站B站</text>
-                <circle cx="150" cy="450" r="15" fill="#e67e22" stroke="white" stroke-width="3"/>
-                <text x="150" y="440" font-size="12" text-anchor="middle" fill="#e67e22" font-weight="bold">13:00</text>
-                <text x="150" y="490" font-size="12" text-anchor="middle" fill="#333">午餐</text>
-                <circle cx="150" cy="550" r="15" fill="#c0392b" stroke="white" stroke-width="3"/>
-                <text x="150" y="540" font-size="12" text-anchor="middle" fill="#c0392b" font-weight="bold">14:15</text>
-                <text x="150" y="590" font-size="12" text-anchor="middle" fill="#333">祖庙醒狮</text>
-                <circle cx="150" cy="650" r="15" fill="#e67e22" stroke="white" stroke-width="3"/>
-                <text x="150" y="680" font-size="12" text-anchor="middle" fill="#e67e22" font-weight="bold">19:31</text>
-                <text x="150" y="720" font-size="12" text-anchor="middle" fill="#333">返回西青</text>
-            </svg>
-        </div>
+        <div class="route-step"><div class="step-header"><span class="step-time">08:30 - 09:30</span><span>🚶 步行 5km</span></div><div style="font-weight:bold;">早餐 · 广东财经大学附近</div><div class="step-detail">新潮肠粉店 | 广财校区出发</div></div>
+        <div class="route-step"><div class="step-header"><span class="step-time">09:30 - 10:35</span><span>🚌 11:03 发车</span></div><div style="font-weight:bold;">三水森林公园</div><div class="step-detail">游玩约1小时 | 选择：卧佛 / 孔圣园</div></div>
+        <div class="route-step" style="border-left-color: var(--danger);"><div class="step-header"><span class="step-time" style="color:var(--danger)">11:03 前</span><span>🚌 距离1.7km</span></div><div style="font-weight:bold;">城际班车 (西青大道公交站)</div><div class="step-detail">⚠️ 早上咽喉时刻，需提前步行到达</div></div>
+        <div class="route-step"><div class="step-header"><span class="step-time">预计 12:20</span><span>🚶 350m</span></div><div style="font-weight:bold;">抵达 佛山汽车站B站</div><div class="step-detail">步行至中山公园附近</div></div>
+        <div class="route-step"><div class="step-header"><span class="step-time">13:00 - 14:15</span><span>🚶 1.5km</span></div><div style="font-weight:bold;">午餐 → 祖庙</div><div class="step-detail">中山公园闲逛 -> 岭南天地 -> 午餐 -> 醒狮表演</div></div>
+        <div class="route-step"><div class="step-header"><span class="step-time">16:15 - 17:00</span><span>🚶 1.3km</span></div><div style="font-weight:bold;">晚餐 → 垂虹公园</div><div class="step-detail">品尝美食 -> 先行书店打卡</div></div>
+        <div class="route-step" style="border-left-color: var(--danger);"><div class="step-header"><span class="step-time" style="color:var(--danger)">17:45 - 18:19</span><span>🚶 2.7km</span></div><div style="font-weight:bold;">步行回车站</div><div class="step-detail">⚠️ 长距离夜路，务必穿好鞋，注意安全</div></div>
+        <div class="route-step"><div class="step-header"><span class="step-time">19:31 前</span><span>🚌 1.2h</span></div><div style="font-weight:bold;">抵达 西青大道公交站</div><div class="step-detail">新友记对面 | 回家</div></div>
     </div>
 
     <!-- 3. 美食页面 -->
     <div id="food" class="content-section">
         <div class="food-grid">
-            <div class="food-card">
-                <h3>🍳 早餐</h3>
-                <ul class="food-list"><li>广东财经大学附近：新潮肠粉店</li></ul>
-            </div>
-            <div class="food-card">
-                <h3>🍗 午餐</h3>
-                <ul class="food-list"><li>新疆烧烤 (之前计划)</li><li>后龙街牛杂 (可选加餐)</li></ul>
-            </div>
-            <div class="food-card">
-                <h3>🍜 晚餐</h3>
-                <ul class="food-list"><li>念恩记猪手面</li><li>圆碌碌糖水店 (甜品首选)</li><li>后龙街牛杂</li><li>新疆烧烤 (备选)</li></ul>
-            </div>
+            <div class="food-card"><h3>🍳 早餐</h3><ul class="food-list"><li>广东财经大学附近：新潮肠粉店</li></ul></div>
+            <div class="food-card"><h3>🍗 午餐</h3><ul class="food-list"><li>新疆烧烤 (之前计划)</li><li>后龙街牛杂 (可选加餐)</li></ul></div>
+            <div class="food-card"><h3>🍜 晚餐</h3><ul class="food-list"><li>念恩记猪手面</li><li>圆碌碌糖水店 (甜品首选)</li><li>后龙街牛杂</li><li>新疆烧烤 (备选)</li></ul></div>
         </div>
     </div>
 
     <!-- 4. 公共清单页面 -->
     <div id="checklist" class="content-section">
         <div class="checklist-container">
-            <div class="checklist-category">
-                <div class="checklist-title"><span>🪪</span>一、证件类</div>
-                <div class="checklist-item">身份证</div>
-                <div class="checklist-item">优惠证件（学生证）</div>
-                <div class="checklist-item">车票（电子档+截图双重备份）</div>
-            </div>
-            <div class="checklist-category">
-                <div class="checklist-title"><span>👚</span>二、衣物首饰类</div>
-                <div class="checklist-item">宽松大T恤+长裤（坐车、高铁必备）</div>
-                <div class="checklist-item">出片穿搭</div>
-                <div class="checklist-item">防晒衣、外套</div>
-            </div>
-            <div class="checklist-category">
-                <div class="checklist-title"><span>💄</span>三、化妆品</div>
-                <div class="checklist-item">身体防晒霜</div>
-            </div>
-            <div class="checklist-category">
-                <div class="checklist-title"><span>📷</span>四、电子设备</div>
-                <div class="checklist-item">手机、充电头+充电线、耳机</div>
-                <div class="checklist-item">充电宝</div>
-            </div>
-            <div class="checklist-category">
-                <div class="checklist-title"><span>💊</span>五、药品类</div>
-                <div class="checklist-item">胃药、止泻药、消食片</div>
-                <div class="checklist-item">痛经止痛药（布洛芬）</div>
-                <div class="checklist-item">驱蚊液、止痒膏、蚊虫叮咬消肿药</div>
-            </div>
-            <div class="checklist-category">
-                <div class="checklist-title"><span>🛠️</span>六、杂物类</div>
-                <div class="checklist-item">眼镜</div>
-                <div class="checklist-item">便携水杯</div>
-                <div class="checklist-item">梳子、镜子</div>
-                <div class="checklist-item">雨伞</div>
-                <div class="checklist-item">小包纸巾、湿纸巾</div>
-                <div class="checklist-item">折叠购物袋</div>
-                <div class="checklist-item">钥匙</div>
-            </div>
+            <div class="checklist-category"><div class="checklist-title"><span>🪪</span>一、证件类</div><div class="checklist-item">身份证</div><div class="checklist-item">优惠证件（学生证）</div><div class="checklist-item">车票（电子档+截图双重备份）</div></div>
+            <div class="checklist-category"><div class="checklist-title"><span>👚</span>二、衣物首饰类</div><div class="checklist-item">宽松大T恤+长裤（坐车、高铁必备）</div><div class="checklist-item">出片穿搭</div><div class="checklist-item">防晒衣、外套</div></div>
+            <div class="checklist-category"><div class="checklist-title"><span>💄</span>三、化妆品</div><div class="checklist-item">身体防晒霜</div></div>
+            <div class="checklist-category"><div class="checklist-title"><span>📷</span>四、电子设备</div><div class="checklist-item">手机、充电头+充电线、耳机</div><div class="checklist-item">充电宝</div></div>
+            <div class="checklist-category"><div class="checklist-title"><span>💊</span>五、药品类</div><div class="checklist-item">胃药、止泻药、消食片</div><div class="checklist-item">痛经止痛药（布洛芬）</div><div class="checklist-item">驱蚊液、止痒膏、蚊虫叮咬消肿药</div></div>
+            <div class="checklist-category"><div class="checklist-title"><span>🛠️</span>六、杂物类</div><div class="checklist-item">眼镜</div><div class="checklist-item">便携水杯</div><div class="checklist-item">梳子、镜子</div><div class="checklist-item">雨伞</div><div class="checklist-item">小包纸巾、湿纸巾</div><div class="checklist-item">折叠购物袋</div><div class="checklist-item">钥匙</div></div>
         </div>
     </div>
 
@@ -445,33 +346,22 @@
             document.querySelectorAll('.content-section').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
             document.getElementById(sectionId).classList.add('active');
-            
             const index = sectionId === 'foshan' ? 0 : sectionId === 'route' ? 1 : sectionId === 'food' ? 2 : 3;
             document.querySelectorAll('.nav-item')[index].classList.add('active');
         }
-
         const targetDate = new Date("2026-11-01T08:30:00+08:00").getTime();
-
         function updateTimer() {
             const now = new Date().getTime();
             const distance = targetDate - now;
-
-            if (distance < 0) {
-                document.getElementById("timer").innerHTML = "出发啦！出发啦！";
-                return;
-            }
-
+            if (distance < 0) { document.getElementById("timer").innerHTML = "出发啦！出发啦！"; return; }
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
             document.getElementById("timer").innerHTML = `${days}天 ${hours}时 ${minutes}分 ${seconds}秒`;
         }
-
         setInterval(updateTimer, 1000);
         updateTimer();
     </script>
-
 </body>
 </html>
