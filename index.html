@@ -102,7 +102,6 @@
             z-index: 0;
         }
 
-        /* 标题叠加在画面上方，更醒目 */
         .foshan-title {
             position: absolute;
             top: 15%;
@@ -115,10 +114,8 @@
             letter-spacing: 2px;
             white-space: nowrap;
             z-index: 10;
-            
             -webkit-text-stroke: 3px var(--foshan-brown); 
             text-shadow: 4px 4px 0px var(--foshan-brown), 0px 10px 20px rgba(0,0,0,0.15);
-            
             animation: floatTitle 4s ease-in-out infinite;
         }
 
@@ -141,15 +138,19 @@
 
         .author-sign { text-align: right; font-size: 0.75rem; color: var(--text-sub); letter-spacing: 1px; margin-top: 15px; opacity: 0.85; }
 
-        /* 其他页面省略（保持原样） */
+        /* 路线页面样式 */
         .route-step { background: var(--card-bg); border-radius: 12px; padding: 15px; margin-bottom: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.03); border-left: 5px solid var(--route-line); }
         .step-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
         .step-time { font-weight: bold; font-size: 1.1rem; color: var(--route-line); }
         .step-detail { font-size: 0.9rem; color: var(--text-sub); margin-top: 5px; }
+
+        /* 美食页面样式 */
         .food-grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
         .food-card { background: var(--card-bg); padding: 15px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.03); border-top: 4px solid var(--food-green); }
         .food-card h3 { margin: 0 0 10px 0; color: var(--food-green); font-size: 1.1rem; }
         .food-list { margin: 0; padding-left: 20px; font-size: 0.95rem; color: var(--text-main); }
+
+        /* 清单页面样式 */
         .checklist-container { background: var(--card-bg); border-radius: 12px; padding: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.03); }
         .checklist-category { margin-bottom: 25px; border-bottom: 1px solid #f0f0f0; padding-bottom: 10px; }
         .checklist-category:last-child { border-bottom: none; }
@@ -174,13 +175,13 @@
         <div class="next-event">08:30 广东财经大学出发</div>
     </header>
 
+    <!-- 1. 佛山页面 -->
     <div id="foshan" class="content-section active">
         <div class="foshan-section">
             
-            <!-- 水彩速写风 SVG (严格根据你的 Prompt 绘制) -->
+            <!-- 手绘水彩风 SVG -->
             <svg class="hand-drawn-svg" viewBox="0 0 400 450" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
                 <defs>
-                    <!-- 水彩晕染和毛边滤镜 -->
                     <filter id="watercolor-ink" x="-20%" y="-20%" width="140%" height="140%">
                         <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="4" result="noise" />
                         <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" xChannelSelector="R" yChannelSelector="G" result="displaced" />
@@ -190,8 +191,6 @@
                             <feMergeNode in="SourceGraphic" />
                         </feMerge>
                     </filter>
-                    
-                    <!-- 纸张纹理 -->
                     <filter id="paper-texture">
                         <feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="5" result="noise" />
                         <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.05 0" in="noise" result="transparentNoise" />
@@ -199,11 +198,9 @@
                     </filter>
                 </defs>
 
-                <!-- 1. 浅色天空和纸张底色 -->
                 <rect width="100%" height="100%" fill="#fcfaf5" />
                 <rect y="0" width="100%" height="60%" fill="#e6f0f5" opacity="0.6" filter="url(#watercolor-ink)" />
 
-                <!-- 2. 背景绿树 (水彩晕染) -->
                 <g filter="url(#watercolor-ink)" opacity="0.7">
                     <circle cx="50" cy="150" r="60" fill="#88c0a0" />
                     <circle cx="100" cy="100" r="50" fill="#a8d0b8" />
@@ -211,58 +208,42 @@
                     <circle cx="300" cy="80" r="50" fill="#a8d0b8" />
                 </g>
 
-                <!-- 3. 主体建筑：祖庙牌坊 -->
                 <g filter="url(#watercolor-ink)">
-                    <!-- 左侧副牌坊屋顶 -->
                     <path d="M 20,240 Q 60,200 100,240 Z" fill="#2e8b57" />
                     <path d="M 10,240 L 110,240 L 110,250 L 10,250 Z" fill="#1e5c38" />
-                    <!-- 右侧副牌坊屋顶 -->
                     <path d="M 300,240 Q 340,200 380,240 Z" fill="#2e8b57" />
                     <path d="M 290,240 L 390,240 L 390,250 L 290,250 Z" fill="#1e5c38" />
-                    
-                    <!-- 主牌坊飞檐屋顶 (绿瓦) -->
                     <path d="M 120,220 Q 200,100 280,220 Z" fill="#2e8b57" />
-                    <!-- 屋脊装饰 -->
                     <path d="M 130,220 Q 200,110 270,220" stroke="#f1c40f" stroke-width="3" fill="none" opacity="0.8"/>
                     <path d="M 100,220 Q 200,80 300,220 L 280,235 L 120,235 Z" fill="#1e5c38" />
 
-                    <!-- 红色柱子 -->
                     <rect x="130" y="250" width="20" height="150" fill="#c0392b" />
                     <rect x="250" y="250" width="20" height="150" fill="#c0392b" />
                     <rect x="90" y="250" width="15" height="150" fill="#a93226" />
                     <rect x="295" y="250" width="15" height="150" fill="#a93226" />
                     
-                    <!-- 横梁结构 -->
                     <rect x="110" y="240" width="180" height="20" fill="#c0392b" />
                     <path d="M 120,250 L 280,250" stroke="#f1c40f" stroke-width="2" opacity="0.5" stroke-dasharray="5,5" />
 
-                    <!-- 黑色牌匾 -->
                     <rect x="160" y="260" width="80" height="30" fill="#1a1a1a" rx="3" />
-                    <!-- 牌匾金框 -->
                     <rect x="160" y="260" width="80" height="30" fill="none" stroke="#f1c40f" stroke-width="2" rx="3" />
-                    <!-- “祖庙”二字 (用路径或文本模拟) -->
                     <text x="200" y="282" font-family="'STKaiti', 'KaiTi', serif" font-size="22" fill="#f1c40f" font-weight="bold" text-anchor="middle" letter-spacing="4">祖庙</text>
 
-                    <!-- 底部地基 -->
                     <rect x="70" y="400" width="260" height="30" fill="#d5d8dc" />
                     <rect x="50" y="430" width="300" height="20" fill="#bdc3c7" />
 
-                    <!-- 红色铁门 -->
                     <rect x="150" y="320" width="100" height="80" fill="none" stroke="#c0392b" stroke-width="4" />
                     <line x1="170" y1="320" x2="170" y2="400" stroke="#c0392b" stroke-width="3" />
                     <line x1="190" y1="320" x2="190" y2="400" stroke="#c0392b" stroke-width="3" />
                     <line x1="210" y1="320" x2="210" y2="400" stroke="#c0392b" stroke-width="3" />
                     <line x1="230" y1="320" x2="230" y2="400" stroke="#c0392b" stroke-width="3" />
 
-                    <!-- 石狮子 (简化速写风) -->
-                    <!-- 左侧石狮 -->
                     <g transform="translate(110, 360)">
-                        <rect x="0" y="20" width="30" height="20" fill="#95a5a6" rx="3" /> <!-- 底座 -->
-                        <circle cx="15" cy="10" r="12" fill="#bdc3c7" /> <!-- 头 -->
-                        <path d="M 5,10 Q 15,20 25,10" stroke="#7f8c8d" stroke-width="2" fill="none" /> <!-- 嘴巴 -->
-                        <circle cx="10" cy="5" r="2" fill="#2c3e50" /> <!-- 眼睛 -->
+                        <rect x="0" y="20" width="30" height="20" fill="#95a5a6" rx="3" />
+                        <circle cx="15" cy="10" r="12" fill="#bdc3c7" />
+                        <path d="M 5,10 Q 15,20 25,10" stroke="#7f8c8d" stroke-width="2" fill="none" />
+                        <circle cx="10" cy="5" r="2" fill="#2c3e50" />
                     </g>
-                    <!-- 右侧石狮 -->
                     <g transform="translate(260, 360)">
                         <rect x="0" y="20" width="30" height="20" fill="#95a5a6" rx="3" />
                         <circle cx="15" cy="10" r="12" fill="#bdc3c7" />
@@ -271,30 +252,23 @@
                     </g>
                 </g>
 
-                <!-- 4. 速写墨线细节 (Loose ink lines) -->
                 <g stroke="#2c3e50" stroke-width="1.5" fill="none" opacity="0.6" filter="url(#watercolor-ink)">
-                    <!-- 屋顶墨线 -->
                     <path d="M 120,220 Q 200,100 280,220" />
                     <path d="M 140,210 Q 200,120 260,210" />
                     <path d="M 20,240 Q 60,200 100,240" />
                     <path d="M 300,240 Q 340,200 380,240" />
-                    <!-- 柱子墨线 -->
                     <line x1="130" y1="250" x2="130" y2="400" />
                     <line x1="150" y1="250" x2="150" y2="400" />
                     <line x1="250" y1="250" x2="250" y2="400" />
                     <line x1="270" y1="250" x2="270" y2="400" />
-                    <!-- 地面阴影线 -->
                     <line x1="50" y1="440" x2="350" y2="440" stroke-dasharray="10, 5" />
                     <line x1="60" y1="450" x2="340" y2="450" stroke-dasharray="15, 8" />
                 </g>
 
-                <!-- 添加纸张纹理覆盖层 -->
                 <rect width="100%" height="100%" fill="none" filter="url(#paper-texture)" pointer-events="none" />
             </svg>
 
-            <!-- 醒目大标题 -->
             <div class="foshan-title">Welcome to FoShan</div>
-            
         </div>
 
         <div class="foshan-desc">
@@ -310,14 +284,51 @@
 
     <!-- 2. 路线页面 -->
     <div id="route" class="content-section">
-        <div class="route-step"><div class="step-header"><span class="step-time">08:30 - 09:30</span><span>🚶 步行 5km</span></div><div style="font-weight:bold;">早餐 · 广东财经大学附近</div><div class="step-detail">新潮肠粉店 | 广财校区出发</div></div>
-        <div class="route-step"><div class="step-header"><span class="step-time">09:30 - 10:35</span><span>🚌 11:03 发车</span></div><div style="font-weight:bold;">三水森林公园</div><div class="step-detail">游玩约1小时 | 选择：卧佛 / 孔圣园</div></div>
-        <div class="route-step" style="border-left-color: var(--danger);"><div class="step-header"><span class="step-time" style="color:var(--danger)">11:03 前</span><span>🚌 距离1.7km</span></div><div style="font-weight:bold;">城际班车 (西青大道公交站)</div><div class="step-detail">⚠️ 早上咽喉时刻，需提前步行到达</div></div>
-        <div class="route-step"><div class="step-header"><span class="step-time">预计 12:20</span><span>🚶 350m</span></div><div style="font-weight:bold;">抵达 佛山汽车站B站</div><div class="step-detail">步行至中山公园附近</div></div>
-        <div class="route-step"><div class="step-header"><span class="step-time">13:00 - 14:15</span><span>🚶 1.5km</span></div><div style="font-weight:bold;">午餐 → 祖庙</div><div class="step-detail">中山公园闲逛 -> 岭南天地 -> 午餐 -> 醒狮表演</div></div>
-        <div class="route-step"><div class="step-header"><span class="step-time">16:15 - 17:00</span><span>🚶 1.3km</span></div><div style="font-weight:bold;">晚餐 → 垂虹公园</div><div class="step-detail">品尝美食 -> 先行书店打卡</div></div>
-        <div class="route-step" style="border-left-color: var(--danger);"><div class="step-header"><span class="step-time" style="color:var(--danger)">17:45 - 18:19</span><span>🚶 2.7km</span></div><div style="font-weight:bold;">步行回车站</div><div class="step-detail">⚠️ 长距离夜路，务必穿好鞋，注意安全</div></div>
-        <div class="route-step"><div class="step-header"><span class="step-time">19:31 前</span><span>🚌 1.2h</span></div><div style="font-weight:bold;">抵达 西青大道公交站</div><div class="step-detail">新友记对面 | 回家</div></div>
+        <div class="route-step">
+            <div class="step-header"><span class="step-time">08:30 - 09:30</span><span>🚶 步行 5km</span></div>
+            <div style="font-weight:bold;">早餐 · 广东财经大学附近</div>
+            <div class="step-detail">新潮肠粉店 | 广财校区出发</div>
+        </div>
+        <div class="route-step">
+            <div class="step-header"><span class="step-time">09:30 - 10:35</span><span>🚌 11:03 发车</span></div>
+            <div style="font-weight:bold;">三水森林公园</div>
+            <div class="step-detail">游玩约1小时 | 选择：卧佛 / 孔圣园</div>
+        </div>
+        <div class="route-step" style="border-left-color: var(--danger);">
+            <div class="step-header"><span class="step-time" style="color:var(--danger)">11:03 前</span><span>🚌 距离1.7km</span></div>
+            <div style="font-weight:bold;">城际班车 (西青大道公交站)</div>
+            <div class="step-detail">⚠️ 早上咽喉时刻，需提前步行到达</div>
+        </div>
+        <div class="route-step">
+            <div class="step-header"><span class="step-time">预计 12:20</span><span>🚶 350m</span></div>
+            <div style="font-weight:bold;">抵达 佛山汽车站B站</div>
+            <div class="step-detail">步行至中山公园附近</div>
+        </div>
+        <div class="route-step">
+            <div class="step-header"><span class="step-time">13:00 - 14:15</span><span>🚶 1.5km</span></div>
+            <div style="font-weight:bold;">午餐 → 祖庙</div>
+            <div class="step-detail">中山公园闲逛 -> 岭南天地 -> 午餐 -> 醒狮表演</div>
+        </div>
+        <div class="route-step">
+            <div class="step-header"><span class="step-time">16:15 - 17:00</span><span>🚶 1.3km</span></div>
+            <div style="font-weight:bold;">晚餐 → 垂虹公园</div>
+            <div class="step-detail">品尝美食 -> 先行书店打卡</div>
+        </div>
+        <div class="route-step" style="border-left-color: var(--danger);">
+            <div class="step-header"><span class="step-time" style="color:var(--danger)">17:45 - 18:19</span><span>🚶 2.7km</span></div>
+            <div style="font-weight:bold;">步行回车站</div>
+            <div class="step-detail">⚠️ 长距离夜路，务必穿好鞋，注意安全</div>
+        </div>
+        <!-- 修改的部分在下面 -->
+        <div class="route-step">
+            <div class="step-header">
+                <span class="step-time">19:31 前</span>
+                <span>🚌 1.2h</span>
+            </div>
+            <div style="font-weight:bold;">抵达 佛山汽车站B站</div>
+            <div class="step-detail">乘车返回 | 回家</div>
+        </div>
+        <!-- 修改的部分在上面 -->
     </div>
 
     <!-- 3. 美食页面 -->
