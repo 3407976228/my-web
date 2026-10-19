@@ -57,7 +57,7 @@
 	            margin-top: 5px;
 	            font-weight: 500;
 	        }
-	        /* 2. 手绘地图容器 */
+	        /* 2. 地图概览 */
 	        .map-section {
 	            padding: 20px;
 	            background: var(--card-bg);
@@ -367,9 +367,6 @@
 	</div>
 	<script>
 	    // 1. 倒计时逻辑
-	    // 锚点：2026-11-01 08:30:00 (北京时间)
-	    // 实际落地时间未知，默认按09:00开始倒计时（或者你可以修改这里）
-	    // 为了演示效果，这里设置为明天早上开始倒计时
 	    const targetDate = new Date("2026-11-01T08:30:00+08:00").getTime();
 	    function updateTimer() {
 	        const now = new Date().getTime();
@@ -387,18 +384,18 @@
 	    }
 	    setInterval(updateTimer, 1000);
 	    updateTimer();
-	    // 2. 导航逻辑 (通用地图唤起)
+	    // 2. 导航逻辑 (真实坐标)
+	    // 注意：这是真实的大致坐标，用于导航
 	    const locations = [
-	        { name: "广财", lat: 23.35, lng: 113.12 }, // 模拟坐标
-	        { name: "三水森林公园", lat: 23.16, lng: 113.15 },
-	        { name: "佛山汽车站", lat: 23.02, lng: 113.11 },
-	        { name: "祖庙", lat: 23.02, lng: 113.12 },
-	        { name: "岭南天地", lat: 23.03, lng: 113.12 },
-	        { name: "垂虹公园", lat: 23.03, lng: 113.13 }
+	        { name: "广财", lat: 23.3547, lng: 113.1252 }, 
+	        { name: "三水森林公园", lat: 23.1591, lng: 113.1582 },
+	        { name: "佛山汽车站", lat: 23.0166, lng: 113.1078 },
+	        { name: "祖庙", lat: 23.0197, lng: 113.1196 },
+	        { name: "岭南天地", lat: 23.0206, lng: 113.1183 },
+	        { name: "垂虹公园", lat: 23.0280, lng: 113.1175 }
 	    ];
 	    function startNavigation() {
 	        // 路线顺序：广财 -> 森林公园 -> 汽车站 -> 祖庙 -> 岭南天地 -> 垂虹公园 -> 回家
-	        // 注意：这里只是简单的串联，真实APP通常需要解析路线规划API
 	        const route = "https://www.google.com/maps/dir/?api=1&origin=" + 
 	                      locations[0].lat + "," + locations[0].lng + 
 	                      "&destination=" + locations[5].lat + "," + locations[5].lng +
