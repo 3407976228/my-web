@@ -16,7 +16,10 @@
             --danger: #e74c3c; /* 警示红 */
             --food-green: #27ae60;
             --foshan-red: #c0392b; 
-            --foshan-blue: #1e6fd9; /* 标题蓝 */
+            
+            /* 提取自手绘图的新配色 */
+            --foshan-yellow: #fcd12a; /* 亮黄色 */
+            --foshan-brown: #4a2c11;  /* 深棕色 */
         }
 
         body {
@@ -100,42 +103,63 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- 佛山板块样式 (修改版) --- */
+        /* --- 佛山板块样式 (手绘风修改版) --- */
         .foshan-section {
             position: relative;
             width: 100%;
-            height: 300px;
+            /* 为了让这张长图展示更完整，高度调大一些，你可以根据实际效果微调 */
+            height: 60vh; 
+            min-height: 450px;
             overflow: hidden;
             border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
             margin-bottom: 20px;
+            background-color: #fff;
         }
 
         .foshan-bg {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            /* 图片遮罩，确保文字清晰 */
-            filter: brightness(0.85); 
+            object-fit: cover; /* 如果图片显示不全，可以改成 contain，但两边会留白 */
+            object-position: center;
         }
 
-        /* 标题：蓝色大字（手机端自适应字号） */
+        /* 顶部轻微渐变遮罩，让标题更清晰 */
+        .foshan-section::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 120px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* 醒目手绘风标题 */
         .foshan-title {
             position: absolute;
-            top: 50%;
+            top: 30px; 
             left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: clamp(1.5rem, 7.5vw, 3rem); /* 自适应，防止溢出 */
+            transform: translateX(-50%) rotate(-2deg); /* 微微倾斜，增加手绘活泼感 */
+            font-size: clamp(2rem, 8vw, 3.5rem);
             font-weight: 900;
-            color: var(--foshan-blue);
-            text-shadow: 0 2px 8px rgba(255,255,255,0.95);
-            letter-spacing: 2px;
-            border: 5px solid white;
-            border-radius: 10px;
-            padding: 10px 24px;
-            background: rgba(255,255,255,0.75); /* 白色半透明底板，保证蓝字清晰 */
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'ZCOOL KuaiLe', sans-serif; /* 尽量用圆润手写字体 */
+            color: var(--foshan-yellow);
+            letter-spacing: 3px;
             white-space: nowrap;
             z-index: 2;
+            
+            /* 深棕色粗描边与立体投影，手绘感拉满 */
+            -webkit-text-stroke: 2.5px var(--foshan-brown); 
+            text-shadow: 4px 4px 0px var(--foshan-brown), 0px 8px 15px rgba(0,0,0,0.3);
+            
+            /* 动画：轻轻浮动 */
+            animation: floatTitle 3s ease-in-out infinite;
+        }
+
+        @keyframes floatTitle {
+            0%, 100% { transform: translateX(-50%) translateY(0) rotate(-2deg); }
+            50% { transform: translateX(-50%) translateY(-5px) rotate(-2deg); }
         }
 
         .foshan-desc {
@@ -143,11 +167,14 @@
             padding: 20px;
             border-radius: 15px;
             border-left: 5px solid var(--foshan-red);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
         }
 
         .foshan-desc h3 {
             margin-top: 0;
             color: var(--foshan-red);
+            display: flex;
+            align-items: center;
         }
 
         /* 正文段落排版 */
@@ -298,15 +325,16 @@
     <!-- 1. 佛山页面 -->
     <div id="foshan" class="content-section active">
         <div class="foshan-section">
-            <!-- 使用你的图片作为背景 -->
-            <img src="c73b08e838f9f9ee7d808b5f5b488622.jpg" alt="佛山背景" class="foshan-bg">
-            <!-- 蓝色大字标题 -->
+            <!-- ⚠️ 注意：请将这里的 src 替换为你那张手绘图的实际文件名（比如：foshan-map.jpg） -->
+            <img src="c73b08e838f9f9ee7d808b5f5b488622.jpg" alt="佛山手绘背景" class="foshan-bg">
+            
+            <!-- 醒目手绘风标题 -->
             <div class="foshan-title">Welcome to FoShan</div>
         </div>
 
         <!-- 佛山文案 -->
         <div class="foshan-desc">
-            <h3>佛山印象</h3>
+            <h3>📍 佛山印象</h3>
             <p>佛山，古称"禅城"，唐贞观年间因塔坡岗掘得铜佛三尊而得名。</p>
             <p>千年前，这里是岭南文明的起点之一；百年前，黄飞鸿的无影脚和叶问的咏春，让"功夫"两个字写进了世界记忆。</p>
             <p>今天，佛山把江湖气藏进了日常——祖庙的红墙下醒狮每日准时起舞，南风古灶的龙窑五百年未熄，岭南天地的镬耳屋旁长出了咖啡馆。</p>
