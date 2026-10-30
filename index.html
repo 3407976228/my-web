@@ -15,11 +15,9 @@
             --danger: #e74c3c;
             --food-green: #27ae60;
             --foshan-red: #c0392b; 
-            
-            /* 手绘水彩风配色 */
             --foshan-yellow: #fcd12a; 
             --foshan-brown: #4a2c11;  
-            --paper-bg: #fdfcf8;
+            --paper-bg: #fcfaf5;
         }
 
         body {
@@ -85,7 +83,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- 佛山板块：水彩速写风背景 --- */
+        /* --- 佛山板块：稳定版水彩手绘风 --- */
         .foshan-section {
             position: relative;
             width: 100%;
@@ -112,7 +110,7 @@
             transform: translateX(-50%) rotate(-2deg);
             font-size: clamp(2rem, 7vw, 3.5rem);
             font-weight: 900;
-            font-family: 'Comic Sans MS', 'Chalkboard SE', 'ZCOOL KuaiLe', sans-serif;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
             color: var(--foshan-yellow);
             letter-spacing: 2px;
             white-space: nowrap;
@@ -147,7 +145,7 @@
         .step-time { font-weight: bold; font-size: 1.1rem; color: var(--route-line); }
         .step-detail { font-size: 0.9rem; color: var(--text-sub); margin-top: 5px; }
 
-        /* --- 美食页面样式 (全新优化版) --- */
+        /* --- 美食页面样式 --- */
         .food-page-title {
             font-size: 1.2rem;
             color: var(--text-main);
@@ -163,7 +161,6 @@
             gap: 15px;
         }
 
-        /* 店铺卡片 */
         .food-item {
             background: var(--card-bg);
             border-radius: 12px;
@@ -179,7 +176,6 @@
             transform: scale(0.98);
         }
 
-        /* 左侧的序号标签 */
         .food-index {
             position: absolute;
             top: 0;
@@ -192,7 +188,6 @@
             border-radius: 0 0 12px 0;
         }
 
-        /* 不同分类的颜色 */
         .food-item.cat-meal .food-index { background: var(--foshan-red); }
         .food-item.cat-snack .food-index { background: var(--accent); }
         .food-item.cat-dessert .food-index { background: var(--food-green); }
@@ -220,13 +215,11 @@
             padding-left: 5px;
         }
 
-        /* 重点文字高亮 */
         .highlight-text {
             color: var(--danger);
             font-weight: bold;
         }
 
-        /* 推荐菜标签 */
         .food-tags {
             display: flex;
             flex-wrap: wrap;
@@ -271,35 +264,20 @@
     <!-- 1. 佛山页面 -->
     <div id="foshan" class="content-section active">
         <div class="foshan-section">
+            <!-- 去掉了复杂滤镜，使用基础 SVG 确保所有手机兼容 -->
             <svg class="hand-drawn-svg" viewBox="0 0 400 450" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <filter id="watercolor-ink" x="-20%" y="-20%" width="140%" height="140%">
-                        <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="4" result="noise" />
-                        <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" xChannelSelector="R" yChannelSelector="G" result="displaced" />
-                        <feGaussianBlur in="displaced" stdDeviation="0.5" result="blurred" />
-                        <feMerge>
-                            <feMergeNode in="blurred" />
-                            <feMergeNode in="SourceGraphic" />
-                        </feMerge>
-                    </filter>
-                    <filter id="paper-texture">
-                        <feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="5" result="noise" />
-                        <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.05 0" in="noise" result="transparentNoise" />
-                        <feBlend in="SourceGraphic" in2="transparentNoise" mode="multiply" />
-                    </filter>
-                </defs>
-
                 <rect width="100%" height="100%" fill="#fcfaf5" />
-                <rect y="0" width="100%" height="60%" fill="#e6f0f5" opacity="0.6" filter="url(#watercolor-ink)" />
+                <rect y="0" width="100%" height="60%" fill="#e6f0f5" opacity="0.6" />
 
-                <g filter="url(#watercolor-ink)" opacity="0.7">
-                    <circle cx="50" cy="150" r="60" fill="#88c0a0" />
-                    <circle cx="100" cy="100" r="50" fill="#a8d0b8" />
-                    <circle cx="350" cy="130" r="70" fill="#88c0a0" />
-                    <circle cx="300" cy="80" r="50" fill="#a8d0b8" />
-                </g>
+                <!-- 绿树晕染 -->
+                <circle cx="50" cy="150" r="60" fill="#88c0a0" opacity="0.6"/>
+                <circle cx="100" cy="100" r="50" fill="#a8d0b8" opacity="0.6"/>
+                <circle cx="350" cy="130" r="70" fill="#88c0a0" opacity="0.6"/>
+                <circle cx="300" cy="80" r="50" fill="#a8d0b8" opacity="0.6"/>
 
-                <g filter="url(#watercolor-ink)">
+                <!-- 牌坊主体 -->
+                <g>
+                    <!-- 飞檐屋顶 -->
                     <path d="M 20,240 Q 60,200 100,240 Z" fill="#2e8b57" />
                     <path d="M 10,240 L 110,240 L 110,250 L 10,250 Z" fill="#1e5c38" />
                     <path d="M 300,240 Q 340,200 380,240 Z" fill="#2e8b57" />
@@ -308,27 +286,31 @@
                     <path d="M 130,220 Q 200,110 270,220" stroke="#f1c40f" stroke-width="3" fill="none" opacity="0.8"/>
                     <path d="M 100,220 Q 200,80 300,220 L 280,235 L 120,235 Z" fill="#1e5c38" />
 
+                    <!-- 红柱子 -->
                     <rect x="130" y="250" width="20" height="150" fill="#c0392b" />
                     <rect x="250" y="250" width="20" height="150" fill="#c0392b" />
                     <rect x="90" y="250" width="15" height="150" fill="#a93226" />
                     <rect x="295" y="250" width="15" height="150" fill="#a93226" />
                     
+                    <!-- 横梁 -->
                     <rect x="110" y="240" width="180" height="20" fill="#c0392b" />
                     <path d="M 120,250 L 280,250" stroke="#f1c40f" stroke-width="2" opacity="0.5" stroke-dasharray="5,5" />
 
+                    <!-- 牌匾 -->
                     <rect x="160" y="260" width="80" height="30" fill="#1a1a1a" rx="3" />
                     <rect x="160" y="260" width="80" height="30" fill="none" stroke="#f1c40f" stroke-width="2" rx="3" />
                     <text x="200" y="282" font-family="'STKaiti', 'KaiTi', serif" font-size="22" fill="#f1c40f" font-weight="bold" text-anchor="middle" letter-spacing="4">祖庙</text>
 
+                    <!-- 底部台阶和铁门 -->
                     <rect x="70" y="400" width="260" height="30" fill="#d5d8dc" />
                     <rect x="50" y="430" width="300" height="20" fill="#bdc3c7" />
-
                     <rect x="150" y="320" width="100" height="80" fill="none" stroke="#c0392b" stroke-width="4" />
                     <line x1="170" y1="320" x2="170" y2="400" stroke="#c0392b" stroke-width="3" />
                     <line x1="190" y1="320" x2="190" y2="400" stroke="#c0392b" stroke-width="3" />
                     <line x1="210" y1="320" x2="210" y2="400" stroke="#c0392b" stroke-width="3" />
                     <line x1="230" y1="320" x2="230" y2="400" stroke="#c0392b" stroke-width="3" />
 
+                    <!-- 石狮子 -->
                     <g transform="translate(110, 360)">
                         <rect x="0" y="20" width="30" height="20" fill="#95a5a6" rx="3" />
                         <circle cx="15" cy="10" r="12" fill="#bdc3c7" />
@@ -343,7 +325,8 @@
                     </g>
                 </g>
 
-                <g stroke="#2c3e50" stroke-width="1.5" fill="none" opacity="0.6" filter="url(#watercolor-ink)">
+                <!-- 速写墨线 -->
+                <g stroke="#2c3e50" stroke-width="1.5" fill="none" opacity="0.4">
                     <path d="M 120,220 Q 200,100 280,220" />
                     <path d="M 140,210 Q 200,120 260,210" />
                     <path d="M 20,240 Q 60,200 100,240" />
@@ -355,8 +338,6 @@
                     <line x1="50" y1="440" x2="350" y2="440" stroke-dasharray="10, 5" />
                     <line x1="60" y1="450" x2="340" y2="450" stroke-dasharray="15, 8" />
                 </g>
-
-                <rect width="100%" height="100%" fill="none" filter="url(#paper-texture)" pointer-events="none" />
             </svg>
 
             <div class="foshan-title">Welcome to FoShan</div>
@@ -422,187 +403,88 @@
         </div>
     </div>
 
-    <!-- 3. 美食页面 (正餐烧烤 -> 小吃 -> 甜品) -->
+    <!-- 3. 美食页面 -->
     <div id="food" class="content-section">
         <h3 class="food-page-title">🔥 佛山必吃美食榜单</h3>
-        
         <div class="food-list-container">
-            
-            <!-- 1. 正餐/烤肉 -->
             <div class="food-item cat-meal">
                 <div class="food-index">TOP 1</div>
-                <div class="food-header">
-                    <div class="food-name">大呲花丹东海鲜烤肉(禅城店)</div>
-                </div>
+                <div class="food-header"><div class="food-name">大呲花丹东海鲜烤肉(禅城店)</div></div>
                 <div class="food-desc">人气超高的东北烧烤，分量特别大，人均60就能吃得很满足。离祖庙很近。注意：<span class="highlight-text">下午5点后才开门，别跑空了！</span></div>
-                <div class="food-tags">
-                    <span class="tag">东北烧烤</span>
-                    <span class="tag">分量大</span>
-                    <span class="tag">离祖庙近</span>
-                </div>
+                <div class="food-tags"><span class="tag">东北烧烤</span><span class="tag">分量大</span><span class="tag">离祖庙近</span></div>
             </div>
-
-            <!-- 2. 正餐/烤肉 -->
             <div class="food-item cat-meal">
                 <div class="food-index">TOP 2</div>
-                <div class="food-header">
-                    <div class="food-name">北山炭火烤肉</div>
-                </div>
+                <div class="food-header"><div class="food-name">北山炭火烤肉</div></div>
                 <div class="food-desc">老板是东北人，肉会用苏打水和梨汁腌制，口感特别嫩滑。环境不错通风好，吃完身上油烟味不重。</div>
-                <div class="food-tags">
-                    <span class="tag">炭火烤肉</span>
-                    <span class="tag">肉质嫩滑</span>
-                    <span class="tag">岭南天地附近</span>
-                </div>
+                <div class="food-tags"><span class="tag">炭火烤肉</span><span class="tag">肉质嫩滑</span><span class="tag">岭南天地附近</span></div>
             </div>
-
-            <!-- 3. 正餐/烤肉 -->
             <div class="food-item cat-meal">
                 <div class="food-index">TOP 3</div>
-                <div class="food-header">
-                    <div class="food-name">刘皇叔地摊烧烤总店</div>
-                </div>
+                <div class="food-header"><div class="food-name">刘皇叔地摊烧烤总店</div></div>
                 <div class="food-desc">主打东北烧烤，很多本地人推荐。虽然菜品样式不多，但胜在食材新鲜，值得一试。</div>
-                <div class="food-tags">
-                    <span class="tag">地摊烧烤</span>
-                    <span class="tag">本地人推荐</span>
-                    <span class="tag">食材新鲜</span>
-                </div>
+                <div class="food-tags"><span class="tag">地摊烧烤</span><span class="tag">本地人推荐</span><span class="tag">食材新鲜</span></div>
             </div>
-
-            <!-- 4. 正餐 -->
             <div class="food-item cat-meal">
                 <div class="food-index">TOP 4</div>
-                <div class="food-header">
-                    <div class="food-name">好好食桑拿鸡</div>
-                </div>
+                <div class="food-header"><div class="food-name">好好食桑拿鸡</div></div>
                 <div class="food-desc">主打桑拿鸡、松子排骨、烧鹅、白切鸡。</div>
-                <div class="food-tags">
-                    <span class="tag">桑拿鸡</span>
-                    <span class="tag">烧鹅</span>
-                    <span class="tag">粤菜硬菜</span>
-                </div>
+                <div class="food-tags"><span class="tag">桑拿鸡</span><span class="tag">烧鹅</span><span class="tag">粤菜硬菜</span></div>
             </div>
-
-            <!-- 5. 正餐 -->
             <div class="food-item cat-meal">
                 <div class="food-index">TOP 5</div>
-                <div class="food-header">
-                    <div class="food-name">鸡来了炭火鸡煲·桑拿鸡</div>
-                </div>
+                <div class="food-header"><div class="food-name">鸡来了炭火鸡煲·桑拿鸡</div></div>
                 <div class="food-desc">扇鸡桑拿鸡，白灼八爪鱼，白灼膏鱿，黑虎虾滑。</div>
-                <div class="food-tags">
-                    <span class="tag">炭火鸡煲</span>
-                    <span class="tag">海鲜</span>
-                </div>
+                <div class="food-tags"><span class="tag">炭火鸡煲</span><span class="tag">海鲜</span></div>
             </div>
-
-            <!-- 6. 正餐/粉面 -->
             <div class="food-item cat-meal">
                 <div class="food-index">TOP 6</div>
-                <div class="food-header">
-                    <div class="food-name">豪爽美食</div>
-                </div>
+                <div class="food-header"><div class="food-name">豪爽美食</div></div>
                 <div class="food-desc">牛腩软糯入味，搭配各种粉都好吃。</div>
-                <div class="food-tags">
-                    <span class="tag">牛腩</span>
-                    <span class="tag">汤粉</span>
-                </div>
+                <div class="food-tags"><span class="tag">牛腩</span><span class="tag">汤粉</span></div>
             </div>
-
-            <!-- 7. 正餐/下饭菜 -->
             <div class="food-item cat-meal">
                 <div class="food-index">TOP 7</div>
-                <div class="food-header">
-                    <div class="food-name">登满园干蒸鲜排骨</div>
-                </div>
+                <div class="food-header"><div class="food-name">登满园干蒸鲜排骨</div></div>
                 <div class="food-desc">干蒸排骨焦香四溢，其他菜品都好下饭。</div>
-                <div class="food-tags">
-                    <span class="tag">干蒸排骨</span>
-                    <span class="tag">下饭菜</span>
-                </div>
+                <div class="food-tags"><span class="tag">干蒸排骨</span><span class="tag">下饭菜</span></div>
             </div>
-
-            <!-- 8. 正餐/粉面 -->
             <div class="food-item cat-meal">
                 <div class="food-index">TOP 8</div>
-                <div class="food-header">
-                    <div class="food-name">念恩记猪手面</div>
-                </div>
+                <div class="food-header"><div class="food-name">念恩记猪手面</div></div>
                 <div class="food-desc">猪手软软糯糯，猪肝和咖喱鱼蛋好吃。</div>
-                <div class="food-tags">
-                    <span class="tag">猪手面</span>
-                    <span class="tag">咖喱鱼蛋</span>
-                </div>
+                <div class="food-tags"><span class="tag">猪手面</span><span class="tag">咖喱鱼蛋</span></div>
             </div>
-
-            <!-- 9. 小吃 -->
             <div class="food-item cat-snack">
                 <div class="food-index">TOP 9</div>
-                <div class="food-header">
-                    <div class="food-name">大笨象小吃店</div>
-                </div>
+                <div class="food-header"><div class="food-name">大笨象小吃店</div></div>
                 <div class="food-desc">二十多年老店，价格不贵的烟火气小吃店。</div>
-                <div class="food-tags">
-                    <span class="tag">老字号</span>
-                    <span class="tag">平价小吃</span>
-                </div>
+                <div class="food-tags"><span class="tag">老字号</span><span class="tag">平价小吃</span></div>
             </div>
-
-            <!-- 10. 小吃 -->
             <div class="food-item cat-snack">
                 <div class="food-index">TOP 10</div>
-                <div class="food-header">
-                    <div class="food-name">南善小食店</div>
-                </div>
+                <div class="food-header"><div class="food-name">南善小食店</div></div>
                 <div class="food-desc">本地人的早餐店，各种小吃。</div>
-                <div class="food-tags">
-                    <span class="tag">本地早餐</span>
-                    <span class="tag">地道小吃</span>
-                </div>
+                <div class="food-tags"><span class="tag">本地早餐</span><span class="tag">地道小吃</span></div>
             </div>
-
-            <!-- 11. 小吃 -->
             <div class="food-item cat-snack">
                 <div class="food-index">TOP 11</div>
-                <div class="food-header">
-                    <div class="food-name">蔡玉皎传统薄皮蒸饺</div>
-                </div>
+                <div class="food-header"><div class="food-name">蔡玉皎传统薄皮蒸饺</div></div>
                 <div class="food-desc">薄皮蒸饺、炸云吞、蒸凤爪必点。</div>
-                <div class="food-tags">
-                    <span class="tag">薄皮蒸饺</span>
-                    <span class="tag">炸云吞</span>
-                    <span class="tag">蒸凤爪</span>
-                </div>
+                <div class="food-tags"><span class="tag">薄皮蒸饺</span><span class="tag">炸云吞</span><span class="tag">蒸凤爪</span></div>
             </div>
-
-            <!-- 12. 甜品 -->
             <div class="food-item cat-dessert">
                 <div class="food-index">TOP 12</div>
-                <div class="food-header">
-                    <div class="food-name">Hot.huhu鸡蛋仔</div>
-                </div>
+                <div class="food-header"><div class="food-name">Hot.huhu鸡蛋仔</div></div>
                 <div class="food-desc">葡挞三重奏鸡蛋仔，还有好多款搭配都好吃。</div>
-                <div class="food-tags">
-                    <span class="tag">葡挞三重奏</span>
-                    <span class="tag">甜品小吃</span>
-                </div>
+                <div class="food-tags"><span class="tag">葡挞三重奏</span><span class="tag">甜品小吃</span></div>
             </div>
-
-            <!-- 13. 甜品 -->
             <div class="food-item cat-dessert">
                 <div class="food-index">TOP 13</div>
-                <div class="food-header">
-                    <div class="food-name">圆碌碌甜品屋（南善店）</div>
-                </div>
+                <div class="food-header"><div class="food-name">圆碌碌甜品屋（南善店）</div></div>
                 <div class="food-desc">芒果肠粉特别，猪脚姜好吃，各种特色甜品。</div>
-                <div class="food-tags">
-                    <span class="tag">芒果肠粉</span>
-                    <span class="tag">猪脚姜</span>
-                    <span class="tag">甜品</span>
-                </div>
+                <div class="food-tags"><span class="tag">芒果肠粉</span><span class="tag">猪脚姜</span><span class="tag">甜品</span></div>
             </div>
-
         </div>
     </div>
 
@@ -639,6 +521,9 @@
         }
         setInterval(updateTimer, 1000);
         updateTimer();
+    </script>
+</body>
+</html>
     </script>
 </body>
 </html>
