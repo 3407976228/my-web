@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>佛山一日游手册 - 2026.11.01</title>
+    <title>佛山一日游手册 - 2026.11.14</title>
     <style>
         :root {
             --bg-color: #fdfbf7;
@@ -143,7 +143,7 @@
         .route-step { background: var(--card-bg); border-radius: 12px; padding: 15px; margin-bottom: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.03); border-left: 5px solid var(--route-line); }
         .step-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
         .step-time { font-weight: bold; font-size: 1.1rem; color: var(--route-line); }
-        .step-detail { font-size: 0.9rem; color: var(--text-sub); margin-top: 5px; }
+        .step-detail { font-size: 0.9rem; color: var(--text-sub); margin-top: 5px; line-height: 1.5; }
 
         /* --- 美食页面样式 --- */
         .food-page-title {
@@ -258,26 +258,22 @@
     <header>
         <div class="countdown-label">距离出发还有</div>
         <div class="countdown-time" id="timer">00天 00小时 00分 00秒</div>
-        <div class="next-event">08:30 广东财经大学出发</div>
+        <div class="next-event">08:30 广外出发</div>
     </header>
 
     <!-- 1. 佛山页面 -->
     <div id="foshan" class="content-section active">
         <div class="foshan-section">
-            <!-- 去掉了复杂滤镜，使用基础 SVG 确保所有手机兼容 -->
             <svg class="hand-drawn-svg" viewBox="0 0 400 450" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
                 <rect width="100%" height="100%" fill="#fcfaf5" />
                 <rect y="0" width="100%" height="60%" fill="#e6f0f5" opacity="0.6" />
 
-                <!-- 绿树晕染 -->
                 <circle cx="50" cy="150" r="60" fill="#88c0a0" opacity="0.6"/>
                 <circle cx="100" cy="100" r="50" fill="#a8d0b8" opacity="0.6"/>
                 <circle cx="350" cy="130" r="70" fill="#88c0a0" opacity="0.6"/>
                 <circle cx="300" cy="80" r="50" fill="#a8d0b8" opacity="0.6"/>
 
-                <!-- 牌坊主体 -->
                 <g>
-                    <!-- 飞檐屋顶 -->
                     <path d="M 20,240 Q 60,200 100,240 Z" fill="#2e8b57" />
                     <path d="M 10,240 L 110,240 L 110,250 L 10,250 Z" fill="#1e5c38" />
                     <path d="M 300,240 Q 340,200 380,240 Z" fill="#2e8b57" />
@@ -286,22 +282,18 @@
                     <path d="M 130,220 Q 200,110 270,220" stroke="#f1c40f" stroke-width="3" fill="none" opacity="0.8"/>
                     <path d="M 100,220 Q 200,80 300,220 L 280,235 L 120,235 Z" fill="#1e5c38" />
 
-                    <!-- 红柱子 -->
                     <rect x="130" y="250" width="20" height="150" fill="#c0392b" />
                     <rect x="250" y="250" width="20" height="150" fill="#c0392b" />
                     <rect x="90" y="250" width="15" height="150" fill="#a93226" />
                     <rect x="295" y="250" width="15" height="150" fill="#a93226" />
                     
-                    <!-- 横梁 -->
                     <rect x="110" y="240" width="180" height="20" fill="#c0392b" />
                     <path d="M 120,250 L 280,250" stroke="#f1c40f" stroke-width="2" opacity="0.5" stroke-dasharray="5,5" />
 
-                    <!-- 牌匾 -->
                     <rect x="160" y="260" width="80" height="30" fill="#1a1a1a" rx="3" />
                     <rect x="160" y="260" width="80" height="30" fill="none" stroke="#f1c40f" stroke-width="2" rx="3" />
                     <text x="200" y="282" font-family="'STKaiti', 'KaiTi', serif" font-size="22" fill="#f1c40f" font-weight="bold" text-anchor="middle" letter-spacing="4">祖庙</text>
 
-                    <!-- 底部台阶和铁门 -->
                     <rect x="70" y="400" width="260" height="30" fill="#d5d8dc" />
                     <rect x="50" y="430" width="300" height="20" fill="#bdc3c7" />
                     <rect x="150" y="320" width="100" height="80" fill="none" stroke="#c0392b" stroke-width="4" />
@@ -310,7 +302,6 @@
                     <line x1="210" y1="320" x2="210" y2="400" stroke="#c0392b" stroke-width="3" />
                     <line x1="230" y1="320" x2="230" y2="400" stroke="#c0392b" stroke-width="3" />
 
-                    <!-- 石狮子 -->
                     <g transform="translate(110, 360)">
                         <rect x="0" y="20" width="30" height="20" fill="#95a5a6" rx="3" />
                         <circle cx="15" cy="10" r="12" fill="#bdc3c7" />
@@ -325,7 +316,6 @@
                     </g>
                 </g>
 
-                <!-- 速写墨线 -->
                 <g stroke="#2c3e50" stroke-width="1.5" fill="none" opacity="0.4">
                     <path d="M 120,220 Q 200,100 280,220" />
                     <path d="M 140,210 Q 200,120 260,210" />
@@ -354,53 +344,139 @@
         <div class="author-sign">该网页由小狼开发</div>
     </div>
 
-    <!-- 2. 路线页面 -->
+    <!-- 2. 路线页面 (已根据手写图完全替换) -->
     <div id="route" class="content-section">
+        
+        <!-- 1. 广外-大学城 -->
         <div class="route-step">
-            <div class="step-header"><span class="step-time">08:30 - 09:30</span><span>🚶 距离 50m</span></div>
-            <div style="font-weight:bold;">早餐 · 广东财经大学附近</div>
-            <div class="step-detail">新潮肠粉店 | 广财校区出发</div>
+            <div class="step-header">
+                <span class="step-time">06:25 - 07:03</span>
+                <span>🚴 骑行/打车 6km</span>
+            </div>
+            <div style="font-weight:bold;">广外 → 广州大学城 (城际站)</div>
+            <div class="step-detail">骑行约32min，或打车(06:25-06:40)</div>
         </div>
+
+        <!-- 2. 城际-云东海 -->
         <div class="route-step">
-            <div class="step-header"><span class="step-time">09:30 - 10:35</span><span>🚶 距离 5km</span></div>
+            <div class="step-header">
+                <span class="step-time">07:03 - 08:21</span>
+                <span>🚄 城际 78km</span>
+            </div>
+            <div style="font-weight:bold;">大学城站 → 云东海站</div>
+            <div class="step-detail">耗时1h18min (需提前在铁路12306购票)</div>
+        </div>
+
+        <!-- 3. 云东海-广财西门 -->
+        <div class="route-step">
+            <div class="step-header">
+                <span class="step-time">08:21 - 08:35</span>
+                <span>🚌 666路公交 1.8km</span>
+            </div>
+            <div style="font-weight:bold;">云东海站 → 广财西门</div>
+            <div class="step-detail">乘666路公交，下车后骑行约9min</div>
+        </div>
+
+        <!-- 4. 早餐 -->
+        <div class="route-step">
+            <div class="step-header">
+                <span class="step-time">08:40 - 09:00</span>
+                <span>🚶 150m</span>
+            </div>
+            <div style="font-weight:bold;">新潮小食 (早餐)</div>
+            <div class="step-detail">在广财西门附近吃早餐</div>
+        </div>
+
+        <!-- 5. 三水森林公园 -->
+        <div class="route-step" style="border-left-color: var(--danger);">
+            <div class="step-header">
+                <span class="step-time">09:00 起</span>
+                <span>🚴 6km</span>
+            </div>
             <div style="font-weight:bold;">三水森林公园</div>
-            <div class="step-detail">游玩约1小时 | 选择：卧佛 / 孔圣园</div>
+            <div class="step-detail">⚠️ 9:00开放，免票。公园太大，时间可能不够，视情况游玩。</div>
         </div>
-        <div class="route-step" style="border-left-color: var(--danger);">
-            <div class="step-header"><span class="step-time" style="color:var(--danger)">11:03 前</span><span>🚌 距离 1.7km</span></div>
-            <div style="font-weight:bold;">城际班车 (西青大道公交站)</div>
-            <div class="step-detail">⚠️ 早上咽喉时刻，需提前步行到达</div>
-        </div>
+
+        <!-- 6. 森林公园-云东海 -->
         <div class="route-step">
-            <div class="step-header"><span class="step-time">预计 12:20</span><span>🚶 350m</span></div>
-            <div style="font-weight:bold;">抵达 佛山汽车站B站</div>
-            <div class="step-detail">步行至中山公园附近</div>
+            <div class="step-header">
+                <span class="step-time">09:05 - 09:10</span>
+                <span>🚕 打车 1.8km</span>
+            </div>
+            <div style="font-weight:bold;">森林公园 → 云东海站</div>
+            <div class="step-detail">打车约4min</div>
         </div>
+
+        <!-- 7. 云东海-祖庙 -->
         <div class="route-step">
-            <div class="step-header"><span class="step-time">13:00 - 14:15</span><span>🚶 约 1.5km</span></div>
-            <div style="font-weight:bold;">中山公园 → 岭南天地</div>
-            <div class="step-detail">中山公园闲逛，随后前往岭南天地吃午餐</div>
+            <div class="step-header">
+                <span class="step-time">约 09:10 - 10:37</span>
+                <span>🚄 城际+地铁 43km</span>
+            </div>
+            <div style="font-weight:bold;">云东海站 → 祖庙 (D出口)</div>
+            <div class="step-detail">耗时约1h27min，学生票10元</div>
         </div>
+
+        <!-- 8. 祖庙博物馆 -->
         <div class="route-step" style="border-left-color: var(--foshan-red);">
-            <div class="step-header"><span class="step-time" style="color:var(--foshan-red)">14:15 - 17:45</span><span>🚶 约 500m</span></div>
-            <div style="font-weight:bold;">岭南天地 → 祖庙</div>
-            <div class="step-detail">逛祖庙，看醒狮表演，随后在祖庙附近吃晚餐</div>
+            <div class="step-header">
+                <span class="step-time">11:00 - 13:00</span>
+                <span>🏛️ 游玩</span>
+            </div>
+            <div style="font-weight:bold;">祖庙博物馆</div>
+            <div class="step-detail">需在微信预约，游玩约2小时</div>
         </div>
+
+        <!-- 9. 午餐 -->
         <div class="route-step">
-            <div class="step-header"><span class="step-time">17:45 - 18:50</span><span>🚶 距离 300m</span></div>
-            <div style="font-weight:bold;">垂虹公园 → 先行书店</div>
-            <div class="step-detail">饭后散步消食，逛逛先行书店打卡拍照</div>
+            <div class="step-header">
+                <span class="step-time">13:00 - 14:00</span>
+                <span>🍽️ 午餐</span>
+            </div>
+            <div style="font-weight:bold;">午餐 (未定)</div>
+            <div class="step-detail">在祖庙附近解决午餐</div>
         </div>
+
+        <!-- 10. 岭南天地 -->
+        <div class="route-step">
+            <div class="step-header">
+                <span class="step-time">14:00 - 15:30</span>
+                <span>🚶 游玩</span>
+            </div>
+            <div style="font-weight:bold;">岭南天地</div>
+            <div class="step-detail">免票，逛街打卡拍照</div>
+        </div>
+
+        <!-- 11. 晚餐 -->
+        <div class="route-step">
+            <div class="step-header">
+                <span class="step-time">15:30 - 16:30</span>
+                <span>🍽️ 晚餐</span>
+            </div>
+            <div style="font-weight:bold;">晚餐 (未定)</div>
+            <div class="step-detail">提前吃晚餐，准备返程</div>
+        </div>
+
+        <!-- 12. 返程：佛山-云东海 -->
         <div class="route-step" style="border-left-color: var(--danger);">
-            <div class="step-header"><span class="step-time" style="color:var(--danger)">18:50 - 19:20</span><span>🚕 建议打车</span></div>
-            <div style="font-weight:bold;">前往 佛山汽车站B站</div>
-            <div class="step-detail">⚠️ 预留充足时间，打车或公交前往车站</div>
+            <div class="step-header">
+                <span class="step-time">16:30 - 18:00</span>
+                <span>🚄 地铁+城际 43km</span>
+            </div>
+            <div style="font-weight:bold;">返程 → 云东海站</div>
+            <div class="step-detail">耗时约1h25min，注意预留时间</div>
         </div>
+
+        <!-- 13. 返程：云东海-广财 -->
         <div class="route-step">
-            <div class="step-header"><span class="step-time">19:31 前</span><span>🚌 乘车</span></div>
-            <div style="font-weight:bold;">抵达 佛山汽车站B站</div>
-            <div class="step-detail">乘车返回 | 回家</div>
+            <div class="step-header">
+                <span class="step-time">18:00 - 18:20</span>
+                <span>🚴 骑行 1.8km</span>
+            </div>
+            <div style="font-weight:bold;">云东海站 → 广财西门</div>
+            <div class="step-detail">骑行约9min，结束行程</div>
         </div>
+
     </div>
 
     <!-- 3. 美食页面 -->
@@ -496,34 +572,4 @@
             <div class="checklist-category"><div class="checklist-title"><span>💄</span>三、化妆品</div><div class="checklist-item">身体防晒霜</div></div>
             <div class="checklist-category"><div class="checklist-title"><span>📷</span>四、电子设备</div><div class="checklist-item">手机、充电头+充电线、耳机</div><div class="checklist-item">充电宝</div></div>
             <div class="checklist-category"><div class="checklist-title"><span>💊</span>五、药品类</div><div class="checklist-item">胃药、止泻药、消食片</div><div class="checklist-item">痛经止痛药（布洛芬）</div><div class="checklist-item">驱蚊液、止痒膏、蚊虫叮咬消肿药</div></div>
-            <div class="checklist-category"><div class="checklist-title"><span>🛠️</span>六、杂物类</div><div class="checklist-item">眼镜</div><div class="checklist-item">便携水杯</div><div class="checklist-item">梳子、镜子</div><div class="checklist-item">雨伞</div><div class="checklist-item">小包纸巾、湿纸巾</div><div class="checklist-item">折叠购物袋</div><div class="checklist-item">钥匙</div></div>
-        </div>
-    </div>
-
-    <script>
-        function showSection(sectionId) {
-            document.querySelectorAll('.content-section').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-            document.getElementById(sectionId).classList.add('active');
-            const index = sectionId === 'foshan' ? 0 : sectionId === 'route' ? 1 : sectionId === 'food' ? 2 : 3;
-            document.querySelectorAll('.nav-item')[index].classList.add('active');
-        }
-        const targetDate = new Date("2026-11-01T08:30:00+08:00").getTime();
-        function updateTimer() {
-            const now = new Date().getTime();
-            const distance = targetDate - now;
-            if (distance < 0) { document.getElementById("timer").innerHTML = "出发啦！出发啦！"; return; }
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            document.getElementById("timer").innerHTML = `${days}天 ${hours}时 ${minutes}分 ${seconds}秒`;
-        }
-        setInterval(updateTimer, 1000);
-        updateTimer();
-    </script>
-</body>
-</html>
-    </script>
-</body>
-</html>
+            <div class="checklist-category"><div class="checklist-title"><span>🛠️</span>六、杂物类</div><div class="checklist-item">眼镜</div><div class="checklist-item">便携水杯</div><div class="checklist-item">梳子、镜子</div><div class="checklist-item">雨伞</div><div class="checklist-item">小包纸巾、湿纸巾</div><div
