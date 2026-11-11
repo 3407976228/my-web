@@ -92,7 +92,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- 佛山板块：手绘地图封面 --- */
+        /* --- 佛山板块：手绘插画封面 --- */
         .foshan-section {
             position: relative;
             width: 100%;
@@ -100,7 +100,7 @@
             border-radius: 12px 30px 15px 25px / 25px 15px 30px 12px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.08);
             margin-bottom: 20px;
-            background-color: var(--paper-bg);
+            background-color: #5f7299;
             border: 3px solid var(--foshan-brown);
         }
 
@@ -307,12 +307,181 @@
     <!-- 1. 佛山页面 -->
     <div id="foshan" class="content-section active" role="tabpanel">
         <div class="foshan-section">
-            <img class="foshan-cover" width="900" height="1187"
-                 src="data:image/jpeg;base64,【这里粘贴 base64】"
-                 alt="佛山手绘地图：祖庙、西樵山、清晖园、千灯湖、南风古灶等地标">
+            <svg class="foshan-cover" viewBox="0 0 900 1187" role="img"
+                 aria-label="手绘佛山插图：佛山二字、祖庙、宝塔、电视塔、摩天轮与云船">
+                <defs>
+                    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#66799f"/>
+                        <stop offset="100%" stop-color="#55688c"/>
+                    </linearGradient>
+                    <g id="tree">
+                        <rect x="-3" y="-16" width="6" height="16" fill="#8a5a3b"/>
+                        <polygon points="-15,-16 0,-46 15,-16" fill="#5f9c88"/>
+                        <polygon points="-11,-30 0,-58 11,-30" fill="#74b09a"/>
+                    </g>
+                    <g id="cloud">
+                        <ellipse cx="0" cy="0" rx="28" ry="15" fill="#ffffff"/>
+                        <ellipse cx="24" cy="5" rx="19" ry="12" fill="#ffffff"/>
+                        <ellipse cx="-23" cy="5" rx="17" ry="11" fill="#ffffff"/>
+                    </g>
+                    <g id="gull">
+                        <path d="M0,0 q9,-9 18,0 q9,-9 18,0" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+                    </g>
+                    <g id="wave">
+                        <path d="M0,0 q11,-8 22,0 t22,0 t22,0" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+                    </g>
+                </defs>
+
+                <!-- 天空 -->
+                <rect width="900" height="1187" fill="url(#sky)"/>
+
+                <!-- 云、海鸥 -->
+                <use href="#cloud" x="640" y="120"/>
+                <use href="#cloud" x="150" y="330" transform="scale(0.85)" opacity="0.9"/>
+                <use href="#cloud" x="770" y="470" transform="scale(0.7)" opacity="0.85"/>
+                <use href="#cloud" x="520" y="60" transform="scale(0.6)" opacity="0.8"/>
+                <use href="#gull" x="120" y="520"/>
+                <use href="#gull" x="790" y="640" transform="scale(0.8)"/>
+
+                <!-- 海岸线（先画粗描边，再用米色覆盖内部，只留外缘） -->
+                <g fill="none" stroke="#2b6b66" stroke-width="18">
+                    <ellipse cx="520" cy="300" rx="112" ry="132"/>
+                    <ellipse cx="470" cy="500" rx="196" ry="250"/>
+                    <ellipse cx="600" cy="640" rx="150" ry="168"/>
+                    <ellipse cx="400" cy="800" rx="232" ry="208"/>
+                    <ellipse cx="255" cy="900" rx="152" ry="140"/>
+                </g>
+                <g fill="#f7efe1">
+                    <ellipse cx="520" cy="300" rx="112" ry="132"/>
+                    <ellipse cx="470" cy="500" rx="196" ry="250"/>
+                    <ellipse cx="600" cy="640" rx="150" ry="168"/>
+                    <ellipse cx="400" cy="800" rx="232" ry="208"/>
+                    <ellipse cx="255" cy="900" rx="152" ry="140"/>
+                </g>
+
+                <!-- 岛上的树 -->
+                <use href="#tree" x="330" y="420"/>
+                <use href="#tree" x="565" y="735" transform="scale(0.9)"/>
+                <use href="#tree" x="620" y="820" transform="scale(1.05)"/>
+                <use href="#tree" x="300" y="760" transform="scale(0.85)"/>
+                <use href="#tree" x="205" y="960" transform="scale(0.95)"/>
+                <use href="#tree" x="480" y="905" transform="scale(0.8)"/>
+
+                <!-- 祖庙（山门） -->
+                <g transform="translate(395 640)">
+                    <rect x="-56" y="0" width="112" height="62" fill="#bf3b2f"/>
+                    <rect x="-40" y="38" width="22" height="24" fill="#5e1c16"/>
+                    <rect x="-11" y="38" width="22" height="24" fill="#5e1c16"/>
+                    <rect x="18" y="38" width="22" height="24" fill="#5e1c16"/>
+                    <rect x="-26" y="8" width="52" height="16" fill="#1f2933"/>
+                    <polygon points="-76,0 -58,-24 58,-24 76,0" fill="#f2c14e"/>
+                    <path d="M-76,0 q-12,-6 -16,-14 q10,10 16,14" fill="#f2c14e"/>
+                    <path d="M76,0 q12,-6 16,-14 q-10,10 -16,14" fill="#f2c14e"/>
+                </g>
+
+                <!-- 宝塔 -->
+                <g transform="translate(230 890)">
+                    <g fill="#bf3b2f">
+                        <rect x="-26" y="-20" width="52" height="20"/>
+                        <rect x="-22" y="-46" width="44" height="18"/>
+                        <rect x="-18" y="-70" width="36" height="16"/>
+                        <rect x="-14" y="-92" width="28" height="14"/>
+                    </g>
+                    <g fill="#f2c14e">
+                        <polygon points="-38,-20 -26,-34 26,-34 38,-20"/>
+                        <polygon points="-33,-46 -22,-58 22,-58 33,-46"/>
+                        <polygon points="-28,-70 -18,-81 18,-81 28,-70"/>
+                        <polygon points="-23,-92 -14,-102 14,-102 23,-92"/>
+                        <rect x="-3" y="-118" width="6" height="16"/>
+                    </g>
+                    <rect x="-8" y="-14" width="16" height="14" fill="#5e1c16"/>
+                </g>
+
+                <!-- 电视塔 -->
+                <g transform="translate(645 690)">
+                    <polygon points="-14,60 14,60 9,-70 -9,-70" fill="#5b7fa6"/>
+                    <g stroke="#ffffff" stroke-width="2" opacity="0.45">
+                        <line x1="-12" y1="40" x2="12" y2="20"/>
+                        <line x1="-11" y1="10" x2="11" y2="-10"/>
+                        <line x1="-10" y1="-20" x2="10" y2="-40"/>
+                    </g>
+                    <ellipse cx="0" cy="-78" rx="22" ry="8" fill="#4a6a90"/>
+                    <rect x="-4" y="-108" width="8" height="30" fill="#4a6a90"/>
+                    <rect x="-2" y="-130" width="4" height="24" fill="#ffffff"/>
+                    <circle cx="0" cy="-134" r="5" fill="#f2c14e"/>
+                </g>
+
+                <!-- 摩天轮 -->
+                <g transform="translate(455 1080)">
+                    <circle r="56" fill="none" stroke="#ffffff" stroke-width="5"/>
+                    <circle r="40" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.6"/>
+                    <g stroke="#ffffff" stroke-width="3" opacity="0.85">
+                        <line x1="0" y1="-56" x2="0" y2="56"/>
+                        <line x1="-56" y1="0" x2="56" y2="0"/>
+                        <line x1="-40" y1="-40" x2="40" y2="40"/>
+                        <line x1="40" y1="-40" x2="-40" y2="40"/>
+                    </g>
+                    <g fill="#f2c14e">
+                        <rect x="-5" y="-62" width="10" height="10" rx="2"/>
+                        <rect x="-5" y="52" width="10" height="10" rx="2"/>
+                        <rect x="-62" y="-5" width="10" height="10" rx="2"/>
+                        <rect x="52" y="-5" width="10" height="10" rx="2"/>
+                    </g>
+                    <circle r="6" fill="#f2c14e"/>
+                    <path d="M0,0 L-26,58 M0,0 L26,58" stroke="#ffffff" stroke-width="5" stroke-linecap="round"/>
+                    <rect x="-30" y="56" width="60" height="8" rx="3" fill="#ffffff" opacity="0.9"/>
+                </g>
+
+                <!-- 指北针 -->
+                <g transform="translate(115 620)" stroke="#ffffff" fill="#ffffff">
+                    <circle r="58" fill="none" stroke-width="3" opacity="0.45"/>
+                    <circle r="44" fill="none" stroke-width="2" opacity="0.3" stroke-dasharray="4 6"/>
+                    <path d="M0,-38 L8,0 L0,38 L-8,0 Z" fill-opacity="0.9" stroke="none"/>
+                    <line x1="-34" y1="0" x2="34" y2="0" stroke-width="2" opacity="0.5"/>
+                    <text x="0" y="-66" font-size="20" text-anchor="middle" stroke="none" opacity="0.85">N</text>
+                    <text x="0" y="86" font-size="20" text-anchor="middle" stroke="none" opacity="0.85">S</text>
+                    <text x="70" y="7" font-size="20" text-anchor="middle" stroke="none" opacity="0.85">E</text>
+                    <text x="-70" y="7" font-size="20" text-anchor="middle" stroke="none" opacity="0.85">W</text>
+                </g>
+
+                <!-- 佛山二字 -->
+                <g font-family="'STKaiti','KaiTi','Kaiti SC','Noto Serif SC',serif" font-weight="700">
+                    <text x="60" y="236" font-size="140" fill="#2b3a52" opacity="0.32" transform="rotate(-4 60 236)">佛</text>
+                    <text x="60" y="236" font-size="140" fill="#ffffff" transform="rotate(-4 60 236)">佛</text>
+                    <text x="86" y="378" font-size="140" fill="#2b3a52" opacity="0.32" transform="rotate(-4 86 378)">山</text>
+                    <text x="86" y="378" font-size="140" fill="#ffffff" transform="rotate(-4 86 378)">山</text>
+                </g>
+
+                <!-- 帆船 -->
+                <g transform="translate(745 880)">
+                    <path d="M-42,18 L42,18 L30,38 L-30,38 Z" fill="#2f4a6d"/>
+                    <rect x="-2" y="-58" width="4" height="76" fill="#ffffff"/>
+                    <path d="M2,-56 L2,14 L44,14 Z" fill="#ffffff"/>
+                    <path d="M-2,-40 L-2,14 L-34,14 Z" fill="#f2c14e"/>
+                </g>
+
+                <!-- 远洋船 -->
+                <g transform="translate(720 200)">
+                    <path d="M-46,10 L46,10 L36,30 L-36,30 Z" fill="#ffffff" opacity="0.9"/>
+                    <rect x="-14" y="-14" width="28" height="24" fill="#ffffff" opacity="0.9"/>
+                    <rect x="4" y="-34" width="10" height="22" fill="#ffffff" opacity="0.9"/>
+                    <g fill="#55688c">
+                        <circle cx="-24" cy="20" r="3"/>
+                        <circle cx="-8" cy="20" r="3"/>
+                        <circle cx="8" cy="20" r="3"/>
+                        <circle cx="24" cy="20" r="3"/>
+                    </g>
+                </g>
+
+                <!-- 海浪 -->
+                <use href="#wave" x="80" y="1130"/>
+                <use href="#wave" x="360" y="1150" transform="scale(0.9)"/>
+                <use href="#wave" x="660" y="1120" transform="scale(0.8)"/>
+                <use href="#wave" x="200" y="1060" transform="scale(0.7)"/>
+            </svg>
         </div>
 
-        <p class="cover-caption">佛山手绘地图 · 祖庙、西樵山、清晖园、千灯湖都在这一张里</p>
+        <p class="cover-caption">手绘佛山 · 祖庙、宝塔、电视塔、摩天轮都画在这一张里</p>
 
         <div class="foshan-desc">
             <h3>📍 佛山印象</h3>
