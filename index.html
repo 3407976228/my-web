@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#fdfbf7">
+    <meta property="og:title" content="佛山一日游手册 · 2026.11.15">
+    <meta property="og:description" content="小狼和小晴的两条路线：06:25 出发，祖庙、岭南天地、中山公园，21:48 回校。">
+    <meta property="og:type" content="website">
     <meta name="description" content="佛山一日游手册：行程路线、必吃美食与出行清单，2026 年 11 月 15 日。">
     <title>佛山一日游手册 - 2026.11.15</title>
     <style>
@@ -35,7 +38,7 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             margin: 0;
-            padding: 0 0 96px;
+            padding: 0 0 80px;
             -webkit-text-size-adjust: 100%;
         }
  
@@ -454,6 +457,94 @@
         .check-view { display: none; }
         .check-view.active { display: block; }
  
+        /* ---------- 回到顶部 ---------- */
+        .back-top {
+            position: fixed;
+            right: 16px;
+            bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 1px solid #e7e1d6;
+            background: #fff;
+            color: #6f6f6f;
+            font-size: 1.05rem;
+            line-height: 1;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease, transform 0.15s ease;
+            z-index: 150;
+        }
+        .back-top.show { opacity: 1; pointer-events: auto; }
+        .back-top:active { transform: scale(0.94); }
+ 
+        /* ---------- 分组跳转 ---------- */
+        .route-jump {
+            display: flex;
+            gap: 6px;
+            margin: 0 0 6px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        .route-jump::-webkit-scrollbar { display: none; }
+        .jump-btn {
+            flex: 0 0 auto;
+            padding: 5px 11px;
+            font-size: 0.75rem;
+            font-family: inherit;
+            color: var(--text-sub);
+            background: #fff;
+            border: 1px solid #ece5da;
+            border-radius: 20px;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .jump-btn:active { background: #f6f2ea; }
+ 
+        .qing-tip {
+            margin: 0 0 10px;
+            padding: 9px 12px;
+            font-size: 0.74rem;
+            line-height: 1.6;
+            color: #2c5f8a;
+            background: #eef6fd;
+            border: 1px solid #d3e6f7;
+            border-radius: 10px;
+            text-align: left;
+        }
+ 
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #14120f;
+                --card-bg: #1e1b16;
+                --text-main: #e9e3d9;
+                --text-sub: #a9a29a;
+                --text-faint: #7f786e;
+            }
+            .nav-tabs { background: var(--card-bg); box-shadow: 0 1px 6px rgba(0,0,0,0.5); }
+            .nav-item.active { background: #3a2a18; color: #f0b27a; border-color: #5b432a; }
+            header { border-bottom-color: #2a241d; }
+            .stat, .route-step, .food-item, .checklist-container { background: var(--card-bg); border-color: #2b251e; }
+            .foshan-desc { background: #2a1d1a; }
+            .foshan-desc p { color: #cfc7bb; }
+            .timeline::before { background: #332c24; }
+            .tl-item::before { background: #1e1b16; }
+            .rs-btn, .jump-btn, .back-top {
+                background: #241f19;
+                border-color: #332c24;
+                color: #a9a29a;
+            }
+            .rs-btn.active { background: #2f6b3a; border-color: #2f6b3a; color: #fff; }
+            .tag, .food-index { background: #241f19; border-color: #332c24; color: #b6aea3; }
+            .nav-link { background: #1a2a38; border-color: #2b4358; color: #8fc0e8; }
+            .check-progress { background: #332c24; }
+            .check-reset { background: #241f19; border-color: #332c24; color: #a9a29a; }
+            .qing-tip { background: #1a2a38; border-color: #2b4358; color: #8fc0e8; }
+            .foshan-section { border-color: #3a2f22; }
+        }
+ 
         @media (max-width: 360px) {
             .person-row { grid-template-columns: 34px repeat(3, 1fr); gap: 4px; }
             .stat b { font-size: 0.92rem; }
@@ -687,6 +778,12 @@
             <button class="rs-btn" type="button" data-view="qing" role="tab" aria-selected="false">小晴的路线</button>
         </div>
         <p class="route-note" id="route-note">全段：06:25 出发 · 17 段 · 21:48 回校</p>
+        <div class="route-jump" id="route-jump">
+            <button class="jump-btn" type="button" data-jump="0">赶路</button>
+            <button class="jump-btn" type="button" data-jump="1">上午</button>
+            <button class="jump-btn" type="button" data-jump="2">下午</button>
+            <button class="jump-btn" type="button" data-jump="3">傍晚</button>
+        </div>
  
         <div class="route-view active" id="route-wolf">
         <div class="group-title"><h3>赶路 &amp; 早餐</h3><span>06:25 – 09:08</span></div>
@@ -697,7 +794,7 @@
                         <span class="step-time">06:25 – 06:40</span>
                         <span class="step-meta">🚕 打车 15min · 5.4km</span>
                     </div>
-                    <div class="step-title">广外（大学城校区）→ 大学城城际站<span class="now-chip">进行中</span></div>
+                    <div class="step-title">广外（大学城校区）→ 大学城城际站</div>
                     <div class="step-detail">07:03 发车，06:40 到站，留出进站时间</div>
                     <a class="nav-link" href="https://uri.amap.com/search?keyword=大学城站&city=440100" target="_blank" rel="noopener">📍 地图定位 · 大学城城际站</a>
                 </div>
@@ -709,7 +806,7 @@
                         <span class="step-time">07:03 – 08:21</span>
                         <span class="step-meta">🚄 城际 1h18min · 68km</span>
                     </div>
-                    <div class="step-title">大学城城际站 → 云东海站<span class="now-chip">进行中</span></div>
+                    <div class="step-title">大学城城际站 → 云东海站</div>
                     <div class="step-detail">按 07:03 这班车买票，别买晚一班</div>
                     <a class="nav-link" href="https://uri.amap.com/search?keyword=云东海站&city=440600" target="_blank" rel="noopener">📍 地图定位 · 云东海站</a>
                 </div>
@@ -721,7 +818,7 @@
                         <span class="step-time">08:21 – 08:30</span>
                         <span class="step-meta">🚴 骑行 8min · 1.8km</span>
                     </div>
-                    <div class="step-title">云东海站 → 广财西门<span class="now-chip">进行中</span></div>
+                    <div class="step-title">云东海站 → 广财西门</div>
                     <div class="step-detail">出站找共享单车，一路直行</div>
                     <a class="nav-link" href="https://uri.amap.com/search?keyword=广东财经大学佛山校区西门&city=440600" target="_blank" rel="noopener">📍 地图定位 · 广财西门</a>
                 </div>
@@ -733,7 +830,7 @@
                         <span class="step-time">08:30 – 09:00</span>
                         <span class="step-meta">🚶 步行 150m</span>
                     </div>
-                    <div class="step-title">早餐 · 新潮小食<span class="now-chip">进行中</span></div>
+                    <div class="step-title">早餐 · 新潮小食</div>
                     <div class="step-detail">广财西门旁边，30 分钟吃完往回走</div>
                     <a class="nav-link" href="https://uri.amap.com/search?keyword=新潮小食&city=440600" target="_blank" rel="noopener">📍 地图定位</a>
                 </div>
@@ -745,7 +842,7 @@
                         <span class="step-time">09:00 – 09:08</span>
                         <span class="step-meta">🚴 骑行 8min · 1.8km</span>
                     </div>
-                    <div class="step-title">早餐 → 云东海站（折返）<span class="now-chip">进行中</span></div>
+                    <div class="step-title">早餐 → 云东海站（折返）</div>
                     <div class="step-detail">赶 09:08 之后的城际，别误车</div>
                 </div>
             </div>
@@ -759,7 +856,7 @@
                         <span class="step-time">09:08 – 10:30</span>
                         <span class="step-meta">🚄 城际+地铁 1h23 · 43km</span>
                     </div>
-                    <div class="step-title">云东海站 → 祖庙站 D 口<span class="now-chip">进行中</span></div>
+                    <div class="step-title">云东海站 → 祖庙站 D 口</div>
                     <div class="step-detail">城际到佛山西换地铁，D 口出站</div>
                     <a class="nav-link" href="https://uri.amap.com/search?keyword=祖庙站&city=440600" target="_blank" rel="noopener">📍 地图定位 · 祖庙站 D 口</a>
                 </div>
@@ -771,7 +868,7 @@
                         <span class="step-time">10:30 – 10:35</span>
                         <span class="step-meta">🚶 步行 320m</span>
                     </div>
-                    <div class="step-title">祖庙 D 口 → 重庆酸辣粉<span class="now-chip">进行中</span></div>
+                    <div class="step-title">祖庙 D 口 → 重庆酸辣粉</div>
                     <div class="step-detail">出站走几分钟就到，先垫肚子</div>
                     <a class="nav-link" href="https://uri.amap.com/search?keyword=重庆酸辣粉麻辣烫(百花广宁云吞店)&city=440600" target="_blank" rel="noopener">📍 地图定位 · 重庆酸辣粉（百花）</a>
                 </div>
@@ -783,7 +880,7 @@
                         <span class="step-time">10:35 – 11:00</span>
                         <span class="step-meta">🍜 午餐</span>
                     </div>
-                    <div class="step-title">午餐 · 重庆酸辣粉麻辣烫<span class="now-chip">进行中</span></div>
+                    <div class="step-title">午餐 · 重庆酸辣粉麻辣烫</div>
                     <div class="step-detail">百花广宁云吞店这家，25 分钟解决，11 点准时进祖庙</div>
                 </div>
             </div>
@@ -794,7 +891,7 @@
                         <span class="step-time">11:00 – 13:00</span>
                         <span class="step-meta">🏛️ 游玩 2h</span>
                     </div>
-                    <div class="step-title">祖庙博物馆<span class="now-chip">进行中</span></div>
+                    <div class="step-title">祖庙博物馆</div>
                     <div class="step-detail">微信提前预约；醒狮表演看现场场次</div>
                     <a class="nav-link" href="https://uri.amap.com/search?keyword=祖庙博物馆&city=440600" target="_blank" rel="noopener">📍 地图定位</a>
                 </div>
@@ -809,7 +906,7 @@
                         <span class="step-time">13:00 – 15:00</span>
                         <span class="step-meta">🚶 步行 62m</span>
                     </div>
-                    <div class="step-title">岭南天地<span class="now-chip">进行中</span></div>
+                    <div class="step-title">岭南天地</div>
                     <div class="step-detail">祖庙出门就是，免票，镬耳屋和咖啡馆集中在这片</div>
                     <a class="nav-link" href="https://uri.amap.com/search?keyword=岭南天地&city=440600" target="_blank" rel="noopener">📍 地图定位</a>
                 </div>
@@ -821,7 +918,7 @@
                         <span class="step-time">15:00 – 17:00</span>
                         <span class="step-meta">🚴 骑行 5min · 1.5km</span>
                     </div>
-                    <div class="step-title">中山公园<span class="now-chip">进行中</span></div>
+                    <div class="step-title">中山公园</div>
                     <div class="step-detail">骑车五分钟，公园里歇脚、消食</div>
                     <a class="nav-link" href="https://uri.amap.com/search?keyword=中山公园&city=440600" target="_blank" rel="noopener">📍 地图定位 · 中山公园</a>
                 </div>
@@ -836,7 +933,7 @@
                         <span class="step-time">17:00 – 19:00</span>
                         <span class="step-meta">🍽️ 晚餐（未定）</span>
                     </div>
-                    <div class="step-title">晚餐 · 祖庙 / 中山公园一带<span class="now-chip">进行中</span></div>
+                    <div class="step-title">晚餐 · 祖庙 / 中山公园一带</div>
                     <div class="step-detail">顺路去赵一鸣零食补点路上吃的</div>
                     <a class="nav-link" href="https://uri.amap.com/search?keyword=赵一鸣省钱超市(广东佛山文沙路店)&city=440600" target="_blank" rel="noopener">📍 地图定位 · 赵一鸣（文沙路店）</a>
                 </div>
@@ -848,7 +945,7 @@
                         <span class="step-time">19:00 – 20:30</span>
                         <span class="step-meta">🚄 地铁+城际 1h20</span>
                     </div>
-                    <div class="step-title">禅城区 → 云东海站<span class="now-chip">进行中</span></div>
+                    <div class="step-title">禅城区 → 云东海站</div>
                     <div class="step-detail">按末班车倒推，19:00 一定得动身</div>
                 </div>
             </div>
@@ -859,7 +956,7 @@
                         <span class="step-time">20:30 – 20:38</span>
                         <span class="step-meta">🚴 骑行 8min · 1.8km</span>
                     </div>
-                    <div class="step-title">云东海站 → 广财西门<span class="now-chip">进行中</span></div>
+                    <div class="step-title">云东海站 → 广财西门</div>
                     <div class="step-detail">出站骑车去广财佛山校区西门，把车还这儿</div>
                 </div>
             </div>
@@ -870,7 +967,7 @@
                         <span class="step-time">20:38 – 20:46</span>
                         <span class="step-meta">🚴 骑行 8min · 1.8km</span>
                     </div>
-                    <div class="step-title">广财西门 → 云东海站<span class="now-chip">进行中</span></div>
+                    <div class="step-title">广财西门 → 云东海站</div>
                     <div class="step-detail">原路骑回车站，赶下一班城际</div>
                 </div>
             </div>
@@ -881,7 +978,7 @@
                         <span class="step-time">20:46 – 21:40</span>
                         <span class="step-meta">🚄 城际 · 时长待核</span>
                     </div>
-                    <div class="step-title">云东海站 → 广州深井站<span class="now-chip">进行中</span></div>
+                    <div class="step-title">云东海站 → 广州深井站</div>
                     <div class="step-detail">车程按 50 分钟估的，出票后按实际改</div>
                 </div>
             </div>
@@ -892,7 +989,7 @@
                         <span class="step-time">21:40 – 21:48</span>
                         <span class="step-meta">🚴 骑行 8min · 1.8km</span>
                     </div>
-                    <div class="step-title">深井站 → 广外（大学城校区）<span class="now-chip">进行中</span></div>
+                    <div class="step-title">深井站 → 广外（大学城校区）</div>
                     <div class="step-detail">骑回学校，一天收工</div>
                 </div>
             </div>
@@ -1142,6 +1239,8 @@
     </div>
  
  
+    <button class="back-top" id="back-top" type="button" aria-label="回到顶部">↑</button>
+ 
     <script>
         // ---------------------------------------------------------------
         // 行程参数：日期、出发时间只在这里维护
@@ -1150,8 +1249,10 @@
             date: "2026-11-15",
             depart: "06:25",
             label: "06:25 广外（大学城校区）出发",
-            arrived: "🎒 出发啦，一路顺风"
+            arrived: "🎒 出发啦，一路顺风",
+            duration: "15 小时 23 分"
         };
+        const END_TIME = "21:48";
  
         const pad = (n) => String(n).padStart(2, "0");
         const toMinutes = (hhmm) => {
@@ -1173,7 +1274,10 @@
             }
             if (minutes < 0) return null;
  
-            for (const item of document.querySelectorAll(".route-view.active .tl-item")) {
+            const activeItems = document.querySelectorAll(".route-view.active .tl-item");
+            activeItems.forEach((el) => el.classList.remove("is-now"));
+ 
+            for (const item of activeItems) {
                 const s = toMinutes(item.dataset.start);
                 const e = toMinutes(item.dataset.end);
                 if (minutes >= s && minutes < e) {
@@ -1215,8 +1319,15 @@
                 timer.textContent = "现在：" + step.title;
                 next.textContent = step.start + " – " + step.end + " · " + step.meta;
             } else {
-                timer.textContent = TRIP.arrived;
-                next.textContent = TRIP.label;
+                const endAt = new Date(TRIP.date + "T" + END_TIME + ":00+08:00").getTime();
+                if (Date.now() > endAt) {
+                    label.textContent = "今天的行程已结束";
+                    timer.textContent = "已回校 · 共用时 " + TRIP.duration;
+                    next.textContent = "早点休息，明天见";
+                } else {
+                    timer.textContent = TRIP.arrived;
+                    next.textContent = TRIP.label;
+                }
             }
         }
  
@@ -1338,6 +1449,11 @@
             const qing = document.getElementById("route-qing");
             if (!wolf || !qing || qing.dataset.built) return;
  
+            const tip = document.createElement("p");
+            tip.className = "qing-tip";
+            tip.textContent = "08:25 从广财宿舍步行约 8 分钟到西门，08:30 开始吃早餐。";
+            qing.appendChild(tip);
+ 
             const source = Array.from(wolf.querySelectorAll(".tl-item"));
             const mins = (t) => {
                 const p = t.split(":").map(Number);
@@ -1395,10 +1511,38 @@
         // ---------------------------------------------------------------
         // 初始化
         // ---------------------------------------------------------------
+        document.querySelectorAll("#route-wolf .step-title").forEach((el) => {
+            const chip = document.createElement("span");
+            chip.className = "now-chip";
+            chip.textContent = "进行中";
+            el.appendChild(chip);
+        });
         buildQingRoute();
         tickCountdown();
         setInterval(tickCountdown, 1000);
         paintCheck();
+ 
+        // 回到顶部
+        const backTop = document.getElementById("back-top");
+        backTop.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+        window.addEventListener("scroll", () => {
+            backTop.classList.toggle("show", window.scrollY > 400);
+        }, { passive: true });
+ 
+        // 分组跳转
+        document.querySelectorAll(".jump-btn").forEach((btn) => {
+            btn.addEventListener("click", () => {
+                const view = document.querySelector(".route-view.active");
+                if (!view) return;
+                const heads = view.querySelectorAll(".group-title");
+                const target = heads[Number(btn.dataset.jump)];
+                if (!target) return;
+                const top = target.getBoundingClientRect().top + window.scrollY - 66;
+                window.scrollTo({ top: top, behavior: "smooth" });
+            });
+        });
  
         const initial = location.hash.replace("#", "");
         if (initial && document.getElementById(initial)) activate(initial);
