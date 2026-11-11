@@ -27,9 +27,9 @@
             --fs-title: 1.05rem;
             --fs-h: 1.25rem;
         }
-
+ 
         * { box-sizing: border-box; }
-
+ 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-color);
@@ -38,7 +38,7 @@
             padding: 0 0 96px;
             -webkit-text-size-adjust: 100%;
         }
-
+ 
         /* ---------- 顶部导航 ---------- */
         .nav-tabs {
             display: flex;
@@ -53,7 +53,7 @@
             scrollbar-width: none;
         }
         .nav-tabs::-webkit-scrollbar { display: none; }
-
+ 
         .nav-item {
             flex: 0 0 auto;
             padding: 9px 16px;
@@ -73,7 +73,7 @@
             font-weight: 600;
         }
         .nav-item:focus-visible { outline: 2px solid var(--route); outline-offset: 2px; }
-
+ 
         /* ---------- 顶部信息 ---------- */
         header {
             background: var(--bg-color);
@@ -81,7 +81,7 @@
             text-align: center;
             border-bottom: 1px solid #f0ece4;
         }
-
+ 
         .countdown-label { font-size: var(--fs-sm); color: var(--text-sub); margin-bottom: 4px; }
         .countdown-time {
             font-size: 1.9rem;
@@ -91,7 +91,7 @@
             font-variant-numeric: tabular-nums;
         }
         .next-event { font-size: var(--fs-body); margin-top: 4px; color: var(--text-sub); }
-
+ 
         .stats {
             display: grid;
             gap: 6px;
@@ -131,11 +131,11 @@
         }
         .stat b { display: block; font-size: 1rem; color: var(--text-main); font-variant-numeric: tabular-nums; }
         .stat span { display: block; font-size: 0.7rem; color: var(--text-faint); margin-top: 2px; }
-
+ 
         /* ---------- 页面容器 ---------- */
         .content-section { display: none; padding: 16px 16px 4px; }
         .content-section.active { display: block; }
-
+ 
         /* ---------- 佛山封面 ---------- */
         .foshan-section {
             position: relative;
@@ -148,14 +148,14 @@
             border: 3px solid var(--brown);
         }
         .foshan-cover { display: block; width: 100%; height: auto; }
-
+ 
         .cover-caption {
             margin: 0 0 16px;
             font-size: 0.75rem;
             color: var(--text-faint);
             text-align: center;
         }
-
+ 
         .foshan-desc {
             background: #fff6f4;
             padding: 18px;
@@ -173,9 +173,9 @@
         }
         .foshan-desc p:last-of-type { margin-bottom: 0; }
         .author-sign { text-align: right; font-size: 0.72rem; color: var(--text-faint); margin-top: 14px; }
-
+ 
         /* ---------- 路线：分组 + 时间轴 ---------- */
-
+ 
         .group-title {
             display: flex;
             align-items: baseline;
@@ -185,7 +185,7 @@
         }
         .group-title h3 { margin: 0; font-size: var(--fs-h); color: var(--text-main); }
         .group-title span { font-size: 0.75rem; color: var(--text-faint); font-variant-numeric: tabular-nums; }
-
+ 
         .timeline { position: relative; padding-left: 22px; }
         .timeline::before {
             content: "";
@@ -196,7 +196,7 @@
             width: 2px;
             background: #e7e1d6;
         }
-
+ 
         .tl-item { position: relative; margin-bottom: 12px; }
         .tl-item::before {
             content: "";
@@ -212,7 +212,7 @@
         .tl-item.food::before { border-color: var(--accent); }
         .tl-item.spot::before { border-color: var(--red); background: var(--red); }
         .tl-item.is-now::before { box-shadow: 0 0 0 5px rgba(230,126,34,0.18); background: var(--accent); border-color: var(--accent); }
-
+ 
         .route-step {
             background: var(--card-bg);
             border-radius: var(--radius);
@@ -221,7 +221,7 @@
             border: 1px solid #f3efe8;
         }
         .tl-item.is-now .route-step { border-color: #f0b27a; box-shadow: 0 0 0 3px rgba(230,126,34,0.12); }
-
+ 
         .step-header {
             display: flex;
             justify-content: space-between;
@@ -237,7 +237,7 @@
         }
         .tl-item.food .step-time { color: #b9681d; }
         .step-meta { font-size: 0.72rem; color: var(--text-faint); text-align: right; white-space: nowrap; }
-
+ 
         .step-title {
             font-size: var(--fs-title);
             font-weight: 650;
@@ -245,7 +245,7 @@
             line-height: 1.4;
         }
         .step-detail { font-size: 0.84rem; color: var(--text-sub); margin-top: 4px; line-height: 1.55; }
-
+ 
         .now-chip {
             display: none;
             margin-left: 6px;
@@ -258,7 +258,7 @@
             vertical-align: middle;
         }
         .tl-item.is-now .now-chip { display: inline-block; }
-
+ 
         .nav-link {
             display: inline-block;
             margin-top: 8px;
@@ -271,11 +271,11 @@
             text-decoration: none;
         }
         .nav-link:active { background: #e2effa; }
-
+ 
         /* ---------- 美食 ---------- */
         .food-page-title { font-size: var(--fs-h); margin: 0 0 6px; }
         .food-hint { font-size: 0.76rem; color: var(--text-faint); margin: 0 0 12px; line-height: 1.6; }
-
+ 
         .food-legend {
             display: flex;
             flex-wrap: wrap;
@@ -294,9 +294,9 @@
         .food-legend .lg-meal i { background: var(--red); }
         .food-legend .lg-snack i { background: var(--accent); }
         .food-legend .lg-dessert i { background: var(--green); }
-
+ 
         .food-list-container { display: grid; grid-template-columns: 1fr; gap: 12px; }
-
+ 
         .food-item {
             position: relative;
             background: var(--card-bg);
@@ -311,7 +311,7 @@
         .food-item.cat-meal { border-left-color: var(--red); }
         .food-item.cat-snack { border-left-color: var(--accent); }
         .food-item.cat-dessert { border-left-color: var(--green); }
-
+ 
         .food-index {
             position: absolute;
             top: 12px;
@@ -323,7 +323,7 @@
             border-radius: 8px;
             padding: 1px 7px;
         }
-
+ 
         .food-name {
             font-size: var(--fs-title);
             font-weight: 650;
@@ -333,7 +333,7 @@
         .food-no { color: var(--text-faint); font-weight: 400; margin-right: 4px; font-size: 0.85rem; }
         .food-desc { font-size: 0.86rem; color: var(--text-sub); line-height: 1.65; margin: 0 0 9px; }
         .highlight-text { color: var(--danger); font-weight: 500; }
-
+ 
         .food-tags { display: flex; flex-wrap: wrap; gap: 6px; }
         .tag {
             font-size: 0.72rem;
@@ -343,7 +343,7 @@
             border-radius: 20px;
             border: 1px solid #eeeae2;
         }
-
+ 
         /* ---------- 清单 ---------- */
         .check-top {
             display: flex;
@@ -376,7 +376,7 @@
             padding: 4px 10px;
             cursor: pointer;
         }
-
+ 
         .checklist-container {
             background: var(--card-bg);
             border-radius: var(--radius);
@@ -393,7 +393,7 @@
             align-items: center;
         }
         .checklist-title span { margin-right: 8px; font-size: 1.2rem; }
-
+ 
         .checklist-item {
             margin-bottom: 5px;
             font-size: var(--fs-body);
@@ -407,33 +407,8 @@
         .checklist-item::before { content: "○"; color: var(--accent); margin-right: 8px; }
         .checklist-item.done { color: #bfbdb8; text-decoration: line-through; }
         .checklist-item.done::before { content: "✓"; color: var(--green); }
-
-        /* ---------- 悬浮：直达高德 ---------- */
-        .fab-map {
-            position: fixed;
-            right: 16px;
-            bottom: calc(16px + env(safe-area-inset-bottom, 0px));
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            padding: 11px 16px 11px 13px;
-            background: #1f6fb2;
-            color: #fff;
-            border: none;
-            border-radius: 999px;
-            box-shadow: 0 6px 18px rgba(31,111,178,0.35);
-            font-size: 0.88rem;
-            font-weight: 600;
-            font-family: inherit;
-            cursor: pointer;
-            z-index: 200;
-            transition: transform 0.15s ease, opacity 0.2s ease;
-            -webkit-tap-highlight-color: transparent;
-        }
-        .fab-map:active { transform: scale(0.96); }
-        .fab-map .ico { font-size: 1.05rem; line-height: 1; }
-        .fab-map.hidden { opacity: 0; pointer-events: none; }
-
+ 
+ 
         /* ---------- 路线切换 ---------- */
         .route-switch {
             display: flex;
@@ -467,42 +442,43 @@
         }
         .route-view { display: none; }
         .route-view.active { display: block; }
-
-
+ 
+ 
         .check-hint {
             margin: 0 0 12px;
             font-size: 0.76rem;
             color: var(--text-faint);
             line-height: 1.6;
         }
-
+ 
         .check-view { display: none; }
         .check-view.active { display: block; }
-
+ 
         @media (max-width: 360px) {
             .person-row { grid-template-columns: 34px repeat(3, 1fr); gap: 4px; }
             .stat b { font-size: 0.92rem; }
         }
-
+ 
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after { animation: none !important; transition: none !important; }
         }
     </style>
 </head>
 <body>
-
+ 
     <div class="nav-tabs" role="tablist" aria-label="页面板块">
         <div class="nav-item active" role="tab" tabindex="0" aria-selected="true" aria-controls="foshan" data-target="foshan">佛山</div>
         <div class="nav-item" role="tab" tabindex="0" aria-selected="false" aria-controls="route" data-target="route">路线</div>
         <div class="nav-item" role="tab" tabindex="0" aria-selected="false" aria-controls="food" data-target="food">美食</div>
         <div class="nav-item" role="tab" tabindex="0" aria-selected="false" aria-controls="checklist" data-target="checklist">公共清单</div>
     </div>
-        <header>
+ 
+    <header>
         <div class="countdown-label" id="countdown-label">距离出发还有</div>
         <div class="countdown-time" id="timer">--天 --小时 --分 --秒</div>
         <div class="next-event" id="next-event">06:25 广外（大学城校区）出发</div>
     </header>
-
+ 
     <div class="stats">
         <div class="person-row">
             <span class="who">狼</span>
@@ -518,7 +494,7 @@
         </div>
         <p class="stats-note">一起玩：3 个景点 · 14 家备选</p>
     </div>
-
+ 
     <!-- 1. 佛山 -->
     <div id="foshan" class="content-section active" role="tabpanel" tabindex="0" aria-label="佛山">
         <div class="foshan-section">
@@ -546,16 +522,16 @@
                         <path d="M0,0 q11,-8 22,0 t22,0 t22,0" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
                     </g>
                 </defs>
-
+ 
                 <rect width="900" height="1187" fill="url(#sky)"/>
-
+ 
                 <use href="#cloud" x="640" y="120"/>
                 <use href="#cloud" x="150" y="330" transform="scale(0.85)" opacity="0.9"/>
                 <use href="#cloud" x="770" y="470" transform="scale(0.7)" opacity="0.85"/>
                 <use href="#cloud" x="520" y="60" transform="scale(0.6)" opacity="0.8"/>
                 <use href="#gull" x="120" y="520"/>
                 <use href="#gull" x="790" y="640" transform="scale(0.8)"/>
-
+ 
                 <g fill="none" stroke="#2b6b66" stroke-width="18">
                     <ellipse cx="520" cy="300" rx="112" ry="132"/>
                     <ellipse cx="470" cy="500" rx="196" ry="250"/>
@@ -570,14 +546,14 @@
                     <ellipse cx="400" cy="800" rx="232" ry="208"/>
                     <ellipse cx="255" cy="900" rx="152" ry="140"/>
                 </g>
-
+ 
                 <use href="#tree" x="330" y="420"/>
                 <use href="#tree" x="565" y="735" transform="scale(0.9)"/>
                 <use href="#tree" x="620" y="820" transform="scale(1.05)"/>
                 <use href="#tree" x="300" y="760" transform="scale(0.85)"/>
                 <use href="#tree" x="205" y="960" transform="scale(0.95)"/>
                 <use href="#tree" x="480" y="905" transform="scale(0.8)"/>
-
+ 
                 <g transform="translate(395 640)">
                     <rect x="-56" y="0" width="112" height="62" fill="#bf3b2f"/>
                     <rect x="-40" y="38" width="22" height="24" fill="#5e1c16"/>
@@ -588,7 +564,7 @@
                     <path d="M-76,0 q-12,-6 -16,-14 q10,10 16,14" fill="#f2c14e"/>
                     <path d="M76,0 q12,-6 16,-14 q-10,10 -16,14" fill="#f2c14e"/>
                 </g>
-
+ 
                 <g transform="translate(230 890)">
                     <g fill="#bf3b2f">
                         <rect x="-26" y="-20" width="52" height="20"/>
@@ -605,7 +581,7 @@
                     </g>
                     <rect x="-8" y="-14" width="16" height="14" fill="#5e1c16"/>
                 </g>
-
+ 
                 <g transform="translate(645 690)">
                     <polygon points="-14,60 14,60 9,-70 -9,-70" fill="#5b7fa6"/>
                     <g stroke="#ffffff" stroke-width="2" opacity="0.45">
@@ -618,7 +594,7 @@
                     <rect x="-2" y="-130" width="4" height="24" fill="#ffffff"/>
                     <circle cx="0" cy="-134" r="5" fill="#f2c14e"/>
                 </g>
-
+ 
                 <g transform="translate(455 1080)">
                     <circle r="56" fill="none" stroke="#ffffff" stroke-width="5"/>
                     <circle r="40" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.6"/>
@@ -638,7 +614,7 @@
                     <path d="M0,0 L-26,58 M0,0 L26,58" stroke="#ffffff" stroke-width="5" stroke-linecap="round"/>
                     <rect x="-30" y="56" width="60" height="8" rx="3" fill="#ffffff" opacity="0.9"/>
                 </g>
-
+ 
                 <g font-size="19" fill="#ffffff" opacity="0.9" text-anchor="middle"
                    font-family="-apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif">
                     <text x="395" y="726">祖庙</text>
@@ -646,7 +622,7 @@
                     <text x="645" y="772">电视塔</text>
                     <text x="455" y="1168">摩天轮</text>
                 </g>
-
+ 
                 <g transform="translate(115 620)" stroke="#ffffff" fill="#ffffff">
                     <circle r="58" fill="none" stroke-width="3" opacity="0.45"/>
                     <circle r="44" fill="none" stroke-width="2" opacity="0.3" stroke-dasharray="4 6"/>
@@ -657,21 +633,21 @@
                     <text x="-70" y="7" font-size="20" text-anchor="middle" stroke="none" opacity="0.85">W</text>
                     <text x="70" y="7" font-size="20" text-anchor="middle" stroke="none" opacity="0.85">E</text>
                 </g>
-
+ 
                 <g font-family="'STKaiti','KaiTi','Kaiti SC','Noto Serif SC',serif" font-weight="700">
                     <text x="60" y="236" font-size="140" fill="#2b3a52" opacity="0.32" transform="rotate(-4 60 236)">佛</text>
                     <text x="60" y="236" font-size="140" fill="#ffffff" transform="rotate(-4 60 236)">佛</text>
                     <text x="86" y="378" font-size="140" fill="#2b3a52" opacity="0.32" transform="rotate(-4 86 378)">山</text>
                     <text x="86" y="378" font-size="140" fill="#ffffff" transform="rotate(-4 86 378)">山</text>
                 </g>
-
+ 
                 <g transform="translate(745 880)">
                     <path d="M-42,18 L42,18 L30,38 L-30,38 Z" fill="#2f4a6d"/>
                     <rect x="-2" y="-58" width="4" height="76" fill="#ffffff"/>
                     <path d="M2,-56 L2,14 L44,14 Z" fill="#ffffff"/>
                     <path d="M-2,-40 L-2,14 L-34,14 Z" fill="#f2c14e"/>
                 </g>
-
+ 
                 <g transform="translate(720 200)">
                     <path d="M-46,10 L46,10 L36,30 L-36,30 Z" fill="#ffffff" opacity="0.9"/>
                     <rect x="-14" y="-14" width="28" height="24" fill="#ffffff" opacity="0.9"/>
@@ -683,15 +659,15 @@
                         <circle cx="24" cy="20" r="3"/>
                     </g>
                 </g>
-
+ 
                 <use href="#wave" x="80" y="1130"/>
                 <use href="#wave" x="360" y="1150" transform="scale(0.9)"/>
                 <use href="#wave" x="660" y="1120" transform="scale(0.8)"/>
             </svg>
         </div>
-
+ 
         <p class="cover-caption">手绘示意图 · 不是真地图，位置只做氛围参考</p>
-
+ 
         <div class="foshan-desc">
             <h3>📍 佛山印象</h3>
             <p>佛山，古称"禅城"，唐贞观年间因塔坡岗掘得铜佛三尊而得名。</p>
@@ -702,16 +678,16 @@
         </div>
         <div class="author-sign">该网页由小狼开发 · 2026.11.15 版</div>
     </div>
-
+ 
     <!-- 2. 路线 -->
     <div id="route" class="content-section" role="tabpanel" tabindex="0" aria-label="路线">
-
+ 
         <div class="route-switch" role="tablist" aria-label="选择路线">
             <button class="rs-btn active" type="button" data-view="wolf" role="tab" aria-selected="true">小狼的路线</button>
             <button class="rs-btn" type="button" data-view="qing" role="tab" aria-selected="false">小晴的路线</button>
         </div>
         <p class="route-note" id="route-note">全段：06:25 出发 · 17 段 · 21:48 回校</p>
-
+ 
         <div class="route-view active" id="route-wolf">
         <div class="group-title"><h3>赶路 &amp; 早餐</h3><span>06:25 – 09:08</span></div>
         <div class="timeline">
@@ -726,7 +702,7 @@
                     <a class="nav-link" href="https://uri.amap.com/search?keyword=大学城站&city=440100" target="_blank" rel="noopener">📍 地图定位 · 大学城城际站</a>
                 </div>
             </div>
-
+ 
             <div class="tl-item" data-start="07:03" data-end="08:21" data-place="云东海站">
                 <div class="route-step">
                     <div class="step-header">
@@ -738,7 +714,7 @@
                     <a class="nav-link" href="https://uri.amap.com/search?keyword=云东海站&city=440600" target="_blank" rel="noopener">📍 地图定位 · 云东海站</a>
                 </div>
             </div>
-
+ 
             <div class="tl-item" data-start="08:21" data-end="08:30" data-place="广东财经大学佛山校区">
                 <div class="route-step">
                     <div class="step-header">
@@ -750,7 +726,7 @@
                     <a class="nav-link" href="https://uri.amap.com/search?keyword=广东财经大学佛山校区西门&city=440600" target="_blank" rel="noopener">📍 地图定位 · 广财西门</a>
                 </div>
             </div>
-
+ 
             <div class="tl-item food" data-start="08:30" data-end="09:00" data-place="新潮小食">
                 <div class="route-step">
                     <div class="step-header">
@@ -762,7 +738,7 @@
                     <a class="nav-link" href="https://uri.amap.com/search?keyword=新潮小食&city=440600" target="_blank" rel="noopener">📍 地图定位</a>
                 </div>
             </div>
-
+ 
             <div class="tl-item" data-start="09:00" data-end="09:08" data-place="云东海站">
                 <div class="route-step">
                     <div class="step-header">
@@ -774,7 +750,7 @@
                 </div>
             </div>
         </div>
-
+ 
         <div class="group-title"><h3>上午 · 祖庙</h3><span>09:08 – 13:00</span></div>
         <div class="timeline">
             <div class="tl-item" data-start="09:08" data-end="10:30" data-place="祖庙站">
@@ -788,7 +764,7 @@
                     <a class="nav-link" href="https://uri.amap.com/search?keyword=祖庙站&city=440600" target="_blank" rel="noopener">📍 地图定位 · 祖庙站 D 口</a>
                 </div>
             </div>
-
+ 
             <div class="tl-item" data-start="10:30" data-end="10:35" data-place="重庆酸辣粉 佛山祖庙">
                 <div class="route-step">
                     <div class="step-header">
@@ -800,7 +776,7 @@
                     <a class="nav-link" href="https://uri.amap.com/search?keyword=重庆酸辣粉麻辣烫(百花广宁云吞店)&city=440600" target="_blank" rel="noopener">📍 地图定位 · 重庆酸辣粉（百花）</a>
                 </div>
             </div>
-
+ 
             <div class="tl-item food" data-start="10:35" data-end="11:00" data-place="重庆酸辣粉 佛山祖庙">
                 <div class="route-step">
                     <div class="step-header">
@@ -811,7 +787,7 @@
                     <div class="step-detail">百花广宁云吞店这家，25 分钟解决，11 点准时进祖庙</div>
                 </div>
             </div>
-
+ 
             <div class="tl-item spot" data-start="11:00" data-end="13:00" data-place="祖庙博物馆">
                 <div class="route-step">
                     <div class="step-header">
@@ -824,7 +800,7 @@
                 </div>
             </div>
         </div>
-
+ 
         <div class="group-title"><h3>下午 · 岭南天地</h3><span>13:00 – 17:00</span></div>
         <div class="timeline">
             <div class="tl-item spot" data-start="13:00" data-end="15:00" data-place="岭南天地">
@@ -838,7 +814,7 @@
                     <a class="nav-link" href="https://uri.amap.com/search?keyword=岭南天地&city=440600" target="_blank" rel="noopener">📍 地图定位</a>
                 </div>
             </div>
-
+ 
             <div class="tl-item spot" data-start="15:00" data-end="17:00" data-place="中山公园 佛山">
                 <div class="route-step">
                     <div class="step-header">
@@ -851,7 +827,7 @@
                 </div>
             </div>
         </div>
-
+ 
         <div class="group-title"><h3>傍晚 · 晚餐 &amp; 返程</h3><span>17:00 – 21:48</span></div>
         <div class="timeline">
             <div class="tl-item food" data-start="17:00" data-end="19:00" data-place="祖庙 佛山">
@@ -862,9 +838,10 @@
                     </div>
                     <div class="step-title">晚餐 · 祖庙 / 中山公园一带<span class="now-chip">进行中</span></div>
                     <div class="step-detail">顺路去赵一鸣零食补点路上吃的</div>
+                    <a class="nav-link" href="https://uri.amap.com/search?keyword=赵一鸣省钱超市(广东佛山文沙路店)&city=440600" target="_blank" rel="noopener">📍 地图定位 · 赵一鸣（文沙路店）</a>
                 </div>
             </div>
-
+ 
             <div class="tl-item" data-start="19:00" data-end="20:30" data-place="云东海站">
                 <div class="route-step">
                     <div class="step-header">
@@ -875,7 +852,7 @@
                     <div class="step-detail">按末班车倒推，19:00 一定得动身</div>
                 </div>
             </div>
-
+ 
             <div class="tl-item" data-start="20:30" data-end="20:38" data-place="广东财经大学佛山校区">
                 <div class="route-step">
                     <div class="step-header">
@@ -886,7 +863,7 @@
                     <div class="step-detail">出站骑车去广财佛山校区西门，把车还这儿</div>
                 </div>
             </div>
-
+ 
             <div class="tl-item" data-start="20:38" data-end="20:46" data-place="云东海站">
                 <div class="route-step">
                     <div class="step-header">
@@ -897,7 +874,7 @@
                     <div class="step-detail">原路骑回车站，赶下一班城际</div>
                 </div>
             </div>
-
+ 
             <div class="tl-item" data-start="20:46" data-end="21:40" data-place="深井站 广州">
                 <div class="route-step">
                     <div class="step-header">
@@ -908,7 +885,7 @@
                     <div class="step-detail">车程按 50 分钟估的，出票后按实际改</div>
                 </div>
             </div>
-
+ 
             <div class="tl-item" data-start="21:40" data-end="21:48" data-place="广东外语外贸大学大学城校区">
                 <div class="route-step">
                     <div class="step-header">
@@ -921,21 +898,21 @@
             </div>
         </div>
         </div>
-
+ 
         <div class="route-view" id="route-qing"></div>
     </div>
-
+ 
     <!-- 3. 美食 -->
     <div id="food" class="content-section" role="tabpanel" tabindex="0" aria-label="美食">
         <h3 class="food-page-title">🔥 佛山备选清单</h3>
         <p class="food-hint">14 家备选，按当天位置和排队情况决定去哪家；#14 是行程里定下的午餐。营业时间会随季节调整，出门前在大众点评扫一眼。</p>
-
+ 
         <div class="food-legend">
             <span class="lg-meal"><i></i>正餐</span>
             <span class="lg-snack"><i></i>小吃</span>
             <span class="lg-dessert"><i></i>甜品</span>
         </div>
-
+ 
         <div class="food-list-container">
             <div class="food-item cat-meal">
                 <div class="food-index">祖庙</div>
@@ -943,91 +920,91 @@
                 <p class="food-desc">东北烧烤，分量特别大，人均 60 能吃很满足。离祖庙很近。注意：<span class="highlight-text">下午 5 点后才开门，别跑空</span>。</p>
                 <div class="food-tags"><span class="tag">东北烧烤</span><span class="tag">分量大</span></div>
             </div>
-
+ 
             <div class="food-item cat-meal">
                 <div class="food-index">岭南天地</div>
                 <h4 class="food-name"><span class="food-no">#2</span>北山炭火烤肉</h4>
                 <p class="food-desc">老板东北人，肉用苏打水和梨汁腌，口感嫩。通风好，吃完身上油烟味不重。</p>
                 <div class="food-tags"><span class="tag">炭火烤肉</span><span class="tag">肉质嫩</span></div>
             </div>
-
+ 
             <div class="food-item cat-meal">
                 <div class="food-index">禅城</div>
                 <h4 class="food-name"><span class="food-no">#3</span>刘皇叔地摊烧烤总店</h4>
                 <p class="food-desc">东北烧烤，本地人也推荐。菜品样式不多，胜在食材新鲜。</p>
                 <div class="food-tags"><span class="tag">地摊烧烤</span><span class="tag">本地人推荐</span></div>
             </div>
-            
+ 
             <div class="food-item cat-meal">
                 <div class="food-index">禅城</div>
                 <h4 class="food-name"><span class="food-no">#4</span>好好食桑拿鸡</h4>
                 <p class="food-desc">桑拿鸡、松子排骨、烧鹅、白切鸡，硬菜路线。</p>
                 <div class="food-tags"><span class="tag">桑拿鸡</span><span class="tag">烧鹅</span></div>
             </div>
-
+ 
             <div class="food-item cat-meal">
                 <div class="food-index">禅城</div>
                 <h4 class="food-name"><span class="food-no">#5</span>鸡来了炭火鸡煲 · 桑拿鸡</h4>
                 <p class="food-desc">扇鸡桑拿鸡、白灼八爪鱼、白灼膏鱿、黑虎虾滑。</p>
                 <div class="food-tags"><span class="tag">炭火鸡煲</span><span class="tag">海鲜</span></div>
             </div>
-
+ 
             <div class="food-item cat-meal">
                 <div class="food-index">禅城</div>
                 <h4 class="food-name"><span class="food-no">#6</span>豪爽美食</h4>
                 <p class="food-desc">牛腩软糯入味，配各种粉都好。</p>
                 <div class="food-tags"><span class="tag">牛腩</span><span class="tag">汤粉</span></div>
             </div>
-
+ 
             <div class="food-item cat-meal">
                 <div class="food-index">禅城</div>
                 <h4 class="food-name"><span class="food-no">#7</span>登满园干蒸鲜排骨</h4>
                 <p class="food-desc">干蒸排骨焦香，其他菜都下饭。</p>
                 <div class="food-tags"><span class="tag">干蒸排骨</span><span class="tag">下饭</span></div>
             </div>
-
+ 
             <div class="food-item cat-meal">
                 <div class="food-index">禅城</div>
                 <h4 class="food-name"><span class="food-no">#8</span>念恩记猪手面</h4>
                 <p class="food-desc">猪手软糯，猪肝和咖喱鱼蛋好吃。</p>
                 <div class="food-tags"><span class="tag">猪手面</span><span class="tag">咖喱鱼蛋</span></div>
             </div>
-
+ 
             <div class="food-item cat-snack">
                 <div class="food-index">禅城</div>
                 <h4 class="food-name"><span class="food-no">#9</span>大笨象小吃店</h4>
                 <p class="food-desc">二十多年老店，价格不贵，烟火气足。</p>
                 <div class="food-tags"><span class="tag">老字号</span><span class="tag">平价</span></div>
             </div>
-
+ 
             <div class="food-item cat-snack">
                 <div class="food-index">禅城</div>
                 <h4 class="food-name"><span class="food-no">#10</span>南善小食店</h4>
                 <p class="food-desc">本地人的早餐店，各种小吃。</p>
                 <div class="food-tags"><span class="tag">本地早餐</span><span class="tag">地道</span></div>
             </div>
-
+ 
             <div class="food-item cat-snack">
                 <div class="food-index">禅城</div>
                 <h4 class="food-name"><span class="food-no">#11</span>蔡玉皎传统薄皮蒸饺</h4>
                 <p class="food-desc">薄皮蒸饺、炸云吞、蒸凤爪必点。</p>
                 <div class="food-tags"><span class="tag">蒸饺</span><span class="tag">炸云吞</span></div>
             </div>
-
+ 
             <div class="food-item cat-dessert">
                 <div class="food-index">禅城</div>
                 <h4 class="food-name"><span class="food-no">#12</span>Hot.huhu 鸡蛋仔</h4>
                 <p class="food-desc">葡挞三重奏鸡蛋仔，几款搭配都不错。</p>
                 <div class="food-tags"><span class="tag">鸡蛋仔</span><span class="tag">甜品</span></div>
             </div>
-
+ 
             <div class="food-item cat-dessert">
                 <div class="food-index">禅城</div>
                 <h4 class="food-name"><span class="food-no">#13</span>圆碌碌甜品屋（南善店）</h4>
                 <p class="food-desc">芒果肠粉特别，猪脚姜好吃。</p>
                 <div class="food-tags"><span class="tag">芒果肠粉</span><span class="tag">猪脚姜</span></div>
             </div>
-
+ 
             <div class="food-item cat-meal">
                 <div class="food-index">祖庙</div>
                 <h4 class="food-name"><span class="food-no">#14</span>重庆酸辣粉麻辣烫（百花广宁云吞店）</h4>
@@ -1036,20 +1013,20 @@
             </div>
         </div>
     </div>
-
+ 
     <!-- 4. 清单 -->
     <div id="checklist" class="content-section" role="tabpanel" tabindex="0" aria-label="公共清单">
         <div class="route-switch" role="tablist" aria-label="选择清单">
             <button class="rs-btn active" type="button" data-check="wolf" role="tab" aria-selected="true">小狼的清单</button>
             <button class="rs-btn" type="button" data-check="qing" role="tab" aria-selected="false">小晴的清单</button>
         </div>
-
+ 
         <div class="check-top">
             <div class="check-progress"><i id="check-bar"></i></div>
             <span class="check-count" id="check-count">0 / 38</span>
             <button class="check-reset" id="check-reset" type="button">清空</button>
         </div>
-
+ 
         <p class="check-hint">大学生一日游版：轻装，一个双肩包就够。最容易忘的三样——宿舍钥匙、校园卡、充电宝。</p>
         <div class="check-view active" id="check-wolf">
         <div class="checklist-container">
@@ -1117,7 +1094,7 @@
             </div>
         </div>
         </div>
-
+ 
         <div class="check-view" id="check-qing">
         <div class="checklist-container">
             <div class="checklist-category">
@@ -1163,11 +1140,8 @@
         </div>
         </div>
     </div>
-
-    <button class="fab-map" id="fab-map" type="button" aria-label="在高德地图中搜索目的地">
-        <span class="ico">🧭</span><span id="fab-label">高德导航</span>
-    </button>
-
+ 
+ 
     <script>
         // ---------------------------------------------------------------
         // 行程参数：日期、出发时间只在这里维护
@@ -1178,19 +1152,19 @@
             label: "06:25 广外（大学城校区）出发",
             arrived: "🎒 出发啦，一路顺风"
         };
-
+ 
         const pad = (n) => String(n).padStart(2, "0");
         const toMinutes = (hhmm) => {
             const parts = hhmm.split(":").map(Number);
             return parts[0] * 60 + parts[1];
         };
-
+ 
         function currentStep() {
             const demo = new URLSearchParams(location.search).get("demo");
             const now = new Date();
             const today = now.getFullYear() + "-" + pad(now.getMonth() + 1) + "-" + pad(now.getDate());
             const isTripDay = today === TRIP.date;
-
+ 
             let minutes = -1;
             if (demo) {
                 minutes = toMinutes(demo);
@@ -1198,7 +1172,7 @@
                 minutes = now.getHours() * 60 + now.getMinutes();
             }
             if (minutes < 0) return null;
-
+ 
             for (const item of document.querySelectorAll(".route-view.active .tl-item")) {
                 const s = toMinutes(item.dataset.start);
                 const e = toMinutes(item.dataset.end);
@@ -1214,16 +1188,16 @@
             }
             return null;
         }
-
+ 
         function tickCountdown() {
             const timer = document.getElementById("timer");
             const label = document.getElementById("countdown-label");
             const next = document.getElementById("next-event");
             if (!timer) return;
-
+ 
             const target = new Date(TRIP.date + "T" + TRIP.depart + ":00+08:00").getTime();
             const diff = target - Date.now();
-
+ 
             if (diff > 0) {
                 const d = Math.floor(diff / 86400000);
                 const h = Math.floor((diff % 86400000) / 3600000);
@@ -1234,9 +1208,8 @@
                 next.textContent = TRIP.label;
                 return;
             }
-
+ 
             const step = currentStep();
-            refreshFab();
             label.textContent = "行程进行中";
             if (step) {
                 timer.textContent = "现在：" + step.title;
@@ -1246,7 +1219,7 @@
                 next.textContent = TRIP.label;
             }
         }
-
+ 
         // ---------------------------------------------------------------
         // 板块切换
         // ---------------------------------------------------------------
@@ -1254,7 +1227,7 @@
             const tabs = document.querySelectorAll(".nav-item");
             const panels = document.querySelectorAll(".content-section");
             let matched = false;
-
+ 
             tabs.forEach((tab) => {
                 const on = tab.dataset.target === targetId;
                 tab.classList.toggle("active", on);
@@ -1267,11 +1240,11 @@
                 panel.setAttribute("aria-hidden", on ? "false" : "true");
             });
             if (!matched) return;
-
+ 
             if (history.replaceState) history.replaceState(null, "", "#" + targetId);
             window.scrollTo({ top: 0, behavior: "smooth" });
         }
-
+ 
         document.querySelectorAll(".nav-item").forEach((tab) => {
             tab.addEventListener("click", () => activate(tab.dataset.target));
             tab.addEventListener("keydown", (e) => {
@@ -1281,40 +1254,40 @@
                 }
             });
         });
-
+ 
         // ---------------------------------------------------------------
         // 清单：勾选 + 进度 + 清空
         // ---------------------------------------------------------------
         const CHECK_KEY = "foshan-trip-check-v3";
-
+ 
         const bar = document.getElementById("check-bar");
         const counter = document.getElementById("check-count");
         const resetBtn = document.getElementById("check-reset");
-
+ 
         let checkState = {};
         try {
             checkState = JSON.parse(localStorage.getItem(CHECK_KEY)) || {};
         } catch (err) {
             checkState = {};
         }
-
+ 
         function saveCheck() {
             try {
                 localStorage.setItem(CHECK_KEY, JSON.stringify(checkState));
             } catch (err) { /* 隐私模式忽略 */ }
         }
-
+ 
         function activeCheckItems() {
             return Array.from(document.querySelectorAll(".check-view.active .checklist-item"));
         }
-
+ 
         function paintCheck() {
             const list = activeCheckItems();
             const done = list.filter((el) => el.classList.contains("done")).length;
             counter.textContent = done + " / " + list.length;
             bar.style.width = (list.length ? (done / list.length) * 100 : 0) + "%";
         }
-
+ 
         Array.from(document.querySelectorAll(".checklist-item")).forEach((el, i) => {
             const key = "c" + i;
             el.dataset.key = key;
@@ -1326,7 +1299,7 @@
                 paintCheck();
             });
         });
-
+ 
         resetBtn.addEventListener("click", () => {
             activeCheckItems().forEach((el) => {
                 el.classList.remove("done");
@@ -1335,7 +1308,7 @@
             saveCheck();
             paintCheck();
         });
-
+ 
         document.querySelectorAll("[data-check]").forEach((btn) => {
             btn.addEventListener("click", () => {
                 document.querySelectorAll("[data-check]").forEach((b) => {
@@ -1349,7 +1322,7 @@
                 paintCheck();
             });
         });
-
+ 
         // ---------------------------------------------------------------
         // 两条路线：小狼全段，小晴从 08:30 早餐到 20:38 广财西门
         // ---------------------------------------------------------------
@@ -1359,30 +1332,30 @@
             { title: "下午 · 岭南天地", range: "13:00 – 17:00", from: "13:00", to: "17:00" },
             { title: "傍晚 · 晚餐 &amp; 返程", range: "17:00 – 20:38", from: "17:00", to: "20:38" }
         ];
-
+ 
         function buildQingRoute() {
             const wolf = document.getElementById("route-wolf");
             const qing = document.getElementById("route-qing");
             if (!wolf || !qing || qing.dataset.built) return;
-
+ 
             const source = Array.from(wolf.querySelectorAll(".tl-item"));
             const mins = (t) => {
                 const p = t.split(":").map(Number);
                 return p[0] * 60 + p[1];
             };
-
+ 
             QING_GROUPS.forEach((group) => {
                 const items = source.filter((el) => {
                     const s = mins(el.dataset.start);
                     return s >= mins(group.from) && s < mins(group.to);
                 });
                 if (!items.length) return;
-
+ 
                 const head = document.createElement("div");
                 head.className = "group-title";
                 head.innerHTML = "<h3>" + group.title + "</h3><span>" + group.range + "</span>";
                 qing.appendChild(head);
-
+ 
                 const tl = document.createElement("div");
                 tl.className = "timeline";
                 items.forEach((el) => {
@@ -1392,10 +1365,10 @@
                 });
                 qing.appendChild(tl);
             });
-
+ 
             qing.dataset.built = "1";
         }
-
+ 
         function switchRoute(view) {
             document.querySelectorAll(".rs-btn[data-view]").forEach((btn) => {
                 const on = btn.dataset.view === view;
@@ -1405,21 +1378,20 @@
             document.querySelectorAll(".route-view").forEach((el) => {
                 el.classList.toggle("active", el.id === "route-" + view);
             });
-
+ 
             const note = document.getElementById("route-note");
             note.textContent = view === "wolf"
                 ? "全段：06:25 出发 · 17 段 · 21:48 回校"
                 : "小晴：08:30 早餐 · 11 段 · 20:38 到广财西门";
-
+ 
             document.querySelectorAll(".tl-item.is-now").forEach((el) => el.classList.remove("is-now"));
             tickCountdown();
-            refreshFab();
         }
-
+ 
         document.querySelectorAll(".rs-btn[data-view]").forEach((btn) => {
             btn.addEventListener("click", () => switchRoute(btn.dataset.view));
         });
-
+ 
         // ---------------------------------------------------------------
         // 初始化
         // ---------------------------------------------------------------
@@ -1427,8 +1399,7 @@
         tickCountdown();
         setInterval(tickCountdown, 1000);
         paintCheck();
-        refreshFab();
-
+ 
         const initial = location.hash.replace("#", "");
         if (initial && document.getElementById(initial)) activate(initial);
     </script>
