@@ -2,23 +2,27 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>佛山一日游手册 - 2026.11.14</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#fdfbf7">
+    <meta name="description" content="佛山一日游手册：行程路线、必吃美食与出行清单，2026 年 11 月 15 日。">
+    <title>佛山一日游手册 - 2026.11.15</title>
     <style>
         :root {
             --bg-color: #fdfbf7;
             --card-bg: #ffffff;
-            --text-main: #4a4a4a; 
+            --text-main: #4a4a4a;
             --text-sub: #888888;
             --accent: #e67e22;
             --route-line: #3498db;
             --danger: #e74c3c;
             --food-green: #27ae60;
-            --foshan-red: #c0392b; 
-            --foshan-yellow: #fcd12a; 
-            --foshan-brown: #4a2c11;  
+            --foshan-red: #c0392b;
+            --foshan-yellow: #fcd12a;
+            --foshan-brown: #4a2c11;
             --paper-bg: #fcfaf5;
         }
+
+        * { box-sizing: border-box; }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -27,11 +31,13 @@
             margin: 0;
             padding: 0;
             padding-bottom: 40px;
+            -webkit-text-size-adjust: 100%;
         }
 
         /* 顶部导航 */
         .nav-tabs {
             display: flex;
+            gap: 4px;
             background: var(--card-bg);
             padding: 10px;
             position: sticky;
@@ -39,7 +45,9 @@
             z-index: 100;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             overflow-x: auto;
+            scrollbar-width: none;
         }
+        .nav-tabs::-webkit-scrollbar { display: none; }
 
         .nav-item {
             flex: 0 0 auto;
@@ -49,7 +57,8 @@
             border-radius: 20px;
             color: var(--text-sub);
             white-space: nowrap;
-            transition: all 0.3s;
+            transition: background-color 0.3s, color 0.3s;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .nav-item.active {
@@ -67,12 +76,12 @@
         }
 
         .countdown-label { font-size: 0.8rem; color: var(--text-sub); margin-bottom: 5px; }
-        .countdown-time { font-size: 2rem; font-weight: bold; color: var(--accent); letter-spacing: 1px; }
+        .countdown-time { font-size: 2rem; font-weight: bold; color: var(--accent); letter-spacing: 1px; font-variant-numeric: tabular-nums; }
         .next-event { font-size: 1rem; margin-top: 5px; color: var(--text-main); }
 
         /* 页面容器 */
         .content-section {
-            display: none; 
+            display: none;
             padding: 20px;
             animation: fadeIn 0.4s ease;
         }
@@ -83,13 +92,13 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- 佛山板块：稳定版水彩手绘风 --- */
+        /* --- 佛山板块：水彩手绘风 --- */
         .foshan-section {
             position: relative;
             width: 100%;
-            height: 450px; 
+            height: clamp(280px, 52vw, 450px);
             overflow: hidden;
-            border-radius: 12px 30px 15px 25px / 25px 15px 30px 12px; 
+            border-radius: 12px 30px 15px 25px / 25px 15px 30px 12px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.08);
             margin-bottom: 20px;
             background-color: var(--paper-bg);
@@ -108,14 +117,14 @@
             top: 15%;
             left: 50%;
             transform: translateX(-50%) rotate(-2deg);
-            font-size: clamp(2rem, 7vw, 3.5rem);
+            font-size: clamp(1.5rem, 7vw, 3.5rem);
             font-weight: 900;
             font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
             color: var(--foshan-yellow);
             letter-spacing: 2px;
             white-space: nowrap;
             z-index: 10;
-            -webkit-text-stroke: 3px var(--foshan-brown); 
+            -webkit-text-stroke: 3px var(--foshan-brown);
             text-shadow: 4px 4px 0px var(--foshan-brown), 0px 10px 20px rgba(0,0,0,0.15);
             animation: floatTitle 4s ease-in-out infinite;
         }
@@ -141,8 +150,10 @@
 
         /* --- 路线页面样式 --- */
         .route-step { background: var(--card-bg); border-radius: 12px; padding: 15px; margin-bottom: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.03); border-left: 5px solid var(--route-line); }
-        .step-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .step-header { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 5px; }
         .step-time { font-weight: bold; font-size: 1.1rem; color: var(--route-line); }
+        .step-meta { font-size: 0.85rem; color: var(--text-sub); text-align: right; white-space: nowrap; }
+        .step-title { font-weight: bold; }
         .step-detail { font-size: 0.9rem; color: var(--text-sub); margin-top: 5px; line-height: 1.5; }
 
         /* --- 美食页面样式 --- */
@@ -150,10 +161,30 @@
             font-size: 1.2rem;
             color: var(--text-main);
             margin-top: 0;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             padding-left: 10px;
             border-left: 4px solid var(--accent);
         }
+
+        .food-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+            font-size: 0.78rem;
+            color: var(--text-sub);
+        }
+        .food-legend span::before {
+            content: "";
+            display: inline-block;
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+        .food-legend .lg-meal::before { background: var(--foshan-red); }
+        .food-legend .lg-snack::before { background: var(--accent); }
+        .food-legend .lg-dessert::before { background: var(--food-green); }
 
         .food-list-container {
             display: grid;
@@ -171,10 +202,8 @@
             border: 1px solid #f0f0f0;
             transition: transform 0.2s ease;
         }
-        
-        .food-item:active {
-            transform: scale(0.98);
-        }
+
+        .food-item:active { transform: scale(0.98); }
 
         .food-index {
             position: absolute;
@@ -215,17 +244,9 @@
             padding-left: 5px;
         }
 
-        .highlight-text {
-            color: var(--danger);
-            font-weight: bold;
-        }
+        .highlight-text { color: var(--danger); font-weight: bold; }
 
-        .food-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            padding-left: 5px;
-        }
+        .food-tags { display: flex; flex-wrap: wrap; gap: 8px; padding-left: 5px; }
 
         .tag {
             font-size: 0.8rem;
@@ -237,34 +258,72 @@
         }
 
         /* --- 公共清单页面样式 --- */
+        .checklist-hint {
+            font-size: 0.8rem;
+            color: var(--text-sub);
+            margin: 0 0 15px 2px;
+        }
+
         .checklist-container { background: var(--card-bg); border-radius: 12px; padding: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.03); }
         .checklist-category { margin-bottom: 25px; border-bottom: 1px solid #f0f0f0; padding-bottom: 10px; }
         .checklist-category:last-child { border-bottom: none; }
         .checklist-title { font-size: 1.2rem; font-weight: bold; margin-bottom: 12px; color: var(--text-main); display: flex; align-items: center; }
         .checklist-title span { margin-right: 8px; font-size: 1.4rem; }
-        .checklist-item { margin-bottom: 6px; font-size: 0.95rem; line-height: 1.5; color: var(--text-sub); }
+
+        .checklist-item {
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: var(--text-sub);
+            cursor: pointer;
+            padding: 2px 0;
+            transition: color 0.2s;
+            -webkit-tap-highlight-color: transparent;
+        }
         .checklist-item::before { content: "•"; color: var(--accent); margin-right: 8px; font-weight: bold; }
+        .checklist-item.done { color: #c3c3c3; text-decoration: line-through; }
+        .checklist-item.done::before { content: "✓"; color: var(--food-green); }
+
+        .step-badge {
+            display: inline-block;
+            margin-left: 8px;
+            padding: 1px 8px;
+            border-radius: 10px;
+            font-size: 0.72rem;
+            font-weight: normal;
+            color: #b9770e;
+            background: #fdf2e0;
+            border: 1px solid #f3d19e;
+            vertical-align: middle;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <div class="nav-tabs">
-        <div class="nav-item active" onclick="showSection('foshan')">佛山</div>
-        <div class="nav-item" onclick="showSection('route')">路线</div>
-        <div class="nav-item" onclick="showSection('food')">美食</div>
-        <div class="nav-item" onclick="showSection('checklist')">公共清单</div>
+    <div class="nav-tabs" role="tablist" aria-label="页面板块">
+        <div class="nav-item active" role="tab" tabindex="0" aria-selected="true" data-target="foshan">佛山</div>
+        <div class="nav-item" role="tab" tabindex="0" aria-selected="false" data-target="route">路线</div>
+        <div class="nav-item" role="tab" tabindex="0" aria-selected="false" data-target="food">美食</div>
+        <div class="nav-item" role="tab" tabindex="0" aria-selected="false" data-target="checklist">公共清单</div>
     </div>
 
     <header>
-        <div class="countdown-label">距离出发还有</div>
-        <div class="countdown-time" id="timer">00天 00小时 00分 00秒</div>
-        <div class="next-event">08:30 广外出发</div>
+        <div class="countdown-label" id="countdown-label">距离出发还有</div>
+        <div class="countdown-time" id="timer">--天 --小时 --分 --秒</div>
+        <div class="next-event" id="next-event">06:25 广外西门集合出发</div>
     </header>
 
     <!-- 1. 佛山页面 -->
-    <div id="foshan" class="content-section active">
+    <div id="foshan" class="content-section active" role="tabpanel">
         <div class="foshan-section">
-            <svg class="hand-drawn-svg" viewBox="0 0 400 450" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <svg class="hand-drawn-svg" viewBox="0 0 400 450" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-label="手绘佛山祖庙插画" role="img">
                 <rect width="100%" height="100%" fill="#fcfaf5" />
                 <rect y="0" width="100%" height="60%" fill="#e6f0f5" opacity="0.6" />
 
@@ -286,7 +345,7 @@
                     <rect x="250" y="250" width="20" height="150" fill="#c0392b" />
                     <rect x="90" y="250" width="15" height="150" fill="#a93226" />
                     <rect x="295" y="250" width="15" height="150" fill="#a93226" />
-                    
+
                     <rect x="110" y="240" width="180" height="20" fill="#c0392b" />
                     <path d="M 120,250 L 280,250" stroke="#f1c40f" stroke-width="2" opacity="0.5" stroke-dasharray="5,5" />
 
@@ -338,155 +397,183 @@
             <p>佛山，古称"禅城"，唐贞观年间因塔坡岗掘得铜佛三尊而得名。</p>
             <p>千年前，这里是岭南文明的起点之一；百年前，黄飞鸿的无影脚和叶问的咏春，让"功夫"两个字写进了世界记忆。</p>
             <p>今天，佛山把江湖气藏进了日常——祖庙的红墙下醒狮每日准时起舞，南风古灶的龙窑五百年未熄，岭南天地的镬耳屋旁长出了咖啡馆。</p>
-            <p>食在广东，味在佛山。双皮奶、鱼生、煲仔饭、早茶……这座"世界美食之都"，靠一口锅传了三百年。</p>
+            <p>食在广东，味在佛山。双皮奶、鱼生、煲仔饭、早茶是老佛山的底子；这一趟时间紧，挑的是离祖庙近、出餐快的烧烤和小吃，甜品留给下午的嘴馋。</p>
             <p>不张扬，不追赶。佛山的底色始终是：功夫、美食、烟火人间。</p>
         </div>
         <div class="author-sign">该网页由小狼开发</div>
     </div>
 
-    <!-- 2. 路线页面 (已根据手写图完全替换) -->
-    <div id="route" class="content-section">
-        
-        <!-- 1. 广外-大学城 -->
+            <!-- 2. 路线页面（2026.11.15 版） -->
+    <div id="route" class="content-section" role="tabpanel">
+
         <div class="route-step">
             <div class="step-header">
-                <span class="step-time">06:25 - 07:03</span>
-                <span>🚴 骑行/打车 6km</span>
+                <span class="step-time">06:25 - 06:40</span>
+                <span class="step-meta">🚕 打车 15min · 约 5.4km</span>
             </div>
-            <div style="font-weight:bold;">广外 → 广州大学城 (城际站)</div>
-            <div class="step-detail">骑行约32min，或打车(06:25-06:40)</div>
+            <div class="step-title">广外（大学城校区）→ 大学城城际站</div>
+            <div class="step-detail">07:03 发车，06:40 到站，留出取票进站的时间</div>
         </div>
 
-        <!-- 2. 城际-云东海 -->
         <div class="route-step">
             <div class="step-header">
                 <span class="step-time">07:03 - 08:21</span>
-                <span>🚄 城际 78km</span>
+                <span class="step-meta">🚄 城际 1h18min · 68km</span>
             </div>
-            <div style="font-weight:bold;">大学城站 → 云东海站</div>
-            <div class="step-detail">耗时1h18min (需提前在铁路12306购票)</div>
+            <div class="step-title">大学城城际站 → 云东海站</div>
+            <div class="step-detail">按 07:03 这班车买票，别买晚一班</div>
         </div>
 
-        <!-- 3. 云东海-广财西门 -->
         <div class="route-step">
             <div class="step-header">
-                <span class="step-time">08:21 - 08:35</span>
-                <span>🚌 666路公交 1.8km</span>
+                <span class="step-time">08:21 - 08:30</span>
+                <span class="step-meta">🚴 骑行 8min · 1.8km</span>
             </div>
-            <div style="font-weight:bold;">云东海站 → 广财西门</div>
-            <div class="step-detail">乘666路公交，下车后骑行约9min</div>
+            <div class="step-title">云东海站 → 广财西门</div>
+            <div class="step-detail">出站找共享单车，一路直行</div>
         </div>
 
-        <!-- 4. 早餐 -->
         <div class="route-step">
             <div class="step-header">
-                <span class="step-time">08:40 - 09:00</span>
-                <span>🚶 150m</span>
+                <span class="step-time">08:30 - 09:00</span>
+                <span class="step-meta">🚶 步行 150m</span>
             </div>
-            <div style="font-weight:bold;">新潮小食 (早餐)</div>
-            <div class="step-detail">在广财西门附近吃早餐</div>
+            <div class="step-title">早餐 · 新潮小食</div>
+            <div class="step-detail">就在广财西门附近，30 分钟吃完往回走</div>
         </div>
 
-        <!-- 5. 三水森林公园 -->
-        <div class="route-step" style="border-left-color: var(--danger);">
-            <div class="step-header">
-                <span class="step-time">09:00 起</span>
-                <span>🚴 6km</span>
-            </div>
-            <div style="font-weight:bold;">三水森林公园</div>
-            <div class="step-detail">⚠️ 9:00开放，免票。公园太大，时间可能不够，视情况游玩。</div>
-        </div>
-
-        <!-- 6. 森林公园-云东海 -->
         <div class="route-step">
             <div class="step-header">
-                <span class="step-time">09:05 - 09:10</span>
-                <span>🚕 打车 1.8km</span>
+                <span class="step-time">09:00 - 09:08</span>
+                <span class="step-meta">🚴 骑行 8min · 1.8km</span>
             </div>
-            <div style="font-weight:bold;">森林公园 → 云东海站</div>
-            <div class="step-detail">打车约4min</div>
+            <div class="step-title">早餐 → 云东海站（折返）</div>
+            <div class="step-detail">赶 09:08 之后的城际，别误车</div>
         </div>
 
-        <!-- 7. 云东海-祖庙 -->
         <div class="route-step">
             <div class="step-header">
-                <span class="step-time">约 09:10 - 10:37</span>
-                <span>🚄 城际+地铁 43km</span>
+                <span class="step-time">09:08 - 10:30</span>
+                <span class="step-meta">🚄 城际+地铁 1h23min · 43km</span>
             </div>
-            <div style="font-weight:bold;">云东海站 → 祖庙 (D出口)</div>
-            <div class="step-detail">耗时约1h27min，学生票10元</div>
+            <div class="step-title">云东海站 → 祖庙站 D 口</div>
+            <div class="step-detail">城际到佛山西换地铁，D 口出站</div>
         </div>
 
-        <!-- 8. 祖庙博物馆 -->
+        <div class="route-step">
+            <div class="step-header">
+                <span class="step-time">10:30 - 10:35</span>
+                <span class="step-meta">🚶 步行 320m</span>
+            </div>
+            <div class="step-title">祖庙 D 口 → 重庆酸辣粉·竹笋面</div>
+            <div class="step-detail">出站步行几分钟就到，先垫肚子再进祖庙</div>
+        </div>
+
+        <div class="route-step" style="border-left-color: var(--accent);">
+            <div class="step-header">
+                <span class="step-time">10:35 - 11:00</span>
+                <span class="step-meta">🍜 午餐</span>
+            </div>
+            <div class="step-title">午餐 · 重庆酸辣粉 / 竹笋面</div>
+            <div class="step-detail">吃得快，25 分钟解决，11 点准时进祖庙</div>
+        </div>
+
         <div class="route-step" style="border-left-color: var(--foshan-red);">
             <div class="step-header">
                 <span class="step-time">11:00 - 13:00</span>
-                <span>🏛️ 游玩</span>
+                <span class="step-meta">🏛️ 游玩 2h</span>
             </div>
-            <div style="font-weight:bold;">祖庙博物馆</div>
-            <div class="step-detail">需在微信预约，游玩约2小时</div>
+            <div class="step-title">祖庙博物馆</div>
+            <div class="step-detail">微信提前预约；醒狮表演看现场场次，别错过上午场</div>
         </div>
 
-        <!-- 9. 午餐 -->
         <div class="route-step">
             <div class="step-header">
-                <span class="step-time">13:00 - 14:00</span>
-                <span>🍽️ 午餐</span>
+                <span class="step-time">13:00 - 15:00</span>
+                <span class="step-meta">🚶 步行 62m</span>
             </div>
-            <div style="font-weight:bold;">午餐 (未定)</div>
-            <div class="step-detail">在祖庙附近解决午餐</div>
+            <div class="step-title">岭南天地</div>
+            <div class="step-detail">祖庙出门就是，免票，镬耳屋和咖啡馆集中在这一片</div>
         </div>
 
-        <!-- 10. 岭南天地 -->
         <div class="route-step">
             <div class="step-header">
-                <span class="step-time">14:00 - 15:30</span>
-                <span>🚶 游玩</span>
+                <span class="step-time">15:00 - 17:00</span>
+                <span class="step-meta">🚴 骑行 5min · 1.5km</span>
             </div>
-            <div style="font-weight:bold;">岭南天地</div>
-            <div class="step-detail">免票，逛街打卡拍照</div>
+            <div class="step-title">中山公园</div>
+            <div class="step-detail">骑车五分钟，公园里歇脚、消食</div>
         </div>
 
-        <!-- 11. 晚餐 -->
+        <div class="route-step" style="border-left-color: var(--accent);">
+            <div class="step-header">
+                <span class="step-time">17:00 - 19:00</span>
+                <span class="step-meta">🍽️ 晚餐（未定）</span>
+            </div>
+            <div class="step-title">晚餐 · 祖庙 / 中山公园一带</div>
+            <div class="step-detail">顺路去赵一鸣零食补点路上吃的</div>
+        </div>
+
         <div class="route-step">
             <div class="step-header">
-                <span class="step-time">15:30 - 16:30</span>
-                <span>🍽️ 晚餐</span>
+                <span class="step-time">19:00 - 20:30</span>
+                <span class="step-meta">🚄 地铁+城际 1h20min</span>
             </div>
-            <div style="font-weight:bold;">晚餐 (未定)</div>
-            <div class="step-detail">提前吃晚餐，准备返程</div>
+            <div class="step-title">禅城区 → 云东海站</div>
+            <div class="step-detail">从祖庙一带往回走，按末班车倒推，19:00 一定得动身</div>
         </div>
 
-        <!-- 12. 返程：佛山-云东海 -->
-        <div class="route-step" style="border-left-color: var(--danger);">
-            <div class="step-header">
-                <span class="step-time">16:30 - 18:00</span>
-                <span>🚄 地铁+城际 43km</span>
-            </div>
-            <div style="font-weight:bold;">返程 → 云东海站</div>
-            <div class="step-detail">耗时约1h25min，注意预留时间</div>
-        </div>
-
-        <!-- 13. 返程：云东海-广财 -->
         <div class="route-step">
             <div class="step-header">
-                <span class="step-time">18:00 - 18:20</span>
-                <span>🚴 骑行 1.8km</span>
+                <span class="step-time">20:30 - 20:38</span>
+                <span class="step-meta">🚴 骑行 8min · 1.8km</span>
             </div>
-            <div style="font-weight:bold;">云东海站 → 广财西门</div>
-            <div class="step-detail">骑行约9min，结束行程</div>
+            <div class="step-title">云东海站 → 广财西门</div>
+            <div class="step-detail">出站骑车去广财佛山校区西门，把车还在这儿</div>
+        </div>
+
+        <div class="route-step">
+            <div class="step-header">
+                <span class="step-time">20:38 - 20:46</span>
+                <span class="step-meta">🚴 骑行 8min · 1.8km</span>
+            </div>
+            <div class="step-title">广财西门 → 云东海站</div>
+            <div class="step-detail">原路骑回车站，赶下一班城际</div>
+        </div>
+
+        <div class="route-step">
+            <div class="step-header">
+                <span class="step-time">20:46 - 21:40</span>
+                <span class="step-meta">🚄 城际 · 时长待核</span>
+            </div>
+            <div class="step-title">云东海站 → 广州深井站</div>
+            <div class="step-detail">这一段车程我按 50 分钟估的，出票后按实际改</div>
+        </div>
+
+        <div class="route-step">
+            <div class="step-header">
+                <span class="step-time">21:40 - 21:48</span>
+                <span class="step-meta">🚴 骑行 8min · 1.8km</span>
+            </div>
+            <div class="step-title">深井站 → 广外（大学城校区）</div>
+            <div class="step-detail">骑回学校，一天收工</div>
         </div>
 
     </div>
 
-    <!-- 3. 美食页面 -->
-    <div id="food" class="content-section">
+<!-- 3. 美食页面 -->
+    <div id="food" class="content-section" role="tabpanel">
         <h3 class="food-page-title">🔥 佛山必吃美食榜单</h3>
+        <div class="food-legend">
+            <span class="lg-meal">正餐</span>
+            <span class="lg-snack">小吃</span>
+            <span class="lg-dessert">甜品</span>
+        </div>
         <div class="food-list-container">
             <div class="food-item cat-meal">
                 <div class="food-index">TOP 1</div>
                 <div class="food-header"><div class="food-name">大呲花丹东海鲜烤肉(禅城店)</div></div>
-                <div class="food-desc">人气超高的东北烧烤，分量特别大，人均60就能吃得很满足。离祖庙很近。注意：<span class="highlight-text">下午5点后才开门，别跑空了！</span></div>
+                <div class="food-desc">人气超高的东北烧烤，分量特别大，人均 60 就能吃得很满足。离祖庙很近。注意：<span class="highlight-text">下午 5 点后才开门，别跑空了！</span></div>
                 <div class="food-tags"><span class="tag">东北烧烤</span><span class="tag">分量大</span><span class="tag">离祖庙近</span></div>
             </div>
             <div class="food-item cat-meal">
@@ -551,7 +638,7 @@
             </div>
             <div class="food-item cat-dessert">
                 <div class="food-index">TOP 12</div>
-                <div class="food-header"><div class="food-name">Hot.huhu鸡蛋仔</div></div>
+                <div class="food-header"><div class="food-name">Hot.huhu 鸡蛋仔</div></div>
                 <div class="food-desc">葡挞三重奏鸡蛋仔，还有好多款搭配都好吃。</div>
                 <div class="food-tags"><span class="tag">葡挞三重奏</span><span class="tag">甜品小吃</span></div>
             </div>
@@ -565,11 +652,159 @@
     </div>
 
     <!-- 4. 公共清单页面 -->
-    <div id="checklist" class="content-section">
+    <div id="checklist" class="content-section" role="tabpanel">
+        <p class="checklist-hint">点一下可以划掉，出门前再核对一遍。</p>
         <div class="checklist-container">
-            <div class="checklist-category"><div class="checklist-title"><span>🪪</span>一、证件类</div><div class="checklist-item">身份证</div><div class="checklist-item">优惠证件（学生证）</div><div class="checklist-item">车票（电子档+截图双重备份）</div></div>
-            <div class="checklist-category"><div class="checklist-title"><span>👚</span>二、衣物首饰类</div><div class="checklist-item">宽松大T恤+长裤（坐车、高铁必备）</div><div class="checklist-item">出片穿搭</div><div class="checklist-item">防晒衣、外套</div></div>
-            <div class="checklist-category"><div class="checklist-title"><span>💄</span>三、化妆品</div><div class="checklist-item">身体防晒霜</div></div>
-            <div class="checklist-category"><div class="checklist-title"><span>📷</span>四、电子设备</div><div class="checklist-item">手机、充电头+充电线、耳机</div><div class="checklist-item">充电宝</div></div>
-            <div class="checklist-category"><div class="checklist-title"><span>💊</span>五、药品类</div><div class="checklist-item">胃药、止泻药、消食片</div><div class="checklist-item">痛经止痛药（布洛芬）</div><div class="checklist-item">驱蚊液、止痒膏、蚊虫叮咬消肿药</div></div>
-            <div class="checklist-category"><div class="checklist-title"><span>🛠️</span>六、杂物类</div><div class="checklist-item">眼镜</div><div class="checklist-item">便携水杯</div><div class="checklist-item">梳子、镜子</div><div class="checklist-item">雨伞</div><div class="checklist-item">小包纸巾、湿纸巾</div><div
+            <div class="checklist-category">
+                <div class="checklist-title"><span>🪪</span>一、证件类</div>
+                <div class="checklist-item">身份证</div>
+                <div class="checklist-item">优惠证件（学生证）</div>
+                <div class="checklist-item">车票（电子档 + 截图双重备份）</div>
+            </div>
+            <div class="checklist-category">
+                <div class="checklist-title"><span>👚</span>二、衣物首饰类</div>
+                <div class="checklist-item">宽松大 T 恤 + 长裤（坐车、高铁必备）</div>
+                <div class="checklist-item">出片穿搭</div>
+                <div class="checklist-item">防晒衣、外套</div>
+            </div>
+            <div class="checklist-category">
+                <div class="checklist-title"><span>💄</span>三、化妆品</div>
+                <div class="checklist-item">身体防晒霜</div>
+            </div>
+            <div class="checklist-category">
+                <div class="checklist-title"><span>📷</span>四、电子设备</div>
+                <div class="checklist-item">手机、充电头 + 充电线、耳机</div>
+                <div class="checklist-item">充电宝</div>
+            </div>
+            <div class="checklist-category">
+                <div class="checklist-title"><span>💊</span>五、药品类</div>
+                <div class="checklist-item">胃药、止泻药、消食片</div>
+                <div class="checklist-item">痛经止痛药（布洛芬）</div>
+                <div class="checklist-item">驱蚊液、止痒膏、蚊虫叮咬消肿药</div>
+            </div>
+            <div class="checklist-category">
+                <div class="checklist-title"><span>🧻</span>六、随身小物</div>
+                <div class="checklist-item">折叠伞或轻便雨衣</div>
+                <div class="checklist-item">水杯 / 一瓶水</div>
+                <div class="checklist-item">现金零钱（部分小店只收现金）</div>
+                <div class="checklist-item">纸巾、湿巾</div>
+            </div>
+            <div class="checklist-category">
+                <div class="checklist-title"><span>✅</span>七、出门前检查</div>
+                <div class="checklist-item">充电宝已充满</div>
+                <div class="checklist-item">城际车票已购买，截图存相册</div>
+                <div class="checklist-item">祖庙博物馆已预约</div>
+                <div class="checklist-item">在群里报备行程与返程时间</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ---------------------------------------------------------------
+        // 行程参数：改这里就行（日期与集合时间只在这一处维护）
+        // ---------------------------------------------------------------
+        const TRIP = {
+            depart: "2026-11-15T06:25:00+08:00", // 出发时间
+            label: "06:25 广外（大学城校区）出发 · 07:03 城际",
+            arrived: "🎒 出发啦，一路顺风"
+        };
+
+        const pad = (n) => String(n).padStart(2, "0");
+
+        function tickCountdown() {
+            const timer = document.getElementById("timer");
+            const label = document.getElementById("countdown-label");
+            if (!timer) return;
+
+            const diff = new Date(TRIP.depart).getTime() - Date.now();
+            if (diff <= 0) {
+                timer.textContent = TRIP.arrived;
+                if (label) label.textContent = "行程进行中";
+                return;
+            }
+            const d = Math.floor(diff / 86400000);
+            const h = Math.floor((diff % 86400000) / 3600000);
+            const m = Math.floor((diff % 3600000) / 60000);
+            const s = Math.floor((diff % 60000) / 1000);
+            timer.textContent = d + "天 " + pad(h) + "小时 " + pad(m) + "分 " + pad(s) + "秒";
+        }
+
+        // ---------------------------------------------------------------
+        // 简单路由：切换板块并更新导航高亮
+        // ---------------------------------------------------------------
+        function activate(targetId) {
+            const tabs = document.querySelectorAll(".nav-item");
+            const panels = document.querySelectorAll(".content-section");
+            let matched = false;
+
+            tabs.forEach((tab) => {
+                const on = tab.dataset.target === targetId;
+                tab.classList.toggle("active", on);
+                tab.setAttribute("aria-selected", on ? "true" : "false");
+                if (on) matched = true;
+            });
+            panels.forEach((panel) => {
+                const on = panel.id === targetId;
+                panel.classList.toggle("active", on);
+                panel.setAttribute("aria-hidden", on ? "false" : "true");
+            });
+            if (!matched) return;
+
+            if (history.replaceState) history.replaceState(null, "", "#" + targetId);
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        document.querySelectorAll(".nav-item").forEach((tab) => {
+            tab.addEventListener("click", () => activate(tab.dataset.target));
+            tab.addEventListener("keydown", (e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    activate(tab.dataset.target);
+                }
+            });
+        });
+
+        // ---------------------------------------------------------------
+        // 清单勾选：点一下划掉，状态存本地
+        // ---------------------------------------------------------------
+        const STORAGE_KEY = "foshan-trip-checklist-v1";
+
+        function loadChecklist() {
+            try {
+                return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+            } catch (err) {
+                return {};
+            }
+        }
+
+        function saveChecklist(state) {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+            } catch (err) {
+                /* 隐私模式下写入失败，忽略即可 */
+            }
+        }
+
+        const checklistState = loadChecklist();
+        document.querySelectorAll(".checklist-item").forEach((item, index) => {
+            const key = "item-" + index;
+            if (checklistState[key]) item.classList.add("done");
+            item.addEventListener("click", () => {
+                item.classList.toggle("done");
+                checklistState[key] = item.classList.contains("done");
+                saveChecklist(checklistState);
+            });
+        });
+
+        // ---------------------------------------------------------------
+        // 初始化
+        // ---------------------------------------------------------------
+        document.getElementById("next-event").textContent = TRIP.label;
+        tickCountdown();
+        setInterval(tickCountdown, 1000);
+
+        const initial = location.hash.replace("#", "");
+        if (initial && document.getElementById(initial)) activate(initial);
+    </script>
+</body>
+</html>
